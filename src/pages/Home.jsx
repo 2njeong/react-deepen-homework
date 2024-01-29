@@ -1,62 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-// import GlobalStyle from "";
-
-const navIdol = [
-  { id: 1, name: "지수 - Jisoo" },
-  { id: 2, name: "제니 - Jennie" },
-  { id: 3, name: "로제 - ROSÉ" },
-  { id: 4, name: "리사 - Lisa" },
-];
-
-const StContainer = styled.header`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-const Title = styled.h1`
-  display: block;
-  font-size: 3em;
-  margin-top: 0.67em;
-  margin-bottom: 0.67em;
-  font-weight: bold;
-  height: 80px;
-  line-height: 80px;
-  /* background-color: aqua; */
-`;
-
-const NavBox = styled.nav`
-  display: flex;
-`;
+import { data } from "../shared/data";
+import GlobalStyle from "../GlobalStyle";
 
 const NavBtn = styled.button`
-  background-color: ${(props) => props.backgroundcolor};
-  color: ${(props) => (props.color % 2 === 0 ? "white" : "black")};
-  height: 70px;
-  width: 255px;
-  text-align: center;
-  line-height: 70px;
-  border-radius: 3px;
-  font-size: 23px;
-  font-weight: bold;
-
-  &:hover {
-    background-color: #b2b7bc;
-    color: #494d52;
-    opacity: 1;
-  }
+  background-color: ${({ backgroundcolor }) => backgroundcolor};
+  color: ${({ color }) => (color % 2 === 0 ? "white" : "black")};
 `;
 
 const navName = (name) => {
   switch (name) {
-    case "지수 - Jisoo":
+    case data[0].name:
       return "pink";
-    case "제니 - Jennie":
+    case data[1].name:
       return "black";
-    case "로제 - ROSÉ":
+    case data[2].name:
       return "pink";
-    case "리사 - Lisa":
+    case data[3].name:
       return "black";
     default:
       return "red";
@@ -72,10 +33,11 @@ function Home() {
 
   return (
     <>
-      <StContainer>
-        <Title>BLACK PINK IN YOUR AREA</Title>
-        <NavBox>
-          {navIdol.map((idol) => {
+      <GlobalStyle />
+      <header>
+        <h1>BLACK PINK IN YOUR AREA</h1>
+        <nav>
+          {data.map((idol) => {
             return (
               <NavBtn
                 key={idol.id}
@@ -87,8 +49,8 @@ function Home() {
               </NavBtn>
             );
           })}
-        </NavBox>
-      </StContainer>
+        </nav>
+      </header>
     </>
   );
 }
