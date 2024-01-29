@@ -28,7 +28,7 @@ function Home() {
   const navigate = useNavigate();
 
   const goDetailPage = (id) => {
-    return navigate(`/${id}`);
+    return navigate(`/detail/${id}`);
   };
 
   return (
