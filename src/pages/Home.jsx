@@ -41,9 +41,9 @@ const NavItem = styled.button`
   font-weight: bold;
 
   &:hover {
-    background-color: #c2bdbe;
-    color: white;
-    opacity: 0.8;
+    background-color: #b2b7bc;
+    color: #494d52;
+    opacity: 1;
   }
 `;
 
