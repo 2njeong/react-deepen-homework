@@ -39,6 +39,12 @@ const NavItem = styled.button`
   border-radius: 3px;
   font-size: 23px;
   font-weight: bold;
+
+  &:hover {
+    background-color: #c2bdbe;
+    color: white;
+    opacity: 0.8;
+  }
 `;
 
 const navName = (name) => {
