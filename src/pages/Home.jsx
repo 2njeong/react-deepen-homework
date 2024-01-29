@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 // import GlobalStyle from "";
 
 const navIdol = [
@@ -29,7 +30,7 @@ const NavBox = styled.nav`
   display: flex;
 `;
 
-const NavItem = styled.button`
+const NavBtn = styled.button`
   background-color: ${(props) => props.backgroundcolor};
   color: ${(props) => (props.color % 2 === 0 ? "white" : "black")};
   height: 70px;
@@ -63,6 +64,12 @@ const navName = (name) => {
 };
 
 function Home() {
+  const navigate = useNavigate();
+
+  const goDetailPage = (id) => {
+    return navigate(`/${id}`);
+  };
+
   return (
     <>
       <StContainer>
@@ -70,13 +77,14 @@ function Home() {
         <NavBox>
           {navIdol.map((idol) => {
             return (
-              <NavItem
+              <NavBtn
                 key={idol.id}
                 backgroundcolor={navName(idol.name)}
                 color={idol.id}
+                onClick={() => goDetailPage(idol.id)}
               >
                 {idol.name}
-              </NavItem>
+              </NavBtn>
             );
           })}
         </NavBox>
