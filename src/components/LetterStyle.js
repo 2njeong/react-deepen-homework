@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FanLetterStContainer = styled.div`
+export const NewFanLetterStContainer = styled.div`
   background-color: beige;
   display: flex;
   flex-wrap: wrap;
@@ -15,7 +15,7 @@ export const FanLetterStContainer = styled.div`
   border-radius: 10px;
 `;
 
-export const FanletterStBox = styled.div`
+export const NewFanletterStBox = styled.div`
   /* background-color: aquamarine; */
   display: flex;
   align-items: center;

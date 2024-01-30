@@ -1,11 +1,10 @@
 import React from "react";
-import Letter from "./Letter";
+import Letter from "../components/Letter";
 
 function Detail() {
   return (
     <>
       <Letter />
-      <div>Detail</div>;
     </>
   );
 }

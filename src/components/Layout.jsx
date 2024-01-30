@@ -3,7 +3,7 @@ import { useState } from "react";
 import GlobalStyle from "../GlobalStyle";
 import { useNavigate } from "react-router-dom";
 import { data } from "../shared/data";
-import { Title, NavBtn, navName } from "../components/LayoutStyle";
+import { Title, NavBtn, navName } from "./LayoutStyle";
 
 function Layout() {
   const [selectedBtn, setSelectedBtn] = useState(null);

@@ -1,13 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import {
-  FanLetterStContainer,
-  FanletterStBox,
+  NewFanLetterStContainer,
+  NewFanletterStBox,
   InputStBox,
   WhoStBox,
   SelectStBox,
   SubmitBtn,
-} from "../components/LetterStyle";
+} from "./LetterStyle";
 
 function Letter() {
   const [nickName, setNicname] = useState("");
@@ -18,15 +18,15 @@ function Letter() {
 
   return (
     <>
-      <FanLetterStContainer>
-        <FanletterStBox>
+      <NewFanLetterStContainer>
+        <NewFanletterStBox>
           닉네임 :&nbsp;
           <InputStBox value={nickName} onChange={nickNameHandeler}></InputStBox>
-        </FanletterStBox>
-        <FanletterStBox>
+        </NewFanletterStBox>
+        <NewFanletterStBox>
           &nbsp; 내용 : &nbsp;{" "}
           <InputStBox value={content} onChange={contentHandeler}></InputStBox>
-        </FanletterStBox>
+        </NewFanletterStBox>
         <WhoStBox>
           누구에게 보내실 건가요?{" "}
           <SelectStBox>
@@ -38,15 +38,8 @@ function Letter() {
           </SelectStBox>
         </WhoStBox>
         <SubmitBtn>펜레터 등록</SubmitBtn>
-      </FanLetterStContainer>
-      <div>
-        <img></img>
-        <ul>
-          <li>닉네임</li>
-          <li>날짜</li>
-          <ul>내용</ul>
-        </ul>
-      </div>
+      </NewFanLetterStContainer>
+      {/* ----------------------------------------------------------------------------------------------------------------------- */}
     </>
   );
 }
