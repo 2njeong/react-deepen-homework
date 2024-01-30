@@ -52,7 +52,7 @@ export const SelectStBox = styled.select`
   height: 25px;
 `;
 
-export const SubmitBtn = styled.button`
+export const SubmitBtnSt = styled.button`
   width: 150px;
   height: 30px;
   display: flex;

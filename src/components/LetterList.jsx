@@ -1,29 +1,32 @@
 import React from "react";
-import { fakeData } from "../shared/data";
+import { data, fakeData } from "../shared/data";
 import {
   FanLetterStContainer,
-  Avatar,
+  AvatarSt,
   FanLetterStBox,
-  LetterUl,
-} from "./LayoutStyle";
+  LetterUlSt,
+} from "../style/LetterListStyle";
 
-function LetterList() {
+function LetterList({ selectedBtn }) {
   return (
     <FanLetterStContainer>
-      {fakeData.map((data) => {
-        return (
-          <FanLetterStBox key={data.id}>
-            <Avatar src={data.avatar} alt="avatar"></Avatar>
+      {selectedBtn !== null &&
+        fakeData
+          .filter((fake) => fake.writedTo === data[selectedBtn - 1].name)
+          .map((fake) => {
+            return (
+              <FanLetterStBox key={fake.id}>
+                <AvatarSt src={fake.avatar} alt="avatar"></AvatarSt>
 
-            <LetterUl>
-              <li>닉네임 : {data.nickname}</li>
-              <li>날짜 : {data.createdAt}</li>
-              <li>To : {data.writedTo}</li>
-              <li>{data.content}</li>
-            </LetterUl>
-          </FanLetterStBox>
-        );
-      })}
+                <LetterUlSt>
+                  <li>닉네임 : {fake.nickname}</li>
+                  <li>날짜 : {fake.createdAt}</li>
+                  <li>To : {fake.writedTo}</li>
+                  <li>{fake.content}</li>
+                </LetterUlSt>
+              </FanLetterStBox>
+            );
+          })}
     </FanLetterStContainer>
   );
 }

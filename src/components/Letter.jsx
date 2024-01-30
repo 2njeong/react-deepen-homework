@@ -6,8 +6,8 @@ import {
   InputStBox,
   WhoStBox,
   SelectStBox,
-  SubmitBtn,
-} from "./LetterStyle";
+  SubmitBtnSt,
+} from "../style/LetterStyle";
 
 function Letter() {
   const [nickName, setNicname] = useState("");
@@ -37,11 +37,9 @@ function Letter() {
             <option>리사 - Lisa</option>
           </SelectStBox>
         </WhoStBox>
-        <SubmitBtn>펜레터 등록</SubmitBtn>
+        <SubmitBtnSt>펜레터 등록</SubmitBtnSt>
       </NewFanLetterStContainer>
-      {/* ----------------------------------------------------------------------------------------------------------------------- */}
     </>
   );
 }
-
 export default Letter;

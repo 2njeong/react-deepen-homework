@@ -1,46 +1,24 @@
 import React from "react";
-import { useState } from "react";
 import GlobalStyle from "../GlobalStyle";
-import { useNavigate } from "react-router-dom";
-import { data } from "../shared/data";
-import { Title, NavBtn, navName } from "./LayoutStyle";
+import { useState } from "react";
+import Title from "./Title";
+import LetterList from "./LetterList";
+import Letter from "./Letter";
 
 function Layout() {
   const [selectedBtn, setSelectedBtn] = useState(null);
-
-  const navigate = useNavigate();
-
-  const goDetailPage = (id) => {
-    setSelectedBtn(id);
-    navigate(`/detail/${id}`);
-  };
-
-  const titleBtn = () => {
-    setSelectedBtn(null);
-    navigate("/");
-  };
-
   return (
     <>
       <GlobalStyle />
       <header>
-        <Title onClick={titleBtn}>BLACK PINK IN YOUR AREA</Title>
-        <nav>
-          {data.map((idol) => {
-            return (
-              <NavBtn
-                key={idol.id}
-                backgroundcolor={navName(idol.name)}
-                color={idol.id}
-                isselected={selectedBtn === idol.id}
-                onClick={() => goDetailPage(idol.id)}
-              >
-                {idol.name}
-              </NavBtn>
-            );
-          })}
-        </nav>
+        <Title selectedBtn={selectedBtn} setSelectedBtn={setSelectedBtn} />
       </header>
+      <body>
+        <Letter />
+      </body>
+      <footer>
+        <LetterList selectedBtn={selectedBtn} />
+      </footer>
     </>
   );
 }

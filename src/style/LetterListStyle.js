@@ -24,7 +24,7 @@ export const FanLetterStBox = styled.div`
   align-items: center;
 `;
 
-export const Avatar = styled.img`
+export const AvatarSt = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 70%;
@@ -32,7 +32,7 @@ export const Avatar = styled.img`
   object-fit: cover;
 `;
 
-export const LetterUl = styled.ul`
+export const LetterUlSt = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: center;

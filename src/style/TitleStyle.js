@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { data } from "../shared/data";
 
-export const Title = styled.button`
+export const TitleSt = styled.button`
   display: block;
   font-size: 3em;
   margin-top: 0.67em;
@@ -12,7 +12,7 @@ export const Title = styled.button`
   background-color: transparent;
   border-color: transparent;
 `;
-export const NavBtn = styled.button`
+export const NavBtnSt = styled.button`
   background-color: ${({ backgroundcolor, isselected }) =>
     isselected ? "#b2b7bc" : backgroundcolor};
   color: ${({ color, isSelected }) =>
