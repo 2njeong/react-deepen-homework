@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { data } from "../shared/data";
 
-export const Title = styled.h1`
+export const Title = styled.button`
   display: block;
   font-size: 3em;
   margin-top: 0.67em;
@@ -9,10 +9,14 @@ export const Title = styled.h1`
   font-weight: bold;
   height: 80px;
   line-height: 80px;
+  background-color: transparent;
+  border-color: transparent;
 `;
 export const NavBtn = styled.button`
-  background-color: ${({ backgroundcolor }) => backgroundcolor};
-  color: ${({ color }) => (color % 2 === 0 ? "white" : "black")};
+  background-color: ${({ backgroundcolor, isselected }) =>
+    isselected ? "#b2b7bc" : backgroundcolor};
+  color: ${({ color, isSelected }) =>
+    color % 2 === 0 || isSelected ? "white" : "black"};
   height: 70px;
   width: 255px;
   text-align: center;
