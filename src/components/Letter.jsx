@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { useState } from "react";
-import { fakeData } from "../shared/data";
 import {
   NewFanLetterStContainer,
   NickNameStBox,
@@ -14,12 +13,10 @@ import { v4 as uuidv4 } from "uuid";
 import LetterList from "./LetterList";
 import Select from "./Select";
 
-function Letter({ selectedBtn }) {
+function Letter({ selectedBtn, letterList, setLetterList }) {
   const [nickName, setNicKName] = useState("");
   const [content, setContent] = useState("");
   const [option, setOption] = useState("");
-
-  const [letterList, setLetterList] = useState([...fakeData]);
 
   const nickNameHandeler = (e) => setNicKName(e.target.value);
   const contentHandeler = (e) => setContent(e.target.value);
@@ -28,7 +25,7 @@ function Letter({ selectedBtn }) {
     return {
       createdAt: String(new Date()),
       nickname: `${nickName}`,
-      avatar: "img/pngwing.com.png",
+      avatar: "/img/pngwing.com.png",
       content: `${content}`,
       writedTo: option,
       id: uuidv4(),
@@ -37,9 +34,9 @@ function Letter({ selectedBtn }) {
   const selectRef = useRef(null);
 
   const onClearSelect = () => {
-    if (selectRef.current) {
-      selectRef.current.clearValue();
-    }
+    // if (selectRef.current) {
+    //   selectRef.current.clearValue();
+    // }
   };
 
   const submitHandler = (event) => {

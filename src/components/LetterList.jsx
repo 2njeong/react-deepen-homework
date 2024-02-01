@@ -1,7 +1,6 @@
 import React from "react";
 import { data } from "../shared/data";
 import { useNavigate } from "react-router-dom";
-import Detail from "../pages/Detail";
 import {
   FanLetterStContainer,
   AvatarSt,
@@ -16,29 +15,15 @@ function LetterList({ selectedBtn, letterList }) {
     navigate(`/letterList/${id}`);
   };
 
+  const selectedLetterList = letterList.filter(
+    (letter) => letter.writedTo === data[selectedBtn - 1].name
+  );
+
   return (
     <FanLetterStContainer backgroundcolor={selectedBtn}>
-      {selectedBtn !== null
-        ? letterList
-            .filter((letter) => letter.writedTo === data[selectedBtn - 1].name)
-            .map((letter) => {
-              return (
-                <FanLetterStBox
-                  key={letter.id}
-                  onClick={() => goToDetailPage(letter.id)}
-                >
-                  <AvatarSt src={letter.avatar} alt="avatar"></AvatarSt>
-
-                  <LetterUlSt>
-                    <li>{letter.nickname}</li>
-                    <li>{letter.createdAt}</li>
-                    <li>To : {letter.writedTo}</li>
-                    <LiStyle>{letter.content}</LiStyle>
-                  </LetterUlSt>
-                </FanLetterStBox>
-              );
-            })
-        : letterList.map((letter) => {
+      {selectedBtn !== null ? (
+        selectedLetterList ? (
+          selectedLetterList.map((letter) => {
             return (
               <FanLetterStBox
                 key={letter.id}
@@ -54,8 +39,32 @@ function LetterList({ selectedBtn, letterList }) {
                 </LetterUlSt>
               </FanLetterStBox>
             );
-          })}
-      <Detail selectedBtn={selectedBtn} letterList={letterList} />
+          })
+        ) : (
+          <div>
+            {data[selectedBtn - 1].name}에게 남겨진 펜레터가 없습니다. 당신의
+            최애를 구해주세요!
+          </div>
+        )
+      ) : (
+        letterList.map((letter) => {
+          return (
+            <FanLetterStBox
+              key={letter.id}
+              onClick={() => goToDetailPage(letter.id)}
+            >
+              <AvatarSt src={letter.avatar} alt="avatar"></AvatarSt>
+
+              <LetterUlSt>
+                <li>{letter.nickname}</li>
+                <li>{letter.createdAt}</li>
+                <li>To : {letter.writedTo}</li>
+                <LiStyle>{letter.content}</LiStyle>
+              </LetterUlSt>
+            </FanLetterStBox>
+          );
+        })
+      )}
     </FanLetterStContainer>
   );
 }

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Title from "./Title";
 import Letter from "./Letter";
 
-function Layout() {
+function Layout({ letterList, setLetterList }) {
   const [selectedBtn, setSelectedBtn] = useState(null);
   return (
     <>
@@ -12,7 +12,11 @@ function Layout() {
 
       <Title selectedBtn={selectedBtn} setSelectedBtn={setSelectedBtn} />
 
-      <Letter selectedBtn={selectedBtn} />
+      <Letter
+        selectedBtn={selectedBtn}
+        letterList={letterList}
+        setLetterList={setLetterList}
+      />
     </>
   );
 }

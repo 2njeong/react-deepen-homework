@@ -1,10 +1,10 @@
 import React from "react";
 import Layout from "../components/Layout";
 
-function Home() {
+function Home({ letterList, setLetterList }) {
   return (
     <>
-      <Layout />
+      <Layout letterList={letterList} setLetterList={setLetterList} />
     </>
   );
 }

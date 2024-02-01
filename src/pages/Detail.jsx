@@ -1,28 +1,51 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import {
+  DetailImgStBox,
+  DetailStBox,
+  DetailHeader,
+  DetailHeaderInsideDiv1,
+  DetailHeaderInsideDiv2,
+  DetailBtnDiv,
+  DetailBtn,
+  DetailAvatarImg,
+  DetailNicknameP,
+  DetailWriteToP,
+  DetailP,
+  DetailContentP,
+} from "../style/DetailStyle";
 
 function Detail({ letterList }) {
   const params = useParams();
   console.log(params); // {id:1}
   console.log(params.id); // "1"
-  console.log(letterList); // undefined
+  console.log(letterList);
 
-  //   let foundLetter = letterList.find(
-  //     (letter) => letter.id === params.id
-  //   );
-  //   console.log(foundLetter);
+  let foundLetter = letterList.find((letter) => letter.id === params.id);
 
   return (
-    <></>
-    // <div key={foundLetter.id}>
-    //   <img src={foundLetter.avatar} alt="메롱"></img>
-    //   <ul>
-    //     <li>{foundLetter.nickname}</li>
-    //     <li>{foundLetter.createdAt}</li>
-    //     <li>To : {foundLetter.writedTo}</li>
-    //     <li>{foundLetter.content}</li>
-    //   </ul>
-    // </div>
+    <>
+      <DetailImgStBox key={foundLetter.id}>
+        <DetailStBox>
+          <DetailHeader>
+            <DetailHeaderInsideDiv1>
+              <DetailAvatarImg src={foundLetter.avatar} alt="avartar" />
+              <DetailNicknameP>{foundLetter.nickname}</DetailNicknameP>
+            </DetailHeaderInsideDiv1>
+            <DetailHeaderInsideDiv2>
+              <DetailBtnDiv>
+                <DetailBtn>수정</DetailBtn>
+                <DetailBtn>삭제</DetailBtn>
+              </DetailBtnDiv>
+              <DetailP>{foundLetter.createdAt}</DetailP>
+            </DetailHeaderInsideDiv2>
+          </DetailHeader>
+
+          <DetailWriteToP>To : {foundLetter.writedTo}</DetailWriteToP>
+          <DetailContentP>{foundLetter.content}</DetailContentP>
+        </DetailStBox>
+      </DetailImgStBox>
+    </>
   );
 }
 
