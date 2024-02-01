@@ -2,10 +2,12 @@ import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home.jsx";
 import Detail from "../pages/Detail.jsx";
+import Members from "../pages/Members.jsx";
 import { fakeData } from "../shared/data";
 
 const Router = () => {
   const [letterList, setLetterList] = useState([...fakeData]);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -21,6 +23,12 @@ const Router = () => {
             <Detail letterList={letterList} setLetterList={setLetterList} />
           }
         />
+        {/* <Route
+          path="/title/:selectedBtn"
+          element={
+            <Members letterList={letterList} setLetterList={setLetterList} />
+          }
+        /> */}
       </Routes>
     </BrowserRouter>
   );

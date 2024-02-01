@@ -1,6 +1,6 @@
 import React from "react";
 import { data } from "../shared/data";
-import { useNavigate } from "react-router-dom";
+
 import {
   FanLetterStContainer,
   AvatarSt,
@@ -8,42 +8,46 @@ import {
   LetterUlSt,
   LiStyle,
 } from "../style/LetterListStyle";
+import { useNavigate } from "react-router-dom";
 
 function LetterList({ selectedBtn, letterList }) {
   const navigate = useNavigate();
+
   const goToDetailPage = (id) => {
     navigate(`/letterList/${id}`);
   };
 
-  const selectedLetterList = letterList.filter(
-    (letter) => letter.writedTo === data[selectedBtn - 1].name
-  );
+  console.log(letterList);
 
   return (
     <FanLetterStContainer backgroundcolor={selectedBtn}>
       {selectedBtn !== null ? (
-        selectedLetterList ? (
-          selectedLetterList.map((letter) => {
-            return (
-              <FanLetterStBox
-                key={letter.id}
-                onClick={() => goToDetailPage(letter.id)}
-              >
-                <AvatarSt src={letter.avatar} alt="avatar"></AvatarSt>
+        letterList.filter(
+          (letter) => letter.writedTo === data[selectedBtn - 1].name
+        ) ? (
+          letterList
+            .filter((letter) => letter.writedTo === data[selectedBtn - 1].name)
+            .map((letter) => {
+              return (
+                <FanLetterStBox
+                  key={letter.id}
+                  onClick={() => goToDetailPage(letter.id)}
+                >
+                  <AvatarSt src={letter.avatar} alt="avatar"></AvatarSt>
 
-                <LetterUlSt>
-                  <li>{letter.nickname}</li>
-                  <li>{letter.createdAt}</li>
-                  <li>To : {letter.writedTo}</li>
-                  <LiStyle>{letter.content}</LiStyle>
-                </LetterUlSt>
-              </FanLetterStBox>
-            );
-          })
+                  <LetterUlSt>
+                    <li>{letter.nickname}</li>
+                    <li>{letter.createdAt}</li>
+                    <li>To : {letter.writedTo}</li>
+                    <LiStyle>{letter.content}</LiStyle>
+                  </LetterUlSt>
+                </FanLetterStBox>
+              );
+            })
         ) : (
           <div>
-            {data[selectedBtn - 1].name}에게 남겨진 펜레터가 없습니다. 당신의
-            최애를 구해주세요!
+            아직 {data[selectedBtn - 1].name}에게 남겨진 팬레터가 없습니다.
+            펜레터를 작성해주세요. 성덕으로 가는 지름길..!
           </div>
         )
       ) : (

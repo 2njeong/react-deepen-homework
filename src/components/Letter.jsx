@@ -24,20 +24,14 @@ function Letter({ selectedBtn, letterList, setLetterList }) {
   const makeLetterHandeler = () => {
     return {
       createdAt: String(new Date()),
-      nickname: `${nickName}`,
+      nickname: nickName,
       avatar: "/img/pngwing.com.png",
-      content: `${content}`,
+      content: content,
       writedTo: option,
       id: uuidv4(),
     };
   };
   const selectRef = useRef(null);
-
-  const onClearSelect = () => {
-    // if (selectRef.current) {
-    //   selectRef.current.clearValue();
-    // }
-  };
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -55,7 +49,6 @@ function Letter({ selectedBtn, letterList, setLetterList }) {
       alert("최애에게 전달 중...><");
       setNicKName("");
       setContent("");
-      onClearSelect();
     }
   };
   return (

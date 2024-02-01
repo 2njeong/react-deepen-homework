@@ -67,7 +67,7 @@ export const DetailAvatarImg = styled.img`
 export const DetailNicknameP = styled.p`
   margin-left: 8px;
   font-weight: 700;
-  font-size: 35px;
+  font-size: 30px;
 `;
 
 export const DetailWriteToP = styled.p`
@@ -83,7 +83,24 @@ export const DetailP = styled.p`
 `;
 
 export const DetailContentP = styled.p`
+  /* background-color: aqua; */
+  border: 3px solid #f9f9f9;
+  border-radius: 10px;
   padding: 10px;
   font-size: 24px;
   line-height: 45px;
+  margin: 3px 0 0 22.5px;
+  width: 580px;
+  height: 185px;
+`;
+
+export const DetailEditArea = styled.textarea`
+  border: 3px solid #f9f9f9;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 24px;
+  line-height: 45px;
+  margin: 3px 0 0 22.5px;
+  width: 580px;
+  height: 185px;
 `;
