@@ -1,32 +1,61 @@
 import React from "react";
-import { data, fakeData } from "../shared/data";
+import { data } from "../shared/data";
+import { useNavigate } from "react-router-dom";
+import Detail from "../pages/Detail";
 import {
   FanLetterStContainer,
   AvatarSt,
   FanLetterStBox,
   LetterUlSt,
+  LiStyle,
 } from "../style/LetterListStyle";
 
-function LetterList({ selectedBtn }) {
+function LetterList({ selectedBtn, letterList }) {
+  const navigate = useNavigate();
+  const goToDetailPage = (id) => {
+    navigate(`/letterList/${id}`);
+  };
+
   return (
-    <FanLetterStContainer>
-      {selectedBtn !== null &&
-        fakeData
-          .filter((fake) => fake.writedTo === data[selectedBtn - 1].name)
-          .map((fake) => {
+    <FanLetterStContainer backgroundcolor={selectedBtn}>
+      {selectedBtn !== null
+        ? letterList
+            .filter((letter) => letter.writedTo === data[selectedBtn - 1].name)
+            .map((letter) => {
+              return (
+                <FanLetterStBox
+                  key={letter.id}
+                  onClick={() => goToDetailPage(letter.id)}
+                >
+                  <AvatarSt src={letter.avatar} alt="avatar"></AvatarSt>
+
+                  <LetterUlSt>
+                    <li>{letter.nickname}</li>
+                    <li>{letter.createdAt}</li>
+                    <li>To : {letter.writedTo}</li>
+                    <LiStyle>{letter.content}</LiStyle>
+                  </LetterUlSt>
+                </FanLetterStBox>
+              );
+            })
+        : letterList.map((letter) => {
             return (
-              <FanLetterStBox key={fake.id}>
-                <AvatarSt src={fake.avatar} alt="avatar"></AvatarSt>
+              <FanLetterStBox
+                key={letter.id}
+                onClick={() => goToDetailPage(letter.id)}
+              >
+                <AvatarSt src={letter.avatar} alt="avatar"></AvatarSt>
 
                 <LetterUlSt>
-                  <li>닉네임 : {fake.nickname}</li>
-                  <li>날짜 : {fake.createdAt}</li>
-                  <li>To : {fake.writedTo}</li>
-                  <li>{fake.content}</li>
+                  <li>{letter.nickname}</li>
+                  <li>{letter.createdAt}</li>
+                  <li>To : {letter.writedTo}</li>
+                  <LiStyle>{letter.content}</LiStyle>
                 </LetterUlSt>
               </FanLetterStBox>
             );
           })}
+      <Detail selectedBtn={selectedBtn} letterList={letterList} />
     </FanLetterStContainer>
   );
 }

@@ -1,15 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "../pages/Home";
-import Detail from "../pages/Detail";
-import Layout from "../components/Layout";
+import Home from "../pages/Home.jsx";
+import Detail from "../pages/Detail.jsx";
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <Layout />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/letterList/:id" element={<Detail />} />
       </Routes>
     </BrowserRouter>
   );

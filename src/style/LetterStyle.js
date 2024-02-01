@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const NewFanLetterStContainer = styled.div`
+export const NewFanLetterStContainer = styled.form`
   background-color: beige;
   display: flex;
   flex-wrap: wrap;
@@ -9,27 +9,45 @@ export const NewFanLetterStContainer = styled.div`
   align-content: stretch;
 
   width: 600px;
-  height: 200px;
+  height: 350px;
   margin: 50px auto 10px auto;
   padding: 10px;
   border-radius: 10px;
 `;
 
-export const NewFanletterStBox = styled.div`
+export const NickNameStBox = styled.div`
   /* background-color: aquamarine; */
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 30px;
-  margin: 5px auto 5px auto;
+  height: 70px;
+  margin: 5px auto 10px auto;
   padding: 5px;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: bold;
 `;
 
-export const InputStBox = styled.input`
+export const ContentStBox = styled.div`
+  /* background-color: pink; */
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 120px;
+  margin: 5px auto 10px auto;
+  padding: 5px;
+  font-size: 17px;
+  font-weight: bold;
+`;
+
+export const NickInputStBox = styled.input`
   width: 500px;
-  height: 20px;
+  height: 35px;
+  border-radius: 5px;
+`;
+
+export const ContentInputStBox = styled.input`
+  width: 500px;
+  height: 120px;
   border-radius: 5px;
 `;
 
@@ -40,11 +58,9 @@ export const WhoStBox = styled.div`
   align-items: center;
 
   height: 20px;
-  width: 590px;
   font-weight: bold;
-  font-size: 15px;
-  margin: 10px;
-  /* padding-left: 15px; */
+  font-size: 18px;
+  margin: 5px;
 `;
 
 export const SelectStBox = styled.select`
@@ -60,5 +76,5 @@ export const SubmitBtnSt = styled.button`
   align-items: center;
   font-weight: bold;
   font-size: 15px;
-  margin: 10px 10px 10px auto;
+  margin: 5px 5px 5px auto;
 `;

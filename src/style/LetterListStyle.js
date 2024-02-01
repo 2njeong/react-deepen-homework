@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const FanLetterStContainer = styled.div`
-  background-color: beige;
+  background-color: ${({ backgroundcolor }) =>
+    backgroundcolor === null ? "tranparent" : "beige"};
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -17,19 +18,22 @@ export const FanLetterStContainer = styled.div`
 export const FanLetterStBox = styled.div`
   /* background-color: bisque; */
   display: flex;
-  width: 600px;
-  height: 120px;
-  margin: 5px;
+  height: 100px;
+  margin: 5px 0 5px 0;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
+  border: 2px solid gray;
+  border-radius: 5px;
 `;
 
 export const AvatarSt = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 85px;
+  height: 85px;
   border-radius: 70%;
   overflow: hidden;
   object-fit: cover;
+  margin: 7px;
 `;
 
 export const LetterUlSt = styled.ul`
@@ -37,6 +41,12 @@ export const LetterUlSt = styled.ul`
   flex-direction: column;
   justify-content: center;
   margin-right: 10px;
-  width: 480px;
+  width: 460px;
   height: 120px;
+`;
+
+export const LiStyle = styled.li`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;

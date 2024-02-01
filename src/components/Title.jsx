@@ -6,9 +6,8 @@ import { useNavigate } from "react-router-dom";
 function Title({ selectedBtn, setSelectedBtn }) {
   const navigate = useNavigate();
 
-  const goDetailPage = (id) => {
+  const seletecBtnClick = (id) => {
     setSelectedBtn(id);
-    navigate(`/detail/${id}`);
   };
 
   const titleBtn = () => {
@@ -17,24 +16,24 @@ function Title({ selectedBtn, setSelectedBtn }) {
   };
 
   return (
-    <>
+    <header>
       <TitleSt onClick={titleBtn}>BLACK PINK IN YOUR AREA</TitleSt>
       <nav>
         {data.map((idol) => {
           return (
             <NavBtnSt
               key={idol.id}
+              onClick={() => seletecBtnClick(idol.id)}
+              isselected={selectedBtn === idol.id ? "true" : "false"}
               backgroundcolor={navName(idol.name)}
               color={idol.id}
-              isselected={selectedBtn === idol.id}
-              onClick={() => goDetailPage(idol.id)}
             >
               {idol.name}
             </NavBtnSt>
           );
         })}
       </nav>
-    </>
+    </header>
   );
 }
 
