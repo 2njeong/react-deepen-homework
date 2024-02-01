@@ -8,8 +8,6 @@ function Title({ selectedBtn, setSelectedBtn }) {
 
   const seletecBtnClick = (id) => {
     setSelectedBtn(id);
-    // console.log(selectedBtn);
-    // navigate(`/title/${selectedBtn}`);
   };
 
   const titleBtn = () => {

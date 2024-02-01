@@ -42,11 +42,12 @@ export const LetterUlSt = styled.ul`
   justify-content: center;
   margin-right: 10px;
   width: 460px;
-  height: 120px;
+  height: 130px;
 `;
 
 export const LiStyle = styled.li`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  height: 20px;
 `;

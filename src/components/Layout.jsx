@@ -1,11 +1,9 @@
 import React from "react";
 import GlobalStyle from "../GlobalStyle";
-import { useState } from "react";
 import Title from "./Title";
 import Letter from "./Letter";
 
-function Layout({ letterList, setLetterList }) {
-  const [selectedBtn, setSelectedBtn] = useState(null);
+function Layout({ selectedBtn, setSelectedBtn, letterList, setLetterList }) {
   return (
     <>
       <GlobalStyle />

@@ -24,7 +24,7 @@ function LetterList({ selectedBtn, letterList }) {
       {selectedBtn !== null ? (
         letterList.filter(
           (letter) => letter.writedTo === data[selectedBtn - 1].name
-        ) ? (
+        ).length > 0 ? (
           letterList
             .filter((letter) => letter.writedTo === data[selectedBtn - 1].name)
             .map((letter) => {
@@ -46,7 +46,7 @@ function LetterList({ selectedBtn, letterList }) {
             })
         ) : (
           <div>
-            아직 {data[selectedBtn - 1].name}에게 남겨진 팬레터가 없습니다.
+            아직 🩷{data[selectedBtn - 1].name}🩷 에게 남겨진 팬레터가 없습니다.
             펜레터를 작성해주세요. 성덕으로 가는 지름길..!
           </div>
         )

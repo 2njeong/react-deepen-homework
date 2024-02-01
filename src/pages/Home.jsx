@@ -1,10 +1,15 @@
 import React from "react";
 import Layout from "../components/Layout";
 
-function Home({ letterList, setLetterList }) {
+function Home({ selectedBtn, setSelectedBtn, letterList, setLetterList }) {
   return (
     <>
-      <Layout letterList={letterList} setLetterList={setLetterList} />
+      <Layout
+        selectedBtn={selectedBtn}
+        setSelectedBtn={setSelectedBtn}
+        letterList={letterList}
+        setLetterList={setLetterList}
+      />
     </>
   );
 }
