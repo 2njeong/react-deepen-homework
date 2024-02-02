@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home.jsx";
 import Detail from "../pages/Detail.jsx";
 import { fakeData } from "../shared/data";
+import GlobalStyle from "../GlobalStyle.jsx";
 
 const Router = () => {
   const [letterList, setLetterList] = useState([...fakeData]);
@@ -10,6 +11,7 @@ const Router = () => {
 
   return (
     <BrowserRouter>
+      <GlobalStyle />
       <Routes>
         <Route
           path="/"
@@ -33,12 +35,6 @@ const Router = () => {
             />
           }
         />
-        {/* <Route
-          path="/title/:selectedBtn"
-          element={
-            <Members letterList={letterList} setLetterList={setLetterList} />
-          }
-        /> */}
       </Routes>
     </BrowserRouter>
   );

@@ -16,7 +16,7 @@ function Title({ selectedBtn, setSelectedBtn }) {
   };
 
   return (
-    <header>
+    <>
       <TitleSt onClick={titleBtn}>BLACK PINK IN YOUR AREA</TitleSt>
       <nav>
         {data.map((idol) => {
@@ -33,7 +33,7 @@ function Title({ selectedBtn, setSelectedBtn }) {
           );
         })}
       </nav>
-    </header>
+    </>
   );
 }
 

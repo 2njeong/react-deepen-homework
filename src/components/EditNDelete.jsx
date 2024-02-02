@@ -37,6 +37,10 @@ function EditNDelete({ setSelectedBtn, letterList, setLetterList }) {
     setClick(true);
   };
 
+  const renewContent = (e) => {
+    setEditContent(e.target.value);
+  };
+
   const editHandeler = () => {
     if (editContent === foundLetter.content) {
       alert("수정된 내용이 없습니다.");
@@ -63,13 +67,27 @@ function EditNDelete({ setSelectedBtn, letterList, setLetterList }) {
     }
   };
 
-  const renewContent = (e) => {
-    setEditContent(e.target.value);
+  const goBackToLetterList = () => {
+    setSelectedBtn(goBackBtndata.id);
+    navigate("/");
   };
 
   return (
     <DetailImgStBox key={foundLetter.id}>
       <DetailStBox>
+        <button
+          style={{
+            height: "24px",
+            width: "520px",
+            margin: "0 auto 0 60px",
+            border: "3px solid #f9f9f9",
+            cursor: "pointer",
+            fontSize: "15px",
+          }}
+          onClick={goBackToLetterList}
+        >
+          🩶팬레터 목록으로 돌아가고 싶다면 여기를 클릭해주세요🖤
+        </button>
         <DetailHeader>
           <DetailHeaderInsideDiv1>
             <DetailAvatarImg src={foundLetter.avatar} alt="avartar" />

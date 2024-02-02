@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useState } from "react";
 import {
-  NewFanLetterStContainer,
+  NewFanLetterFormSt,
   NickNameStBox,
   ContentStBox,
   NickInputStBox,
@@ -31,6 +31,8 @@ function Letter({ selectedBtn, letterList, setLetterList }) {
       id: uuidv4(),
     };
   };
+  const resultLetter = makeLetterHandeler();
+
   const selectRef = useRef(null);
 
   const submitHandler = (event) => {
@@ -45,15 +47,17 @@ function Letter({ selectedBtn, letterList, setLetterList }) {
       alert("당신의 최애는?!");
     }
     if (nickName.length <= 20 && content.length >= 5 && option.length > 0) {
-      setLetterList([...letterList, makeLetterHandeler()]);
+      setLetterList([...letterList, resultLetter]);
       alert("최애에게 전달 중...><");
       setNicKName("");
       setContent("");
+      // 얘는 한번의 렌더링으로 다 업데이트 되는데 왜 LetterList는...?
     }
   };
+
   return (
     <>
-      <NewFanLetterStContainer>
+      <NewFanLetterFormSt>
         <NickNameStBox>
           닉네임 &nbsp;
           <NickInputStBox
@@ -76,7 +80,7 @@ function Letter({ selectedBtn, letterList, setLetterList }) {
           <Select setOption={setOption} selectRef={selectRef} />
         </WhoStBox>
         <SubmitBtnSt onClick={submitHandler}>펜레터 등록</SubmitBtnSt>
-      </NewFanLetterStContainer>
+      </NewFanLetterFormSt>
       <LetterList selectedBtn={selectedBtn} letterList={letterList} />
     </>
   );

@@ -14,7 +14,7 @@ export const DetailImgStBox = styled.div`
 export const DetailStBox = styled.div`
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 460px;
   width: 630px;
   margin: 10px 0 0 45px;
 `;
@@ -23,9 +23,9 @@ export const DetailHeader = styled.header`
   display: flex;
   flex-direction: row;
   width: 630px;
+  height: 115px;
   justify-content: space-between;
   align-items: flex-end;
-  padding-top: 5px;
 `;
 
 export const DetailHeaderInsideDiv1 = styled.div`

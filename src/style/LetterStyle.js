@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const NewFanLetterStContainer = styled.form`
+export const NewFanLetterFormSt = styled.form`
   background-color: beige;
   display: flex;
   flex-wrap: wrap;
