@@ -13,12 +13,9 @@ export const FanLetterDivSt = styled.div`
   margin: 10px auto 10px auto;
   padding: 10px;
   border-radius: 10px;
-  /* position: relative;
-  z-index: 3; */
 `;
 
 export const FanLetterStBox = styled.div`
-  /* background-color: bisque; */
   display: flex;
   height: 100px;
   margin: 5px 0 5px 0;

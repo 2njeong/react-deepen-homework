@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { data } from "../shared/data";
+import { data } from "../../shared/data";
 import {
   DetailImgStBox,
   DetailStBox,
+  GoBackToListBtn,
   DetailHeader,
   DetailHeaderInsideDiv1,
   DetailHeaderInsideDiv2,
@@ -15,18 +16,23 @@ import {
   DetailP,
   DetailContentP,
   DetailEditArea,
-} from "../style/DetailStyle";
+} from "../../style/DetailStyle";
+import { FamilyContext } from "../../context/FamilyContext";
 
-function EditNDelete({ setSelectedBtn, letterList, setLetterList }) {
+function EditNDelete() {
+  const allData = useContext(FamilyContext);
+
   const params = useParams();
   const navigate = useNavigate();
 
-  const foundLetter = letterList.find((letter) => letter.id === params.id);
+  const foundLetter = allData.letterList.find(
+    (letter) => letter.id === params.id
+  );
 
   const [click, setClick] = useState(false);
   const [editContent, setEditContent] = useState(foundLetter.content);
 
-  let restLetterList = letterList.filter(
+  let restLetterList = allData.letterList.filter(
     (letter) => letter.id !== foundLetter.id
   );
 
@@ -49,7 +55,7 @@ function EditNDelete({ setSelectedBtn, letterList, setLetterList }) {
       alert("수정이 완료되었습니다.");
       setClick(false);
       foundLetter.content = editContent;
-      setLetterList([...restLetterList, foundLetter]);
+      allData.setLetterList([...restLetterList, foundLetter]);
     }
   };
 
@@ -60,34 +66,25 @@ function EditNDelete({ setSelectedBtn, letterList, setLetterList }) {
       )
     ) {
       setClick(false);
-      setLetterList([...restLetterList]);
+      allData.setLetterList([...restLetterList]);
       alert("삭제되었습니다.");
-      setSelectedBtn(goBackBtndata.id);
+      allData.setSelectedBtn(goBackBtndata.id);
       navigate("/");
     }
   };
 
   const goBackToLetterList = () => {
-    setSelectedBtn(goBackBtndata.id);
+    allData.setSelectedBtn(goBackBtndata.id);
     navigate("/");
   };
 
   return (
     <DetailImgStBox key={foundLetter.id}>
       <DetailStBox>
-        <button
-          style={{
-            height: "24px",
-            width: "520px",
-            margin: "0 auto 0 60px",
-            border: "3px solid #f9f9f9",
-            cursor: "pointer",
-            fontSize: "15px",
-          }}
-          onClick={goBackToLetterList}
-        >
+        <GoBackToListBtn onClick={goBackToLetterList}>
           🩶팬레터 목록으로 돌아가고 싶다면 여기를 클릭해주세요🖤
-        </button>
+        </GoBackToListBtn>
+        {/* ------------------------------------------------------------ */}
         <DetailHeader>
           <DetailHeaderInsideDiv1>
             <DetailAvatarImg src={foundLetter.avatar} alt="avartar" />
@@ -103,6 +100,7 @@ function EditNDelete({ setSelectedBtn, letterList, setLetterList }) {
             <DetailP>{foundLetter.createdAt}</DetailP>
           </DetailHeaderInsideDiv2>
         </DetailHeader>
+        {/* ------------------------------------------------------------ */}
         <DetailWriteToP>To : {foundLetter.writedTo}</DetailWriteToP>
         {click ? (
           <DetailEditArea value={editContent} onChange={renewContent}>

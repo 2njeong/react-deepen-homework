@@ -19,6 +19,15 @@ export const DetailStBox = styled.div`
   margin: 10px 0 0 45px;
 `;
 
+export const GoBackToListBtn = styled.button`
+  height: 24px;
+  width: 520px;
+  margin: 0 auto 0 60px;
+  border: 3px solid #f9f9f9;
+  cursor: pointer;
+  font-size: 15px;
+`;
+
 export const DetailHeader = styled.header`
   display: flex;
   flex-direction: row;

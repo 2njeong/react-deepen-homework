@@ -1,19 +1,15 @@
 import React from "react";
 import Title from "./Title";
-import Letter from "./Letter";
+import Letter from "./Letter/Letter";
 
-function Layout({ selectedBtn, setSelectedBtn, letterList, setLetterList }) {
+function Layout() {
   return (
     <>
       <header>
-        <Title selectedBtn={selectedBtn} setSelectedBtn={setSelectedBtn} />
+        <Title />
       </header>
       <div>
-        <Letter
-          selectedBtn={selectedBtn}
-          letterList={letterList}
-          setLetterList={setLetterList}
-        />
+        <Letter />
       </div>
     </>
   );

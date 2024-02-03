@@ -15,44 +15,25 @@ export const NewFanLetterFormSt = styled.form`
   border-radius: 10px;
 `;
 
-export const NickNameStBox = styled.div`
-  /* background-color: aquamarine; */
+export const LetterDivSt = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 70px;
+  height: ${({ height }) => (height === 1 ? "45px" : "120px")};
   margin: 5px auto 10px auto;
   padding: 5px;
   font-size: 17px;
   font-weight: bold;
 `;
 
-export const ContentStBox = styled.div`
-  /* background-color: pink; */
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 120px;
-  margin: 5px auto 10px auto;
-  padding: 5px;
-  font-size: 17px;
-  font-weight: bold;
-`;
-
-export const NickInputStBox = styled.input`
+export const InputStBox = styled.input`
   width: 500px;
-  height: 35px;
+  height: ${({ height }) => (height === 1 ? "35px" : "120px")};
   border-radius: 5px;
-`;
-
-export const ContentInputStBox = styled.input`
-  width: 500px;
-  height: 120px;
-  border-radius: 5px;
+  margin-left: 15px;
 `;
 
 export const WhoStBox = styled.div`
-  /* background-color: pink; */
   display: flex;
   justify-content: space-between;
   align-items: center;

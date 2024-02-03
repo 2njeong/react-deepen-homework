@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { data } from "../shared/data";
 import { TitleSt, NavBtnSt, navName } from "../style/TitleStyle";
 import { useNavigate } from "react-router-dom";
+import { FamilyContext } from "../context/FamilyContext";
 
-function Title({ selectedBtn, setSelectedBtn }) {
+function Title() {
+  const allData = useContext(FamilyContext);
+
   const navigate = useNavigate();
 
-  const seletecBtnClick = (id) => {
-    setSelectedBtn(id);
+  const seletecBtnClickHandeler = (id) => {
+    allData.setSelectedBtn(id);
   };
 
   const titleBtn = () => {
-    setSelectedBtn(null);
+    allData.setSelectedBtn(null);
     navigate("/");
   };
 
@@ -23,8 +26,8 @@ function Title({ selectedBtn, setSelectedBtn }) {
           return (
             <NavBtnSt
               key={idol.id}
-              onClick={() => seletecBtnClick(idol.id)}
-              isselected={selectedBtn === idol.id ? "true" : "false"}
+              onClick={() => seletecBtnClickHandeler(idol.id)}
+              isselected={allData.selectedBtn === idol.id ? "true" : "false"}
               backgroundcolor={navName(idol.name)}
               color={idol.id}
             >
