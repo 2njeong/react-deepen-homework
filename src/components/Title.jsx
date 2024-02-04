@@ -10,6 +10,7 @@ function Title() {
   const selectedBtn = useSelector(
     (state) => state.selectedBtnReducer.selectedBtn
   );
+  console.log(selectedBtn);
 
   const navigate = useNavigate();
 

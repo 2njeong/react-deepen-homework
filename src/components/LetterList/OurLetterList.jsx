@@ -5,7 +5,7 @@ import {
   AvatarStImg,
   LetterContentSt,
   LetterLiBtnContainerDiv,
-  BriefNDetailBtn,
+  DetailBtn,
   LiStyle,
 } from "../../style/LetterListStyle";
 
@@ -37,9 +37,9 @@ function OurLetterList({
               <li>To : {letter.writedTo}</li>
             </div>
 
-            <BriefNDetailBtn onClick={() => goToDetailPage(letter.id)}>
+            <DetailBtn onClick={() => goToDetailPage(letter.id)}>
               Edit N Delete
-            </BriefNDetailBtn>
+            </DetailBtn>
           </LetterLiBtnContainerDiv>
           <LiStyle>{letter.content}</LiStyle>
         </LetterContentSt>

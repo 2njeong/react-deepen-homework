@@ -6,7 +6,7 @@ import {
   contentHandler,
 } from "../../redux/modules/letterReducer";
 
-function Input({ height, nicknameOrcontent }) {
+function Input({ height, marginleft, nicknameOrcontent }) {
   const dispatch = useDispatch();
   const nickNameHandeler = (e) => dispatch(nicknameHandler(e));
   const contentHandeler = (e) => dispatch(contentHandler(e));
@@ -19,6 +19,7 @@ function Input({ height, nicknameOrcontent }) {
       {nicknameOrcontent ? "닉네임" : "내용"}
       <InputStBox
         height={height}
+        marginleft={marginleft}
         value={nicknameOrcontent ? nickname : content}
         onChange={nicknameOrcontent ? nickNameHandeler : contentHandeler}
         placeholder={

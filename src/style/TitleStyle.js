@@ -22,11 +22,12 @@ export const NavBtnSt = styled.button`
   text-align: center;
   line-height: 70px;
   border-radius: 3px;
+  border: 0px solid black;
   font-size: 23px;
   font-weight: bold;
 
   &:hover {
-    background-color: #b2b7bc;
+    background-color: lightgray;
     color: #494d52;
     opacity: 1;
   }
@@ -34,13 +35,13 @@ export const NavBtnSt = styled.button`
 export const navName = (name) => {
   switch (name) {
     case data[0].name:
-      return "pink";
+      return "#FEE1E8";
     case data[1].name:
-      return "black";
+      return "#353E55";
     case data[2].name:
-      return "pink";
+      return "#FEE1E8";
     case data[3].name:
-      return "black";
+      return "#353E55";
     default:
       return "red";
   }

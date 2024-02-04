@@ -12,8 +12,6 @@ function LetterList() {
     (state) => state.selectedBtnReducer.selectedBtn
   );
 
-  console.log(letterList);
-
   const navigate = useNavigate();
 
   const goToDetailPage = (id) => {
@@ -32,7 +30,7 @@ function LetterList() {
 
   return (
     <>
-      <FanLetterDivSt backgroundcolor={selectedBtn}>
+      <FanLetterDivSt selectedbtn={selectedBtn}>
         {selectedBtn ? (
           // 위에 블핑멤버 버튼 클릭 + 특정맴버에 대한 letter가 있는 경우
           <HerLetterList
@@ -51,11 +49,6 @@ function LetterList() {
           />
         )}
       </FanLetterDivSt>
-      {/* <FanContext.Provider
-        value={{ fanClick, setFanClick, theVeryFan, imgRef }}
-      > */}
-      {/* </FanContext.Provider>
-      // 이렇게 context 파일을 하나 더 만들어서 지엽적으로 쓰는 건 안되는지..? */}
       {/* ---------------------------------- */}
       <Fan
         fanClick={fanClick}

@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const FanLetterDivSt = styled.div`
-  background-color: ${({ backgroundcolor }) =>
-    backgroundcolor === null ? "tranparent" : "beige"};
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -11,17 +9,19 @@ export const FanLetterDivSt = styled.div`
 
   width: 600px;
   margin: 10px auto 10px auto;
-  padding: 10px;
+  padding: 5px;
   border-radius: 10px;
 `;
 
 export const FanLetterStBox = styled.div`
+  background-color: #eeeeee;
+  opacity: ${({ selectedBtn }) => (selectedBtn ? 0.9 : 0.8)};
   display: flex;
   height: 100px;
   margin: 5px 0 5px 0;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid gray;
+  border: 3px solid lightgray;
   border-radius: 5px;
 `;
 
@@ -45,7 +45,7 @@ export const LetterContentSt = styled.div`
   justify-content: center;
   margin-right: 10px;
   width: 460px;
-  height: 130px;
+  height: 100px;
 `;
 
 export const LetterLiBtnContainerDiv = styled.div`
@@ -53,14 +53,15 @@ export const LetterLiBtnContainerDiv = styled.div`
   justify-content: space-between;
 `;
 
-export const BriefNDetailBtn = styled.button`
+export const DetailBtn = styled.button`
   width: 100px;
   height: 30px;
   cursor: pointer;
   padding: 0 4px 0 4px;
-  border: 3px solid black;
+  border: 3px solid gray;
   border-radius: 5px;
   margin: 0px 7px 20px 0;
+  opacity: 1;
 `;
 
 export const LiStyle = styled.li`
