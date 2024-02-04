@@ -44,7 +44,18 @@ function EditNDelete() {
   const askEditHandelert = () => {
     alert("수정하시겠습니까?");
     setClick(true);
+    console.log(textAreaRef);
+    console.log(textAreaRef.current);
+    // textAreaRef.current.focus();
   };
+
+  useEffect(() => {
+    if (textAreaRef.current && click) {
+      console.log(textAreaRef);
+      console.log(textAreaRef.current);
+      textAreaRef.current.focus();
+    }
+  });
 
   const renewContent = (e) => {
     setEditContent(e.target.value);
