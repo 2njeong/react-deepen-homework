@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { FamilyContext } from "../../context/FamilyContext";
+import React from "react";
+import { useSelector } from "react-redux";
 import {
   FanLetterStBox,
   AvatarStImg,
@@ -15,9 +15,9 @@ function OurLetterList({
   seeFanData,
   goToDetailPage,
 }) {
-  const allData = useContext(FamilyContext);
+  const letterList = useSelector((state) => state.letterListReducer.letterList);
 
-  return allData.letterList.map((letter) => {
+  return letterList.map((letter) => {
     return (
       <FanLetterStBox key={letter.id}>
         <AvatarStImg

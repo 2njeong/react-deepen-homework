@@ -1,15 +1,18 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { FamilyContext } from "../../context/FamilyContext";
 import HerLetterList from "./HerLetterList";
 import OurLetterList from "./OurLetterList";
 import Fan from "./Fan";
 import { FanLetterDivSt } from "../../style/LetterListStyle";
 
-// import { FanContext } from "../context/FanContext";
-
 function LetterList() {
-  const allData = useContext(FamilyContext);
+  const letterList = useSelector((state) => state.letterListReducer.letterList);
+  const selectedBtn = useSelector(
+    (state) => state.selectedBtnReducer.selectedBtn
+  );
+
+  console.log(letterList);
 
   const navigate = useNavigate();
 
@@ -21,9 +24,7 @@ function LetterList() {
   const [fanClick, setFanClick] = useState(false);
   const imgRef = useRef(null);
 
-  const theVeryFan = allData.letterList.find(
-    (letter) => letter.id === clickedFanId
-  );
+  const theVeryFan = letterList.find((letter) => letter.id === clickedFanId);
 
   const seeFanData = () => {
     theVeryFan && setFanClick(true);
@@ -31,8 +32,8 @@ function LetterList() {
 
   return (
     <>
-      <FanLetterDivSt backgroundcolor={allData.selectedBtn}>
-        {allData.selectedBtn ? (
+      <FanLetterDivSt backgroundcolor={selectedBtn}>
+        {selectedBtn ? (
           // 위에 블핑멤버 버튼 클릭 + 특정맴버에 대한 letter가 있는 경우
           <HerLetterList
             setClickedFanId={setClickedFanId}

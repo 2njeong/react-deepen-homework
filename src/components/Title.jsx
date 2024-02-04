@@ -1,20 +1,24 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { data } from "../shared/data";
 import { TitleSt, NavBtnSt, navName } from "../style/TitleStyle";
 import { useNavigate } from "react-router-dom";
-import { FamilyContext } from "../context/FamilyContext";
+import { selectClick, goHomeClick } from "../redux/modules/selectedBtnReducer";
 
 function Title() {
-  const allData = useContext(FamilyContext);
+  const dispatch = useDispatch();
+  const selectedBtn = useSelector(
+    (state) => state.selectedBtnReducer.selectedBtn
+  );
 
   const navigate = useNavigate();
 
   const seletecBtnClickHandeler = (id) => {
-    allData.setSelectedBtn(id);
+    dispatch(selectClick(id));
   };
 
   const titleBtn = () => {
-    allData.setSelectedBtn(null);
+    dispatch(goHomeClick());
     navigate("/");
   };
 
@@ -27,7 +31,7 @@ function Title() {
             <NavBtnSt
               key={idol.id}
               onClick={() => seletecBtnClickHandeler(idol.id)}
-              isselected={allData.selectedBtn === idol.id ? "true" : "false"}
+              isselected={selectedBtn === idol.id ? "true" : "false"}
               backgroundcolor={navName(idol.name)}
               color={idol.id}
             >

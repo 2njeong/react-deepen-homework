@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { data } from "../../shared/data";
 import {
@@ -17,22 +17,25 @@ import {
   DetailContentP,
   DetailEditArea,
 } from "../../style/DetailStyle";
-import { FamilyContext } from "../../context/FamilyContext";
+import { useDispatch, useSelector } from "react-redux";
+import { editNdeleteLetterList } from "../../redux/modules/letterListReducer";
+import { selectClick } from "../../redux/modules/selectedBtnReducer";
 
 function EditNDelete() {
-  const allData = useContext(FamilyContext);
-
   const params = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const textAreaRef = useRef(null);
 
-  const foundLetter = allData.letterList.find(
-    (letter) => letter.id === params.id
-  );
+  const letterList = useSelector((state) => state.letterListReducer.letterList);
+  console.log(letterList);
+  const foundLetter = letterList.find((letter) => letter.id === params.id);
+  console.log(foundLetter);
 
   const [click, setClick] = useState(false);
   const [editContent, setEditContent] = useState(foundLetter.content);
 
-  let restLetterList = allData.letterList.filter(
+  let restLetterList = letterList.filter(
     (letter) => letter.id !== foundLetter.id
   );
 
@@ -54,8 +57,21 @@ function EditNDelete() {
     } else {
       alert("수정이 완료되었습니다.");
       setClick(false);
-      foundLetter.content = editContent;
-      allData.setLetterList([...restLetterList, foundLetter]);
+      dispatch(
+        editNdeleteLetterList([
+          ...restLetterList,
+          {
+            ...foundLetter,
+            content: editContent,
+            createdAt: String(new Date()),
+          },
+        ])
+      );
+
+      // foundletter.content = editcontent
+      // dispatch(editNdeleteLetterList(...restLetyterList, foundLetter)); --- 리듀서에서 [action.payload]로 받기 => 실패
+      // dispatch(editNdeleteLetterList([...restLetyterList, foundLetter])) --- 리듀서에서 action.payload로 받기 => 성공
+      // 왜지??
     }
   };
 
@@ -66,15 +82,15 @@ function EditNDelete() {
       )
     ) {
       setClick(false);
-      allData.setLetterList([...restLetterList]);
+      dispatch(editNdeleteLetterList(...restLetterList));
       alert("삭제되었습니다.");
-      allData.setSelectedBtn(goBackBtndata.id);
+      dispatch(selectClick(goBackBtndata.id));
       navigate("/");
     }
   };
 
   const goBackToLetterList = () => {
-    allData.setSelectedBtn(goBackBtndata.id);
+    dispatch(selectClick(goBackBtndata.id));
     navigate("/");
   };
 
@@ -100,10 +116,13 @@ function EditNDelete() {
             <DetailP>{foundLetter.createdAt}</DetailP>
           </DetailHeaderInsideDiv2>
         </DetailHeader>
-        {/* ------------------------------------------------------------ */}
         <DetailWriteToP>To : {foundLetter.writedTo}</DetailWriteToP>
         {click ? (
-          <DetailEditArea value={editContent} onChange={renewContent}>
+          <DetailEditArea
+            value={editContent}
+            onChange={renewContent}
+            ref={textAreaRef}
+          >
             {foundLetter.content}
           </DetailEditArea>
         ) : (

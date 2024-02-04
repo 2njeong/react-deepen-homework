@@ -1,7 +1,7 @@
 import React from "react";
 import EditNDelete from "../components/LetterList/EditNDelete";
 
-function Detail({ setSelectedBtn, letterList, setLetterList }) {
+function Detail() {
   return (
     <>
       <EditNDelete />

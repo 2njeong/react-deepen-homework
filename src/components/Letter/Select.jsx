@@ -1,17 +1,21 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { WhoStBox, SelectStBox } from "../../style/LetterStyle";
-import { FamilyContext } from "../../context/FamilyContext";
+import {
+  toWhomHandelr,
+  selectNoOneHandler,
+} from "../../redux/modules/letterReducer";
 
 function Select({ selectRef }) {
-  const allData = useContext(FamilyContext);
+  const dispatch = useDispatch();
 
   const selectHandler = (e) => {
     if (e) {
-      return allData.setOption(
-        e.target.options[e.target.options.selectedIndex].value
+      dispatch(
+        toWhomHandelr(e.target.options[e.target.options.selectedIndex].value)
       );
     } else {
-      return allData.setOption("");
+      dispatch(selectNoOneHandler());
     }
   };
 

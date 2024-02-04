@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { FamilyContext } from "../../context/FamilyContext";
+import React from "react";
+import { useSelector } from "react-redux";
 import { data } from "../../shared/data";
 import {
   FanLetterStBox,
@@ -16,11 +16,14 @@ function HerLetterList({
   seeFanData,
   goToDetailPage,
 }) {
-  const allData = useContext(FamilyContext);
+  const selectedBtn = useSelector(
+    (state) => state.selectedBtnReducer.selectedBtn
+  );
+  const letterList = useSelector((state) => state.letterListReducer.letterList);
 
-  const herLetter = allData.selectedBtn
-    ? allData.letterList.filter(
-        (letter) => letter.writedTo === data[allData.selectedBtn - 1].name
+  const herLetter = selectedBtn
+    ? letterList.filter(
+        (letter) => letter.writedTo === data[selectedBtn - 1].name
       )
     : null;
 
@@ -60,7 +63,7 @@ function HerLetterList({
   ) : (
     // 맴버 버튼은 클릭되었으나 해당 맴버에게 레더가 없는 경우
     <div>
-      아직 🩷{data[allData.selectedBtn - 1].name}🩷 에게 남겨진 팬레터가 없습니다.
+      아직 🩷{data[selectedBtn - 1].name}🩷 에게 남겨진 팬레터가 없습니다.
       펜레터를 작성해주세요. 성덕으로 가는 지름길..!
     </div>
   );

@@ -1,4 +1,6 @@
+import React, { forwardRef } from "react";
 import styled from "styled-components";
+
 export const DetailImgStBox = styled.div`
   height: 700px;
   background: url("/img/pinkbox.png");
@@ -103,7 +105,7 @@ export const DetailContentP = styled.p`
   height: 185px;
 `;
 
-export const DetailEditArea = styled.textarea`
+const StyledTextArea = styled.textarea`
   border: 3px solid #f9f9f9;
   border-radius: 10px;
   padding: 10px;
@@ -113,3 +115,7 @@ export const DetailEditArea = styled.textarea`
   width: 580px;
   height: 185px;
 `;
+
+export const DetailEditArea = forwardRef((props, ref) => (
+  <StyledTextArea ref={ref} {...props} />
+));
