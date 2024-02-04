@@ -51,8 +51,6 @@ function EditNDelete() {
 
   useEffect(() => {
     if (textAreaRef.current && click) {
-      console.log(textAreaRef);
-      console.log(textAreaRef.current);
       textAreaRef.current.focus();
     }
   });
