@@ -35,11 +35,11 @@ export const NavBtnSt = styled.button`
 export const navName = (name) => {
   switch (name) {
     case data[0].name:
-      return "#FEE1E8";
+      return "#F6D6D6";
     case data[1].name:
       return "#353E55";
     case data[2].name:
-      return "#FEE1E8";
+      return "#F6D6D6";
     case data[3].name:
       return "#353E55";
     default:

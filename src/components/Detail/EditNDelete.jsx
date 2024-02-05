@@ -63,6 +63,10 @@ function EditNDelete() {
     setEditContent(e.target.value);
   };
 
+  const now = new Date();
+  const utc = now.getTime() + now.getTimezoneOffset() * 60 * 1000;
+  const koreaTimeDiff = 9 * 60 * 60 * 1000;
+
   const editHandeler = () => {
     if (editContent === foundLetter.content) {
       alert("수정된 내용이 없습니다.");
@@ -76,7 +80,7 @@ function EditNDelete() {
           {
             ...foundLetter,
             content: editContent,
-            createdAt: String(new Date()),
+            createdAt: String(new Date(utc + koreaTimeDiff)),
           },
         ])
       );
