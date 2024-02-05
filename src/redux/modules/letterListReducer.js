@@ -1,7 +1,6 @@
 import { fakeData } from "../../shared/data";
 
 const ADD_LETTERLIST = "letterList/addLetterList";
-// const EDIT_LETTERLIST = "letterList/editLetterList";
 const EDITNDELETE_LETTERIST = "letterList/editNdeleteLetterList";
 
 export const addLetterList = (resultLetter) => {
@@ -10,13 +9,6 @@ export const addLetterList = (resultLetter) => {
     resultLetter,
   };
 };
-
-// export const editLetterList = () => {
-//   return {
-//     type: EDIT_LETTERLIST,
-//   };
-// };
-
 export const editNdeleteLetterList = (payload) => {
   return {
     type: EDITNDELETE_LETTERIST,

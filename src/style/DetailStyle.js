@@ -28,7 +28,7 @@ export const GoBackToListBtn = styled.button`
   height: 26px;
   width: 520px;
   font-size: 15px;
-  margin: 0 auto 0 60px;
+  margin: 0 53px 0 auto;
   border-radius: 5px;
   border: 2px solid #eeeeee;
 

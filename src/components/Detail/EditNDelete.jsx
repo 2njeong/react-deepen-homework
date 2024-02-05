@@ -36,7 +36,7 @@ function EditNDelete() {
   const letterList = useSelector((state) => state.letterListReducer.letterList);
   const foundLetter = letterList.find((letter) => letter.id === params.id);
 
-  // - 수정하기를 완료하지 않고 뒤로가기를 한 후, 다시 수정하기로 들어오면 화면 초기화시키기
+  // 수정하기를 완료하지 않고 뒤로가기를 한 후, 다시 수정하기로 들어오면 화면 초기화시키기
   useEffect(() => {
     dispatch(clickChangeFalse());
   }, [dispatch]);
@@ -54,7 +54,7 @@ function EditNDelete() {
     dispatch(clickChangeTrue());
   };
 
-  // - textArea에 다른 컴포넌트들이 다 렌더링된 후, textArea focus() 하기
+  // textArea에 다른 컴포넌트들이 다 렌더링된 후, textArea focus() 하기
   useEffect(() => {
     if (textAreaRef.current && click) {
       textAreaRef.current.focus();
@@ -86,11 +86,6 @@ function EditNDelete() {
           },
         ])
       );
-
-      // foundletter.content = editcontent
-      // dispatch(editNdeleteLetterList(...restLetyterList, foundLetter)); --- 리듀서에서 [action.payload]로 받기 => 실패
-      // dispatch(editNdeleteLetterList([...restLetyterList, foundLetter])) --- 리듀서에서 action.payload로 받기 => 성공
-      // 왜지??
     }
   };
 
@@ -109,8 +104,8 @@ function EditNDelete() {
   };
 
   const goBackToLetterList = () => {
-    dispatch(selectClick(goBackBtndata.id));
     navigate("/");
+    dispatch(selectClick(goBackBtndata.id));
   };
 
   return (
@@ -118,7 +113,7 @@ function EditNDelete() {
       <DetailImgStBox>
         <DetailStBox>
           <GoBackToListBtn onClick={goBackToLetterList}>
-            🩶팬레터 목록으로 돌아가고 싶다면 여기를 클릭해주세요🖤
+            🩶Go back to letterlist🖤
           </GoBackToListBtn>
           {/* ------------------------------------------------------------ */}
           <DetailDiv>
