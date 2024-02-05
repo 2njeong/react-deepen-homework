@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
-import { useSelector } from "react-redux";
 import Input from "./Input";
 import Select from "./Select";
+import React, { useRef } from "react";
+import { useSelector } from "react-redux";
 import SubmitLetter from "./SubmitLetter";
 import LetterList from "../LetterList/LetterList";
 import {
@@ -16,8 +16,8 @@ function Letter() {
   );
 
   const height = 1;
-  const nicknameOrcontent = true;
   const marginleft = 2;
+  const nicknameOrcontent = true;
 
   const selectRef = useRef(null);
 

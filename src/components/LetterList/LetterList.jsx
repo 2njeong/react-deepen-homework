@@ -1,9 +1,9 @@
-import React, { useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import Fan from "./Fan";
 import HerLetterList from "./HerLetterList";
 import OurLetterList from "./OurLetterList";
-import Fan from "./Fan";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import React, { useRef, useState } from "react";
 import { FanLetterDivSt } from "../../style/LetterListStyle";
 
 function LetterList() {
@@ -49,7 +49,7 @@ function LetterList() {
           />
         )}
       </FanLetterDivSt>
-      {/* ---------------------------------- */}
+      {/* ---------------모달창 구현--------------- */}
       <Fan
         fanClick={fanClick}
         setFanClick={setFanClick}

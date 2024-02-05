@@ -8,6 +8,7 @@ import {
   LetterLiBtnContainerDiv,
   DetailBtn,
   LiStyle,
+  NoLetterDiv,
 } from "../../style/LetterListStyle";
 
 function HerLetterList({
@@ -62,10 +63,11 @@ function HerLetterList({
     })
   ) : (
     // 맴버 버튼은 클릭되었으나 해당 맴버에게 레더가 없는 경우
-    <div>
+    <NoLetterDiv>
       아직 🩷{data[selectedBtn - 1].name}🩷 에게 남겨진 팬레터가 없습니다.
+      <br />
       펜레터를 작성해주세요. 성덕으로 가는 지름길..!
-    </div>
+    </NoLetterDiv>
   );
 }
 

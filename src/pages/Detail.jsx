@@ -1,5 +1,5 @@
 import React from "react";
-import EditNDelete from "../components/LetterList/EditNDelete";
+import EditNDelete from "../components/Detail/EditNDelete";
 
 function Detail() {
   return (

@@ -1,6 +1,9 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
+export const WholeDetailbackground = styled.div`
+  background-color: #eaeaea;
+`;
 export const DetailImgStBox = styled.div`
   height: 700px;
   background: url("/img/pinkbox.png");
@@ -22,15 +25,16 @@ export const DetailStBox = styled.div`
 `;
 
 export const GoBackToListBtn = styled.button`
-  height: 24px;
+  height: 26px;
   width: 520px;
   margin: 0 auto 0 60px;
-  border: 3px solid #f9f9f9;
+  border: 2px solid #eeeeee;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 15px;
 `;
 
-export const DetailHeader = styled.header`
+export const DetailDiv = styled.div`
   display: flex;
   flex-direction: row;
   width: 630px;
@@ -39,37 +43,40 @@ export const DetailHeader = styled.header`
   align-items: flex-end;
 `;
 
-export const DetailHeaderInsideDiv1 = styled.div`
+export const DetailInsideDiv1 = styled.div`
   display: flex;
   align-items: center;
 `;
 
-export const DetailHeaderInsideDiv2 = styled.div`
+export const DetailInsideDiv2 = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 `;
 
 export const DetailBtnDiv = styled.div`
-  display: flex;
+  width: 165px;
   height: 100px;
+  padding-top: 15px;
+  display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 165px;
-  padding-top: 15px;
 `;
 
 export const DetailBtn = styled.button`
-  height: 40px;
   width: 75px;
-  border: 2px solid black;
+  height: 40px;
   border-radius: 8px;
+  border: 3px solid #eeeeee;
+  background-color: #eeeeee;
+
   cursor: pointer;
 `;
 
 export const DetailAvatarImg = styled.img`
   width: 90px;
   height: 90px;
+  border: 3px solid #eeeeee;
   border-radius: 70%;
   object-fit: cover;
   margin: 7px 7px 7px 10px;
@@ -82,7 +89,7 @@ export const DetailNicknameP = styled.p`
 `;
 
 export const DetailWriteToP = styled.p`
-  margin: 20px 0 10px 0;
+  margin: 10px 0 20px 0;
   font-size: 26px;
   font-weight: 700;
 `;

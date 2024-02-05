@@ -70,3 +70,14 @@ export const LiStyle = styled.li`
   white-space: nowrap;
   height: 20px;
 `;
+
+export const NoLetterDiv = styled.div`
+  height: 60px;
+  opacity: 0.7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  border: 3px solid lightgray;
+  background-color: #eeeeee;
+`;
