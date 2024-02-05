@@ -16,17 +16,17 @@ function Letter() {
   );
 
   const height = 1;
-  const marginleft = 2;
+  const marginLeft = 2;
   const nicknameOrcontent = true;
 
   const selectRef = useRef(null);
 
   return (
-    <LetterWholeDiv backimg={backImgMaker(selectedBtn)}>
+    <LetterWholeDiv $backImg={backImgMaker(selectedBtn)}>
       <NewFanLetterFormSt>
         <Input
           height={height}
-          marginleft={marginleft}
+          marginLeft={marginLeft}
           nicknameOrcontent={nicknameOrcontent}
         />
         <Input />

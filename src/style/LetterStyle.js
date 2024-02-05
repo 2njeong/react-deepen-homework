@@ -6,7 +6,7 @@ export const LetterWholeDiv = styled.div`
   background-size: contain;
   background-repeat: repeat-y;
   background-position: center top;
-  background-image: url(${({ backimg }) => backimg});
+  background-image: url(${({ $backImg }) => $backImg});
 `;
 
 export const backImgMaker = (selecedBtn) => {
@@ -55,7 +55,7 @@ export const InputStBox = styled.input`
   height: ${({ height }) => (height === 1 ? "35px" : "120px")};
   border-radius: 5px;
   border: 3px solid lightgray;
-  margin-left: ${({ marginleft }) => (marginleft === 2 ? "10px" : "25px")};
+  margin-left: ${({ $marginLeft }) => ($marginLeft === 2 ? "10px" : "25px")};
 `;
 
 export const WhoStBox = styled.div`

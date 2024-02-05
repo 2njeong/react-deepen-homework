@@ -14,8 +14,8 @@ export const TitleSt = styled.button`
 `;
 
 export const NavBtnSt = styled.button`
-  background-color: ${({ backgroundcolor, isselected }) =>
-    isselected === "true" ? "#b2b7bc" : backgroundcolor};
+  background-color: ${({ $backgroundColor, $isSelected }) =>
+    $isSelected === "true" ? "#b2b7bc" : $backgroundColor};
   color: ${({ color, isSelected }) =>
     color % 2 === 0 || isSelected === "true" ? "white" : "black"};
   height: 70px;

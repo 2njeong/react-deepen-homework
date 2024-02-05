@@ -30,7 +30,7 @@ function LetterList() {
 
   return (
     <>
-      <FanLetterDivSt selectedbtn={selectedBtn}>
+      <FanLetterDivSt>
         {selectedBtn ? (
           // 위에 블핑멤버 버튼 클릭 + 특정맴버에 대한 letter가 있는 경우
           <HerLetterList

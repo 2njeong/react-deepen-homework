@@ -31,8 +31,8 @@ function Title() {
             <NavBtnSt
               key={idol.id}
               onClick={() => seletecBtnClickHandeler(idol.id)}
-              isselected={selectedBtn === idol.id ? "true" : "false"}
-              backgroundcolor={navName(idol.name)}
+              $isSelected={selectedBtn === idol.id ? "true" : "false"}
+              $backgroundColor={navName(idol.name)}
               color={idol.id}
             >
               {idol.name}
