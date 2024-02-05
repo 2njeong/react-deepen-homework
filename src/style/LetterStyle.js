@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { data } from "../shared/data";
 
 export const LetterWholeDiv = styled.div`
-  background-image: url(${({ backimg }) => backimg});
-  background-position: center top;
+  height: 3000px;
   background-size: contain;
   background-repeat: repeat-y;
-  height: 3000px;
+  background-position: center top;
+  background-image: url(${({ backimg }) => backimg});
 `;
 
 export const backImgMaker = (selecedBtn) => {
@@ -25,69 +25,68 @@ export const backImgMaker = (selecedBtn) => {
 };
 
 export const NewFanLetterFormSt = styled.form`
+  opacity: 0.8;
+  width: 600px;
+  height: 350px;
+  padding: 10px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  justify-content: center;
   align-content: stretch;
-
-  width: 600px;
-  height: 350px;
+  justify-content: center;
   margin: 20px auto 10px auto;
-  padding: 10px;
   border-radius: 10px;
   background-color: lightgray;
-  opacity: 0.8;
 `;
 
 export const LetterDivSt = styled.div`
+  font-size: 17px;
+  font-weight: bold;
+  padding: 5px;
+  margin: 5px auto 10px auto;
   display: flex;
   align-items: center;
   justify-content: space-around;
   height: ${({ height }) => (height === 1 ? "45px" : "120px")};
-  margin: 5px auto 10px auto;
-  padding: 5px;
-  font-size: 17px;
-  font-weight: bold;
 `;
 
 export const InputStBox = styled.input`
   width: 500px;
   height: ${({ height }) => (height === 1 ? "35px" : "120px")};
   border-radius: 5px;
-  margin-left: ${({ marginleft }) => (marginleft === 2 ? "10px" : "25px")};
   border: 3px solid lightgray;
+  margin-left: ${({ marginleft }) => (marginleft === 2 ? "10px" : "25px")};
 `;
 
 export const WhoStBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  height: 20px;
-  font-weight: bold;
-  font-size: 18px;
   margin: 5px;
+  height: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const SelectStBox = styled.select`
   width: 300px;
   height: 30px;
-  border: 3px solid lightgray;
   border-radius: 4px;
+  border: 3px solid lightgray;
 `;
 
 export const SubmitBtnSt = styled.button`
   width: 150px;
   height: 38px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
   font-size: 15px;
-  margin: 15px 5px 0px auto;
-  border: 3px solid gray;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 5px;
-  cursor: pointer;
+  border: 3px solid gray;
+  margin: 15px 5px 0px auto;
   background-color: white;
+
+  cursor: pointer;
 `;

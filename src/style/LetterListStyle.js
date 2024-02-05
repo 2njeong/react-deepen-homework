@@ -8,21 +8,21 @@ export const FanLetterDivSt = styled.div`
   align-content: stretch;
 
   width: 600px;
-  margin: 10px auto 10px auto;
   padding: 5px;
   border-radius: 10px;
+  margin: 10px auto 10px auto;
 `;
 
 export const FanLetterStBox = styled.div`
-  background-color: #eeeeee;
-  opacity: ${({ selectedBtn }) => (selectedBtn ? 0.9 : 0.8)};
-  display: flex;
   height: 100px;
   margin: 5px 0 5px 0;
-  justify-content: space-between;
+  background-color: #eeeeee;
+  display: flex;
   align-items: center;
-  border: 3px solid lightgray;
+  justify-content: space-between;
   border-radius: 5px;
+  border: 3px solid lightgray;
+  opacity: ${({ selectedBtn }) => (selectedBtn ? 0.9 : 0.8)};
 `;
 
 export const FanLetterDiv = styled.div`
@@ -32,20 +32,21 @@ export const FanLetterDiv = styled.div`
 export const AvatarStImg = styled.img`
   width: 85px;
   height: 85px;
-  border-radius: 70%;
+  margin: 7px;
   overflow: hidden;
   object-fit: cover;
-  margin: 7px;
+  border-radius: 70%;
+
   cursor: pointer;
 `;
 
 export const LetterContentSt = styled.div`
+  width: 460px;
+  height: 100px;
+  margin-right: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-right: 10px;
-  width: 460px;
-  height: 100px;
 `;
 
 export const LetterLiBtnContainerDiv = styled.div`
@@ -54,30 +55,30 @@ export const LetterLiBtnContainerDiv = styled.div`
 `;
 
 export const DetailBtn = styled.button`
+  opacity: 1;
   width: 100px;
   height: 30px;
-  cursor: pointer;
   padding: 0 4px 0 4px;
-  border: 3px solid gray;
   border-radius: 5px;
+  border: 3px solid gray;
   margin: 0px 7px 20px 0;
-  opacity: 1;
+
+  cursor: pointer;
 `;
 
 export const LiStyle = styled.li`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 export const NoLetterDiv = styled.div`
   height: 60px;
   opacity: 0.7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+  padding: 10px 0 10px 0;
   border-radius: 7px;
-  border: 3px solid lightgray;
   background-color: #eeeeee;
+  border: 3px solid lightgray;
 `;

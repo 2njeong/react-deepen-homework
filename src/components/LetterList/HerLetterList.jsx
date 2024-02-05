@@ -38,8 +38,6 @@ function HerLetterList({
             onClick={() => {
               setClickedFanId(letter.id);
               seeFanData();
-              // setClickedFanId(letter.id);
-              // seeFanData(); 얘는 왜 한번의 렌더링으로 업데이트가 되지 않는지 꼭 튜터님께 물어보기
             }}
             ref={imgRef}
           ></AvatarStImg>

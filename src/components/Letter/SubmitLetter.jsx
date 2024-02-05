@@ -12,8 +12,8 @@ function SubmitLetter() {
   const option = useSelector((state) => state.letterReducer.option);
 
   const now = new Date();
-  const utc = now.getTime() + now.getTimezoneOffset() * 60 * 1000;
   const koreaTimeDiff = 9 * 60 * 60 * 1000;
+  const utc = now.getTime() + now.getTimezoneOffset() * 60 * 1000;
 
   const makeLetterHandeler = () => {
     return {

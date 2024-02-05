@@ -2,16 +2,17 @@ import styled from "styled-components";
 import { data } from "../shared/data";
 
 export const TitleSt = styled.button`
+  height: 80px;
   display: block;
   font-size: 3em;
+  font-weight: bold;
+  line-height: 80px;
   margin-top: 0.67em;
   margin-bottom: 0.67em;
-  font-weight: bold;
-  height: 80px;
-  line-height: 80px;
-  background-color: transparent;
   border-color: transparent;
+  background-color: transparent;
 `;
+
 export const NavBtnSt = styled.button`
   background-color: ${({ backgroundcolor, isselected }) =>
     isselected === "true" ? "#b2b7bc" : backgroundcolor};
@@ -19,12 +20,12 @@ export const NavBtnSt = styled.button`
     color % 2 === 0 || isSelected === "true" ? "white" : "black"};
   height: 70px;
   width: 255px;
-  text-align: center;
-  line-height: 70px;
-  border-radius: 3px;
-  border: 0px solid black;
   font-size: 23px;
   font-weight: bold;
+  line-height: 70px;
+  text-align: center;
+  border-radius: 3px;
+  border: 0px solid black;
 
   &:hover {
     background-color: lightgray;

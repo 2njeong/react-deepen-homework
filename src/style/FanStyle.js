@@ -9,23 +9,22 @@ export const FanDivSt = styled.div`
   height: 470px;
   opacity: 0.95;
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
-  border: 4px solid lightgray;
   border-radius: 15px;
+  border: 4px solid lightgray;
   padding: 10px 15px 20px 15px;
 `;
 
 export const FanBtnSt = styled.button`
-  margin: 0 5px 0 auto;
   width: 20px;
   height: 20px;
+  margin: 0 5px 0 auto;
 `;
 
 export const FanImgSt = styled.img`
   height: 200px;
-
   border-radius: 90%;
 `;
 
@@ -35,12 +34,12 @@ export const FanNicknameP = styled.p`
 `;
 
 export const FanDetailDataDiv = styled.div`
-  display: flex;
   width: 400px;
-  font-size: ${({ favorite }) => (favorite === 1 ? "20px" : "15px")};
+  display: flex;
   justify-content: space-around;
   padding: ${({ favorite }) =>
     favorite === 1 ? "0 50px 0 50px" : "0 20px 0 50px"};
+  font-size: ${({ favorite }) => (favorite === 1 ? "20px" : "15px")};
 `;
 
 export const FanP = styled.p`

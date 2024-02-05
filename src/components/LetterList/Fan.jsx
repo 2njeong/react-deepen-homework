@@ -39,9 +39,7 @@ function Fan({ fanClick, setFanClick, theVeryFan, imgRef }) {
           <div>
             <FanImgSt src={theVeryFan.avatar} alt="fan"></FanImgSt>
           </div>
-
           <FanNicknameP>{theVeryFan.nickname}</FanNicknameP>
-
           <FanDetailDataDiv favorite={favorite}>
             <p>최애</p>
             <FanP>{theVeryFan.writedTo}</FanP>
