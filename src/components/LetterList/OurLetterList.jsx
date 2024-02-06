@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { getformattedDate } from "util/date";
 import {
   FanLetterStBox,
   AvatarStImg,
@@ -18,13 +19,6 @@ function OurLetterList({
   const letterList = useSelector((state) => state.letterListReducer.letterList);
 
   return letterList.map((letter) => {
-    const formattedDate = new Date(letter.createdAt).toLocaleDateString("ko", {
-      year: "2-digit",
-      month: "2-digit",
-      day: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    });
     return (
       <FanLetterStBox key={letter.id}>
         <AvatarStImg
@@ -40,7 +34,7 @@ function OurLetterList({
           <LetterLiBtnContainerDiv>
             <div>
               <li>{letter.nickname}</li>
-              <li>{formattedDate}</li>
+              <li>{getformattedDate(letter.createdAt)}</li>
               <li>To : {letter.writedTo}</li>
             </div>
 

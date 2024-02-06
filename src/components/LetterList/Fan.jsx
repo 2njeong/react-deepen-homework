@@ -7,6 +7,7 @@ import {
   FanDetailDataDiv,
   FanP,
 } from "../../style/FanStyle";
+import { getformattedDate } from "util/date";
 
 function Fan({ fanClick, setFanClick, theVeryFan, imgRef }) {
   const favorite = 1;
@@ -31,16 +32,6 @@ function Fan({ fanClick, setFanClick, theVeryFan, imgRef }) {
     setFanClick(false);
   };
 
-  const formattedDate = theVeryFan
-    ? new Date(theVeryFan.createdAt).toLocaleDateString("ko", {
-        year: "2-digit",
-        month: "2-digit",
-        day: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      })
-    : "";
-
   return (
     <>
       {fanClick && theVeryFan ? (
@@ -57,7 +48,9 @@ function Fan({ fanClick, setFanClick, theVeryFan, imgRef }) {
           <FanDetailDataDiv>
             <p>최근수정</p>
 
-            <FanP>{formattedDate}</FanP>
+            <FanP>
+              {theVeryFan ? getformattedDate(theVeryFan.createdAt) : ""}
+            </FanP>
           </FanDetailDataDiv>
         </FanDivSt>
       ) : null}

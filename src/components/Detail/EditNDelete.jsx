@@ -41,7 +41,7 @@ function EditNDelete() {
     dispatch(clickChangeFalse());
   }, [dispatch]);
 
-  const [editContent, setEditContent] = useState(foundLetter.content);
+  const [editContent, setEditContent] = useState("");
 
   let restLetterList = letterList.filter(
     (letter) => letter.id !== foundLetter.id
@@ -54,7 +54,10 @@ function EditNDelete() {
     dispatch(clickChangeTrue());
   };
 
+  const cancelEdit = () => dispatch(clickChangeFalse());
+
   // textArea에 다른 컴포넌트들이 다 렌더링된 후, textArea focus() 하기
+  // autofocus 사용해도 되지만 useEffect 사용해보기
   useEffect(() => {
     if (textAreaRef.current && click) {
       textAreaRef.current.focus();
@@ -119,10 +122,17 @@ function EditNDelete() {
             </DetailInsideDiv1>
             <DetailInsideDiv2>
               <DetailBtnDiv>
-                <DetailBtn onClick={click ? editHandeler : askEditHandelert}>
-                  {click ? "수정완료" : "수정"}
-                </DetailBtn>
-                <DetailBtn onClick={deleteHandeler}>삭제</DetailBtn>
+                {click ? (
+                  <>
+                    <DetailBtn onClick={editHandeler}>수정완료</DetailBtn>
+                    <DetailBtn onClick={cancelEdit}>취소</DetailBtn>
+                  </>
+                ) : (
+                  <>
+                    <DetailBtn onClick={askEditHandelert}>수정</DetailBtn>
+                    <DetailBtn onClick={deleteHandeler}>삭제</DetailBtn>
+                  </>
+                )}
               </DetailBtnDiv>
               <DetailP>{foundLetter.createdAt}</DetailP>
             </DetailInsideDiv2>
@@ -131,12 +141,10 @@ function EditNDelete() {
           {/* ------------------------------------------------------------ */}
           {click ? (
             <DetailEditArea
-              value={editContent}
+              defaultValue={foundLetter.content}
               onChange={renewContent}
               ref={textAreaRef}
-            >
-              {foundLetter.content}
-            </DetailEditArea>
+            ></DetailEditArea>
           ) : (
             <DetailEditPArea>{foundLetter.content}</DetailEditPArea>
           )}
