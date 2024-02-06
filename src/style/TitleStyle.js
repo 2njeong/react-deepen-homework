@@ -11,6 +11,8 @@ export const TitleSt = styled.button`
   margin-bottom: 0.67em;
   border-color: transparent;
   background-color: transparent;
+
+  cursor: pointer;
 `;
 
 export const NavBtnSt = styled.button`
@@ -26,11 +28,14 @@ export const NavBtnSt = styled.button`
   text-align: center;
   border-radius: 3px;
   border: 0px solid black;
+  cursor: pointer;
+  transition: all 0.2s;
 
   &:hover {
     background-color: lightgray;
     color: #494d52;
     opacity: 1;
+    transform: scale(1.02);
   }
 `;
 export const navName = (name) => {

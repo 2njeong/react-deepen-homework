@@ -24,7 +24,7 @@ export const letterListReducer = (state = initialSate, action) => {
   switch (action.type) {
     case ADD_LETTERLIST:
       return {
-        letterList: [...state.letterList, action.resultLetter],
+        letterList: [action.resultLetter, ...state.letterList],
       };
     case EDITNDELETE_LETTERIST:
       return {

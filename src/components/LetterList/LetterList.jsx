@@ -19,7 +19,7 @@ function LetterList() {
   };
 
   const [clickedFanId, setClickedFanId] = useState(null);
-  const [fanClick, setFanClick] = useState(false);
+  const [fanClick, setFanClick] = useState(true);
   const imgRef = useRef(null);
 
   const theVeryFan = letterList.find((letter) => letter.id === clickedFanId);

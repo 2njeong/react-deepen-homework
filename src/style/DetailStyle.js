@@ -31,8 +31,11 @@ export const GoBackToListBtn = styled.button`
   margin: 0 53px 0 auto;
   border-radius: 5px;
   border: 2px solid #eeeeee;
-
   cursor: pointer;
+  transition: all 0.2s;
+  &:hover {
+    transform: scale(1.04);
+  }
 `;
 
 export const DetailDiv = styled.div`
@@ -70,8 +73,11 @@ export const DetailBtn = styled.button`
   border-radius: 8px;
   border: 3px solid #eeeeee;
   background-color: #eeeeee;
-
   cursor: pointer;
+  transition: all 0.2s;
+  &:hover {
+    transform: scale(1.06);
+  }
 `;
 
 export const DetailAvatarImg = styled.img`
@@ -110,6 +116,7 @@ export const DetailEditArea = styled.textarea`
   margin: 3px 0 0 22.5px;
   border-radius: 10px;
   border: 3px solid #f9f9f9;
+  resize: none;
 `;
 
 export const DetailEditPArea = styled.p`

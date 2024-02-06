@@ -87,6 +87,9 @@ export const SubmitBtnSt = styled.button`
   border: 3px solid gray;
   margin: 15px 5px 0px auto;
   background-color: white;
-
   cursor: pointer;
+  transition: all 0.2s;
+  &:hover {
+    transform: scale(1.02);
+  }
 `;

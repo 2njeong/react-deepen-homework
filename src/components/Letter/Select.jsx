@@ -21,7 +21,7 @@ function Select({ selectRef }) {
 
   return (
     <WhoStBox>
-      누구에게 보내실 건가요?{" "}
+      <label>누구에게 보내실 건가요?</label>
       <SelectStBox onChange={(e) => selectHandler(e)} ref={selectRef}>
         <option defaultValue>최애를 골라주세요</option>
         <option value="지수 - Jisoo">지수 - Jisoo</option>

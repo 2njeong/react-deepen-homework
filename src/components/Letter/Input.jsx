@@ -25,6 +25,7 @@ function Input({ height, marginLeft, nicknameOrcontent }) {
         placeholder={
           nicknameOrcontent ? " 닉네임을 입력해주세요" : " 내용을 입력해주세요"
         }
+        maxLength={nicknameOrcontent ? 20 : 100}
         autoFocus
       ></InputStBox>
     </LetterDivSt>

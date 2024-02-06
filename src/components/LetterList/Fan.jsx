@@ -31,6 +31,16 @@ function Fan({ fanClick, setFanClick, theVeryFan, imgRef }) {
     setFanClick(false);
   };
 
+  const formattedDate = theVeryFan
+    ? new Date(theVeryFan.createdAt).toLocaleDateString("ko", {
+        year: "2-digit",
+        month: "2-digit",
+        day: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      })
+    : "";
+
   return (
     <>
       {fanClick && theVeryFan ? (
@@ -40,13 +50,14 @@ function Fan({ fanClick, setFanClick, theVeryFan, imgRef }) {
             <FanImgSt src={theVeryFan.avatar} alt="fan"></FanImgSt>
           </div>
           <FanNicknameP>{theVeryFan.nickname}</FanNicknameP>
-          <FanDetailDataDiv favorite={favorite}>
+          <FanDetailDataDiv $favorite={favorite}>
             <p>최애</p>
             <FanP>{theVeryFan.writedTo}</FanP>
           </FanDetailDataDiv>
           <FanDetailDataDiv>
             <p>최근수정</p>
-            <FanP>{theVeryFan.createdAt}</FanP>
+
+            <FanP>{formattedDate}</FanP>
           </FanDetailDataDiv>
         </FanDivSt>
       ) : null}

@@ -23,6 +23,10 @@ export const FanLetterStBox = styled.div`
   border-radius: 5px;
   border: 3px solid lightgray;
   opacity: ${({ selectedBtn }) => (selectedBtn ? 0.9 : 0.8)};
+  transition: all 0.2s;
+  &:hover {
+    transform: scale(1.02);
+  }
 `;
 
 export const FanLetterDiv = styled.div`

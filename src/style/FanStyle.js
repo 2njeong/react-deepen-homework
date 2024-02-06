@@ -36,10 +36,10 @@ export const FanNicknameP = styled.p`
 export const FanDetailDataDiv = styled.div`
   width: 400px;
   display: flex;
-  justify-content: space-around;
-  padding: ${({ favorite }) =>
-    favorite === 1 ? "0 50px 0 50px" : "0 20px 0 50px"};
-  font-size: ${({ favorite }) => (favorite === 1 ? "20px" : "15px")};
+  justify-content: space-evenly;
+  padding: ${({ $favorite }) =>
+    $favorite === 1 ? "0 40px 0 65px" : "0 20px 0 50px"};
+  font-size: ${({ $favorite }) => ($favorite === 1 ? "20px" : "15px")};
 `;
 
 export const FanP = styled.p`
