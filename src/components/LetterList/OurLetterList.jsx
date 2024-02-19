@@ -16,7 +16,7 @@ function OurLetterList({
   seeFanData,
   goToDetailPage,
 }) {
-  const letterList = useSelector((state) => state.letterListReducer.letterList);
+  const letterList = useSelector((state) => state.letterListSlice.letterList);
 
   return letterList.map((letter) => {
     return (

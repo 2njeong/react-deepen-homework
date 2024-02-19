@@ -2,12 +2,12 @@ import { data } from "../../shared/data";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { selectClick } from "../../redux/modules/selectedBtnReducer";
-import { editNdeleteLetterList } from "../../redux/modules/letterListReducer";
+import { selectClick } from "../../redux/modules/selectedBtnSlice";
+import { editNdeleteLetterList } from "../../redux/modules/letterListSlice";
 import {
   clickChangeTrue,
   clickChangeFalse,
-} from "../../redux/modules/clickReducer";
+} from "../../redux/modules/clickSlice";
 import {
   WholeDetailbackground,
   DetailImgStBox,

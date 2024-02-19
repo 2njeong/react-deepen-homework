@@ -7,9 +7,9 @@ import React, { useRef, useState } from "react";
 import { FanLetterDivSt } from "../../style/LetterListStyle";
 
 function LetterList() {
-  const letterList = useSelector((state) => state.letterListReducer.letterList);
+  const letterList = useSelector((state) => state.letterListSlice.letterList);
   const selectedBtn = useSelector(
-    (state) => state.selectedBtnReducer.selectedBtn
+    (state) => state.selectedBtnSlice.selectedBtn
   );
 
   const navigate = useNavigate();

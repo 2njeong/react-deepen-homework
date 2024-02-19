@@ -12,7 +12,7 @@ import {
 
 function Letter() {
   const selectedBtn = useSelector(
-    (state) => state.selectedBtnReducer.selectedBtn
+    (state) => state.selectedBtnSlice.selectedBtn
   );
 
   const height = 1;

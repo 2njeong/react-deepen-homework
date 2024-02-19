@@ -3,7 +3,7 @@ import { data } from "../shared/data";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { TitleSt, NavBtnSt, navName } from "../style/TitleStyle";
-import { selectClick, goHomeClick } from "../redux/modules/selectedBtnReducer";
+import { selectClick, goHomeClick } from "../redux/modules/selectedBtnSlice";
 
 function Title() {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ function Title() {
   };
 
   const selectedBtn = useSelector(
-    (state) => state.selectedBtnReducer.selectedBtn
+    (state) => state.selectedBtnSlice.selectedBtn
   );
 
   return (

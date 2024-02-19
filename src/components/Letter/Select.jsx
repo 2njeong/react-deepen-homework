@@ -4,7 +4,7 @@ import { WhoStBox, SelectStBox } from "../../style/LetterStyle";
 import {
   toWhomHandelr,
   selectNoOneHandler,
-} from "../../redux/modules/letterReducer";
+} from "../../redux/modules/letterSlice";
 
 function Select({ selectRef }) {
   const dispatch = useDispatch();

@@ -1,16 +1,16 @@
-import { createStore, combineReducers } from "redux";
-import { selectedBtnReducer } from "../modules/selectedBtnReducer";
-import { letterReducer } from "../modules/letterReducer";
-import { letterListReducer } from "../modules/letterListReducer";
-import { clickReducer } from "../modules/clickReducer";
+import { configureStore } from "@reduxjs/toolkit";
+import selectedBtnSlice from "../modules/selectedBtnSlice";
+import letterSlice from "../modules/letterSlice";
+import letterListSlice from "../modules/letterListSlice";
+import clickSlice from "../modules/clickSlice";
 
-const rootReducer = combineReducers({
-  selectedBtnReducer,
-  letterReducer,
-  letterListReducer,
-  clickReducer,
+const store = configureStore({
+  reducer: {
+    selectedBtnSlice,
+    letterSlice,
+    letterListSlice,
+    clickSlice,
+  },
 });
-
-const store = createStore(rootReducer);
 
 export default store;

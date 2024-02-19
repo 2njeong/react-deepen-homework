@@ -2,14 +2,14 @@ import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { SubmitBtnSt } from "../../style/LetterStyle";
 import { useDispatch, useSelector } from "react-redux";
-import { renewNickname, renewContent } from "../../redux/modules/letterReducer";
-import { addLetterList } from "../../redux/modules/letterListReducer";
+import { renewNickname, renewContent } from "../../redux/modules/letterSlice";
+import { addLetterList } from "../../redux/modules/letterListSlice";
 
 function SubmitLetter() {
   const dispatch = useDispatch();
-  const nickname = useSelector((state) => state.letterReducer.nickname);
-  const content = useSelector((state) => state.letterReducer.content);
-  const option = useSelector((state) => state.letterReducer.option);
+  const nickname = useSelector((state) => state.letterSlice.nickname);
+  const content = useSelector((state) => state.letterSlice.content);
+  const option = useSelector((state) => state.letterSlice.option);
 
   const makeLetterHandeler = () => {
     return {

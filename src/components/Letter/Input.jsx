@@ -4,15 +4,15 @@ import { LetterDivSt, InputStBox } from "../../style/LetterStyle";
 import {
   nicknameHandler,
   contentHandler,
-} from "../../redux/modules/letterReducer";
+} from "../../redux/modules/letterSlice";
 
 function Input({ height, marginLeft, nicknameOrcontent }) {
   const dispatch = useDispatch();
   const nickNameHandeler = (e) => dispatch(nicknameHandler(e));
   const contentHandeler = (e) => dispatch(contentHandler(e));
 
-  const nickname = useSelector((state) => state.letterReducer.nickname);
-  const content = useSelector((state) => state.letterReducer.content);
+  const nickname = useSelector((state) => state.letterSlice.nickname);
+  const content = useSelector((state) => state.letterSlice.content);
 
   return (
     <LetterDivSt height={height}>
