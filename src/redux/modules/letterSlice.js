@@ -13,7 +13,7 @@ const letterSlice = createSlice({
     nicknameHandler: (state = initialState, action) => {
       return {
         ...state,
-        nickname: action.e,
+        nickname: action.payload,
       };
     },
     renewNickname: (state = initialState, action) => {
@@ -25,7 +25,7 @@ const letterSlice = createSlice({
     contentHandler: (state = initialState, action) => {
       return {
         ...state,
-        content: action.e,
+        content: action.payload,
       };
     },
     renewContent: (state = initialState, action) => {

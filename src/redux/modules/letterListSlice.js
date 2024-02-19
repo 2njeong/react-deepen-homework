@@ -40,12 +40,12 @@ const letterListSlice = createSlice({
   name: "letterListSlice",
   initialState,
   reducers: {
-    addLetterList: (state, action) => {
+    addLetterList: (state = initialState, action) => {
       return {
-        letterList: [action.resultLetter, ...state.letterList],
+        letterList: [action.payload, ...state.letterList],
       };
     },
-    editNdeleteLetterList: (state, action) => {
+    editNdeleteLetterList: (state = initialState, action) => {
       return {
         letterList: action.payload,
       };

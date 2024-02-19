@@ -10,7 +10,7 @@ const seletedBtnSlice = createSlice({
   reducers: {
     selectClick: (state = initialState, action) => {
       return {
-        selectedBtn: action.id,
+        selectedBtn: action.payload,
       };
     },
     goHomeClick: (state = initialState, action) => {

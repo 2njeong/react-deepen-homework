@@ -19,9 +19,9 @@ function HerLetterList({
   goToDetailPage,
 }) {
   const selectedBtn = useSelector(
-    (state) => state.selectedBtnReducer.selectedBtn
+    (state) => state.selectedBtnSlice.selectedBtn
   );
-  const letterList = useSelector((state) => state.letterListReducer.letterList);
+  const letterList = useSelector((state) => state.letterListSlice.letterList);
 
   const herLetter = selectedBtn
     ? letterList.filter(

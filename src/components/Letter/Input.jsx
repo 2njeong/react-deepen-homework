@@ -8,8 +8,8 @@ import {
 
 function Input({ height, marginLeft, nicknameOrcontent }) {
   const dispatch = useDispatch();
-  const nickNameHandeler = (e) => dispatch(nicknameHandler(e));
-  const contentHandeler = (e) => dispatch(contentHandler(e));
+  const nickNameHandeler = (e) => dispatch(nicknameHandler(e.target.value));
+  const contentHandeler = (e) => dispatch(contentHandler(e.target.value));
 
   const nickname = useSelector((state) => state.letterSlice.nickname);
   const content = useSelector((state) => state.letterSlice.content);

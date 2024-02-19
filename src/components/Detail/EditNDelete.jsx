@@ -32,8 +32,8 @@ function EditNDelete() {
   const dispatch = useDispatch();
 
   const textAreaRef = useRef(null);
-  const click = useSelector((state) => state.clickReducer.click);
-  const letterList = useSelector((state) => state.letterListReducer.letterList);
+  const click = useSelector((state) => state.clickSlice.click);
+  const letterList = useSelector((state) => state.letterListSlice.letterList);
   const foundLetter = letterList.find((letter) => letter.id === params.id);
 
   // 수정하기를 완료하지 않고 뒤로가기를 한 후, 다시 수정하기로 들어오면 화면 초기화시키기
@@ -103,7 +103,7 @@ function EditNDelete() {
   };
 
   const goBackToLetterList = () => {
-    navigate("/");
+    navigate("/home");
     dispatch(selectClick(goBackBtndata.id));
   };
 

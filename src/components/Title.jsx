@@ -11,7 +11,7 @@ function Title() {
 
   const titleBtn = () => {
     dispatch(goHomeClick());
-    navigate("/");
+    navigate("/home");
   };
 
   const seletecBtnClickHandeler = (id) => {
