@@ -49,7 +49,7 @@ export const LoginBtnBox = styled.div`
 `;
 export const LoginBtn = styled.button`
   width: 450px;
-  height: ${(props) => (props.text === "로그인" ? "60px" : "40px")};
+  height: ${({ $text }) => ($text === "로그인" ? "60px" : "40px")};
   border: none;
   border-radius: 5px;
   font-size: 15px;
@@ -63,7 +63,7 @@ export const LoginBtn = styled.button`
 
 export const RegisterBtn = styled.button`
   width: 450px;
-  height: ${(props) => (props.text === "회원가입" ? "60px" : "40px")};
+  height: ${({ $text }) => ($text === "회원가입" ? "60px" : "40px")};
   border: none;
   border-radius: 5px;
   font-size: 15px;
