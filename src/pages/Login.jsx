@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginChange } from "../redux/modules/authSlice";
+import { authLoginChange } from "../redux/modules/authSlice";
+import { getProfile } from "../redux/modules/profileSlice";
 import {
   LoginBackDiv,
   LoginForm,
@@ -12,28 +13,60 @@ import {
   LoginBtn,
   RegisterBtn,
 } from "style/LoginStyle";
+import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [id, setId] = useState("");
-  const [pw, setPw] = useState("");
-  const users = useSelector((state) => state.profileSlice.user);
+  const [password, setPassWord] = useState("");
 
   const idHandler = (e) => setId(e.target.value);
-  const pwHandler = (e) => setPw(e.target.value);
+  const pwHandler = (e) => setPassWord(e.target.value);
 
-  const tryLogin = (id, pw) => {
-    const foundUser = users.find((user) => user.id === id);
-    if (foundUser) {
-      if (foundUser.pw === pw) {
-        dispatch(loginChange(foundUser));
-        navigate("/home");
-      } else {
-        alert("패스워드를 잘못 입력하셨습니다.");
-      }
-    } else {
-      alert("일치하는 아이디의 회원이 없습니다.");
+  // 로그인
+  const tryLogin = async () => {
+    try {
+      const response = await axios.post(
+        "https://moneyfulpublicpolicy.co.kr/login",
+        loginProfile(id, password)
+      );
+      const { accessToken } = response.data;
+      localStorage.setItem("accessToken", accessToken);
+      dispatch(authLoginChange(true));
+      getData();
+      alert("로그인 완료! 나중에 지우기!");
+    } catch (error) {
+      console.error("error", error);
+      alert("로그인 중 오류가 발생했습니다.");
+    }
+  };
+
+  const loginProfile = (id, password) => {
+    return {
+      id: id,
+      password: password,
+    };
+  };
+
+  // 유저정보 가져오기
+  const getData = async () => {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const response = await axios.get(
+        "https://moneyfulpublicpolicy.co.kr/user",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      console.log(response.data);
+      dispatch(getProfile(response.data));
+    } catch (error) {
+      console.error("error", error);
+      alert("유저정보를 불러오는 데에 오류가 발생했습니다.");
     }
   };
 

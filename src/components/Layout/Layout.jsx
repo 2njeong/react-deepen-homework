@@ -1,16 +1,14 @@
 import React from "react";
+import Nav from "./Nav";
 import Title from "./Title";
-import Letter from "./Letter/Letter";
 
 function Layout() {
   return (
     <>
+      <Nav />
       <header>
         <Title />
       </header>
-      <div>
-        <Letter />
-      </div>
     </>
   );
 }

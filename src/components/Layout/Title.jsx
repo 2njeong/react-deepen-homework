@@ -1,9 +1,9 @@
 import React from "react";
-import { data } from "../shared/data";
+import { data } from "../../shared/data";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { TitleSt, NavBtnSt, navName } from "../style/TitleStyle";
-import { selectClick, goHomeClick } from "../redux/modules/selectedBtnSlice";
+import { TitleSt, MemberBtnSt, navName } from "../../style/LayoutStyle";
+import { selectClick, goHomeClick } from "../../redux/modules/selectedBtnSlice";
 
 function Title() {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ function Title() {
       <nav>
         {data.map((idol) => {
           return (
-            <NavBtnSt
+            <MemberBtnSt
               key={idol.id}
               onClick={() => seletecBtnClickHandeler(idol.id)}
               $isSelected={selectedBtn === idol.id ? "true" : "false"}
@@ -36,7 +36,7 @@ function Title() {
               color={idol.id}
             >
               {idol.name}
-            </NavBtnSt>
+            </MemberBtnSt>
           );
         })}
       </nav>

@@ -15,7 +15,7 @@ export const TitleSt = styled.button`
   cursor: pointer;
 `;
 
-export const NavBtnSt = styled.button`
+export const MemberBtnSt = styled.button`
   background-color: ${({ $backgroundColor, $isSelected }) =>
     $isSelected === "true" ? "#b2b7bc" : $backgroundColor};
   color: ${({ color, isSelected }) =>
