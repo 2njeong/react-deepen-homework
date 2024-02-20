@@ -15,20 +15,11 @@ function Letter() {
     (state) => state.selectedBtnSlice.selectedBtn
   );
 
-  const height = 1;
-  const marginLeft = 2;
-  const nicknameOrcontent = true;
-
   const selectRef = useRef(null);
 
   return (
     <LetterWholeDiv $backImg={backImgMaker(selectedBtn)}>
       <NewFanLetterFormSt>
-        <Input
-          height={height}
-          marginLeft={marginLeft}
-          nicknameOrcontent={nicknameOrcontent}
-        />
         <Input />
         {/* --------------------------------------------------------- */}
         <Select selectRef={selectRef} />

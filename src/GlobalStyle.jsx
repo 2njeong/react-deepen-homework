@@ -147,6 +147,7 @@ header {
     flex-direction: column;
     align-items: center;
     background-color: #EEEEEE;
+    margin-bottom: 20px;
 
 }
 

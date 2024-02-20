@@ -64,7 +64,7 @@ function EditNDelete() {
     }
   });
 
-  const renewContent = (e) => {
+  const writeEditContent = (e) => {
     setEditContent(e.target.value);
   };
 
@@ -142,7 +142,7 @@ function EditNDelete() {
           {click ? (
             <DetailEditArea
               defaultValue={foundLetter.content}
-              onChange={renewContent}
+              onChange={writeEditContent}
               ref={textAreaRef}
             ></DetailEditArea>
           ) : (

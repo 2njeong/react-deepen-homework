@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { authLoginChange } from "../redux/modules/authSlice";
@@ -14,15 +13,13 @@ import {
   RegisterBtn,
 } from "style/LoginStyle";
 import axios from "axios";
+import { useInput } from "util/hooks/useInput";
 
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [id, setId] = useState("");
-  const [password, setPassWord] = useState("");
-
-  const idHandler = (e) => setId(e.target.value);
-  const pwHandler = (e) => setPassWord(e.target.value);
+  const [id, idHandler] = useInput();
+  const [password, pwHandler] = useInput();
 
   // 로그인
   const tryLogin = async () => {
@@ -35,6 +32,7 @@ function Login() {
       localStorage.setItem("accessToken", accessToken);
       dispatch(authLoginChange(true));
       getData();
+      renewInput();
       alert("로그인 완료! 나중에 지우기!");
     } catch (error) {
       console.error("error", error);
@@ -44,8 +42,8 @@ function Login() {
 
   const loginProfile = (id, password) => {
     return {
-      id: id,
-      password: password,
+      id,
+      password,
     };
   };
 
@@ -68,6 +66,11 @@ function Login() {
       console.error("error", error);
       alert("유저정보를 불러오는 데에 오류가 발생했습니다.");
     }
+  };
+
+  const renewInput = () => {
+    idHandler();
+    pwHandler();
   };
 
   return (

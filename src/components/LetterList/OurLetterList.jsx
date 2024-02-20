@@ -17,7 +17,7 @@ function OurLetterList({
   goToDetailPage,
 }) {
   const letterList = useSelector((state) => state.letterListSlice.letterList);
-
+  console.log(letterList);
   return letterList.map((letter) => {
     return (
       <FanLetterStBox key={letter.id}>

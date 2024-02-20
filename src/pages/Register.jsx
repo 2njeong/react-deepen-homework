@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -12,31 +11,27 @@ import {
   LoginBtn,
   RegisterBtn,
 } from "style/LoginStyle";
+import { useInput } from "util/hooks/useInput";
 
 function Register() {
   const navigate = useNavigate();
-  const [id, setId] = useState("");
-  const [pw, setPw] = useState("");
-  const [nickname, setNickname] = useState("");
+  const [id, idHandler] = useInput();
+  const [password, pwHandler] = useInput();
+  const [nickname, nicknameHandler] = useInput();
 
-  const idHandler = (e) => setId(e.target.value);
-  const pwHandler = (e) => setPw(e.target.value);
-  const nicknameHandler = (e) => setNickname(e.target.value);
-
-  const registerProfile = (id, pw, nickname) => {
+  const registerProfile = (id, password, nickname) => {
     return {
       id,
-      password: pw,
+      password,
       nickname,
-      isLogin: false,
     };
   };
 
-  const registerToServer = async (id, pw, nickname) => {
+  const registerToServer = async (id, password, nickname) => {
     try {
       const response = await axios.post(
         "https://moneyfulpublicpolicy.co.kr/register",
-        registerProfile(id, pw, nickname)
+        registerProfile(id, password, nickname)
       );
       if (response.data.success) {
         alert("회원가입이 완료되었습니다.");
@@ -50,24 +45,24 @@ function Register() {
     }
   };
 
-  const renewInput = () => {
-    setId("");
-    setPw("");
-    setNickname("");
-  };
-
   const submitRegisteredProfile = () => {
     if (id.length < 4 || id.length > 10) {
       alert("아이디는 4 ~ 10 글자여야 합니다.");
     }
-    if (pw.length < 4 || pw.length > 10) {
+    if (password.length < 4 || password.length > 10) {
       alert("비밀번호는 4 ~ 15 글자여야 합니다.");
     }
     if (nickname.length < 4 || nickname.length > 10) {
       alert("닉네임은 1 ~ 10 글자여야 합니다.");
     }
-    registerToServer(id, pw, nickname);
+    registerToServer(id, password, nickname);
     renewInput();
+  };
+
+  const renewInput = () => {
+    idHandler();
+    pwHandler();
+    nicknameHandler();
   };
 
   return (
@@ -82,7 +77,7 @@ function Register() {
           ></LoginInput>
           <LoginInput
             type="password"
-            value={pw}
+            value={password}
             placeholder="비밀번호 (4 ~ 15 글자)"
             onChange={pwHandler}
           ></LoginInput>

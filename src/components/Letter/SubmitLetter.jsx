@@ -2,14 +2,14 @@ import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { SubmitBtnSt } from "../../style/LetterStyle";
 import { useDispatch, useSelector } from "react-redux";
-import { renewNickname, renewContent } from "../../redux/modules/letterSlice";
+import { renewContent } from "../../redux/modules/letterSlice";
 import { addLetterList } from "../../redux/modules/letterListSlice";
+import axios from "axios";
 
 function SubmitLetter() {
   const dispatch = useDispatch();
-  const nickname = useSelector((state) => state.letterSlice.nickname);
-  const content = useSelector((state) => state.letterSlice.content);
-  const option = useSelector((state) => state.letterSlice.option);
+  const { nickname } = useSelector((state) => state.profileSlice.profile);
+  const { content, option } = useSelector((state) => state.letterSlice);
 
   const makeLetterHandeler = () => {
     return {
@@ -23,21 +23,43 @@ function SubmitLetter() {
   };
   const resultLetter = makeLetterHandeler();
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    if (nickname.length === 0 || nickname.length > 20) {
-      alert("닉네임을 입력해주세요. 닉네임은 20자 이하여야 합니다.");
+  const submitLetterToServer = async () => {
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/letters`,
+        resultLetter
+      );
+    } catch (error) {
+      console.error("서버에 newLetter 저장 실패", error);
+      alert("서버와의 통신에 오류가 있습니다.");
     }
+  };
+
+  const fetchLetter = async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/letters`
+      );
+      console.log(data);
+      dispatch(addLetterList(data));
+    } catch (error) {
+      console.error("서버에 letterList 불러오기 실패", error);
+      alert("서버에서 팬레터를 불러오지 못했습니다.");
+    }
+  };
+
+  const submitHandler = async (event) => {
+    event.preventDefault();
     if (!content || content.length < 5 || content.length > 100) {
       alert("내용을 입력해주세요. 내용은 10자 이상, 100자 이하여야 합니다.");
     }
     if (option.length === 0) {
       alert("당신의 최애는?!");
     }
-    if (nickname.length <= 20 && content.length >= 5 && option.length > 0) {
-      dispatch(addLetterList(resultLetter));
+    if (content.length >= 5 && option.length > 0) {
+      await submitLetterToServer();
+      await fetchLetter();
       alert("최애에게 전달 중...><");
-      dispatch(renewNickname());
       dispatch(renewContent());
       // 얘는 한번의 렌더링으로 다 업데이트 되는데 왜 LetterList는...?
     }

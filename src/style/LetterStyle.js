@@ -34,7 +34,7 @@ export const NewFanLetterFormSt = styled.form`
   flex-direction: column;
   align-content: stretch;
   justify-content: center;
-  margin: 20px auto 10px auto;
+  margin: 0px auto 10px auto;
   border-radius: 10px;
   background-color: lightgray;
 `;
@@ -45,17 +45,36 @@ export const LetterDivSt = styled.div`
   padding: 5px;
   margin: 5px auto 10px auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: ${({ height }) => (height === 1 ? "45px" : "120px")};
+  height: 160px;
+`;
+
+export const Div = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+export const NicknameDiv = styled.div`
+  width: 500px;
+  height: 35px;
+  border-radius: 5px;
+  border: 3px solid lightgray;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
 `;
 
 export const InputStBox = styled.input`
-  width: 500px;
-  height: ${({ height }) => (height === 1 ? "35px" : "120px")};
+  width: 490px;
+  height: 120px;
   border-radius: 5px;
   border: 3px solid lightgray;
-  margin-left: ${({ $marginLeft }) => ($marginLeft === 2 ? "10px" : "25px")};
+  margin-left: 25px;
 `;
 
 export const WhoStBox = styled.div`
