@@ -17,7 +17,7 @@ function LetterList() {
   const fetchLetter = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/letters`
+        `${process.env.REACT_APP_BASE_URL}/letters?_sort=-createdAt`
       );
       console.log(data);
       dispatch(addLetterList(data));
@@ -26,6 +26,7 @@ function LetterList() {
       alert("서버에서 팬레터를 불러오지 못했습니다.");
     }
   };
+
   const letterList = useSelector((state) => state.letterListSlice.letterList);
   const selectedBtn = useSelector(
     (state) => state.selectedBtnSlice.selectedBtn

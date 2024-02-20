@@ -25,7 +25,7 @@ function Login() {
   const tryLogin = async () => {
     try {
       const response = await axios.post(
-        "https://moneyfulpublicpolicy.co.kr/login",
+        "https://moneyfulpublicpolicy.co.kr/login?expiresIn=3h",
         loginProfile(id, password)
       );
       const { accessToken } = response.data;

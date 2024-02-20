@@ -38,6 +38,9 @@ const Router = () => {
       } catch (error) {
         console.error("error", "로그인이 필요한 상태");
       }
+    } else {
+      localStorage.removeItem("accessToken");
+      alert("로그인 시간이 만료되었습니다.");
     }
   };
 

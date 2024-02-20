@@ -21,6 +21,7 @@ function HerLetterList({
   const selectedBtn = useSelector(
     (state) => state.selectedBtnSlice.selectedBtn
   );
+  const profile = useSelector((state) => state.profileSlice.profile);
   const letterList = useSelector((state) => state.letterListSlice.letterList);
 
   const herLetter = selectedBtn
@@ -49,10 +50,13 @@ function HerLetterList({
                 <li>{getformattedDate(letter.createdAt)}</li>
                 <li>To : {letter.writedTo}</li>
               </div>
-
-              <DetailBtn onClick={() => goToDetailPage(letter.id)}>
-                Edit N Delete
-              </DetailBtn>
+              {profile.id === letter.userId ? (
+                <DetailBtn onClick={() => goToDetailPage(letter.id)}>
+                  Edit N Delete
+                </DetailBtn>
+              ) : (
+                <></>
+              )}
             </LetterLiBtnContainerDiv>
 
             <LiStyle>{letter.content}</LiStyle>

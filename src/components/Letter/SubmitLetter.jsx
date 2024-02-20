@@ -1,5 +1,4 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
 import { SubmitBtnSt } from "../../style/LetterStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { renewContent } from "../../redux/modules/letterSlice";
@@ -8,7 +7,7 @@ import axios from "axios";
 
 function SubmitLetter() {
   const dispatch = useDispatch();
-  const { nickname } = useSelector((state) => state.profileSlice.profile);
+  const { nickname, id } = useSelector((state) => state.profileSlice.profile);
   const { content, option } = useSelector((state) => state.letterSlice);
 
   const makeLetterHandeler = () => {
@@ -18,7 +17,7 @@ function SubmitLetter() {
       avatar: "/img/pngwing.com.png",
       content: content,
       writedTo: option,
-      id: uuidv4(),
+      userId: id,
     };
   };
   const resultLetter = makeLetterHandeler();
@@ -38,7 +37,7 @@ function SubmitLetter() {
   const fetchLetter = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/letters`
+        `${process.env.REACT_APP_BASE_URL}/letters?_sort=-createdAt`
       );
       console.log(data);
       dispatch(addLetterList(data));

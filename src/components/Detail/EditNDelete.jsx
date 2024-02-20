@@ -37,12 +37,11 @@ function EditNDelete() {
   };
 
   const click = useSelector((state) => state.clickSlice.click);
-  console.log(click);
   const letterList = useSelector((state) => state.letterListSlice.letterList);
   const foundLetter = letterList.find((letter) => letter.id === params.id);
-  console.log(foundLetter);
-  console.log(foundLetter.writedTo);
   const myMember = data.find((d) => d.name === foundLetter.writedTo);
+  const profile = useSelector((state) => state.profileSlice.profile);
+  const accessToken = localStorage.getItem("accessToken");
 
   const askEdit = () => {
     alert("수정하시겠습니까?");
@@ -62,14 +61,18 @@ function EditNDelete() {
   };
 
   const serverEditHandler = async () => {
-    try {
-      await axios.patch(
-        `${process.env.REACT_APP_BASE_URL}/letters/${foundLetter.id}`,
-        editLetter()
-      );
-    } catch (error) {
-      console.log("서버로 팬레터 수정 실패", error);
-      alert("팬레터 수정에 오류가 발생하였습니다.");
+    if (accessToken) {
+      try {
+        await axios.patch(
+          `${process.env.REACT_APP_BASE_URL}/letters/${foundLetter.id}`,
+          editLetter()
+        );
+      } catch (error) {
+        console.log("서버로 팬레터 수정 실패", error);
+        alert("팬레터 수정에 오류가 발생하였습니다.");
+      }
+    } else {
+      alert("로그인 후 이용해주세요");
     }
   };
 
@@ -82,15 +85,19 @@ function EditNDelete() {
   };
 
   const fetchLetter = async () => {
-    try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/letters`
-      );
-      console.log(data);
-      dispatch(addLetterList(data));
-    } catch (error) {
-      console.error("서버에 letterList 불러오기 실패", error);
-      alert("서버에서 팬레터를 불러오지 못했습니다.");
+    if (accessToken) {
+      try {
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/letters?_sort=-createdAt`
+        );
+        console.log(data);
+        dispatch(addLetterList(data));
+      } catch (error) {
+        console.error("서버에 letterList 불러오기 실패", error);
+        alert("서버에서 팬레터를 불러오지 못했습니다.");
+      }
+    } else {
+      alert("로그인 후 이용해주세요");
     }
   };
 
@@ -110,13 +117,17 @@ function EditNDelete() {
   };
 
   const serverDeleteHandler = async () => {
-    try {
-      await axios.delete(
-        `${process.env.REACT_APP_BASE_URL}/letters/${foundLetter.id}`
-      );
-    } catch (error) {
-      console.error("서버에서 팬레터 삭제실패", error);
-      alert("서버에서 팬레터를 삭제하지 못했습니다.");
+    if (accessToken) {
+      try {
+        await axios.delete(
+          `${process.env.REACT_APP_BASE_URL}/letters/${foundLetter.id}`
+        );
+      } catch (error) {
+        console.error("서버에서 팬레터 삭제실패", error);
+        alert("서버에서 팬레터를 삭제하지 못했습니다.");
+      }
+    } else {
+      alert("로그인 후 이용해주세요");
     }
   };
 
@@ -152,11 +163,13 @@ function EditNDelete() {
                     <DetailBtn onClick={editHandeler}>수정완료</DetailBtn>
                     <DetailBtn onClick={cancelEdit}>취소</DetailBtn>
                   </>
-                ) : (
+                ) : profile.id === foundLetter.userId ? (
                   <>
                     <DetailBtn onClick={askEdit}>수정</DetailBtn>
                     <DetailBtn onClick={deleteHandeler}>삭제</DetailBtn>
                   </>
+                ) : (
+                  <></>
                 )}
               </DetailBtnDiv>
               <DetailP>{foundLetter.createdAt}</DetailP>
