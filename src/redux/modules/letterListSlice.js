@@ -9,7 +9,7 @@ const letterListSlice = createSlice({
   initialState,
   reducers: {
     addLetterList: (state = initialState, action) => {
-      state.letterList = [...action.payload, ...state.letterList];
+      state.letterList = [...action.payload];
     },
     editNdeleteLetterList: (state = initialState, action) => {
       return {
