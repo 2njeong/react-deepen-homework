@@ -3,7 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { data } from "../../shared/data";
 import { selectClick } from "../../redux/modules/selectedBtnSlice";
-import { addLetterList } from "../../redux/modules/letterListSlice";
+import {
+  __getLetters,
+  // addLetterList,
+} from "../../redux/modules/letterListSlice";
 import {
   clickChangeTrue,
   clickChangeFalse,
@@ -49,14 +52,18 @@ function EditNDelete() {
   };
 
   const editHandeler = async () => {
-    if (editContent === foundLetter.content) {
-      alert("수정된 내용이 없습니다.");
-      dispatch(clickChangeTrue());
+    if (accessToken) {
+      if (editContent === foundLetter.content) {
+        alert("수정된 내용이 없습니다.");
+        dispatch(clickChangeTrue());
+      } else {
+        alert("수정이 완료되었습니다.");
+        await serverEditHandler();
+        dispatch(__getLetters());
+        dispatch(clickChangeFalse());
+      }
     } else {
-      alert("수정이 완료되었습니다.");
-      await serverEditHandler();
-      await fetchLetter();
-      dispatch(clickChangeFalse());
+      alert("로그인 후 이용해주세요");
     }
   };
 
@@ -84,23 +91,6 @@ function EditNDelete() {
     };
   };
 
-  const fetchLetter = async () => {
-    if (accessToken) {
-      try {
-        const { data } = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/letters?_sort=-createdAt`
-        );
-        console.log(data);
-        dispatch(addLetterList(data));
-      } catch (error) {
-        console.error("서버에 letterList 불러오기 실패", error);
-        alert("서버에서 팬레터를 불러오지 못했습니다.");
-      }
-    } else {
-      alert("로그인 후 이용해주세요");
-    }
-  };
-
   const deleteHandeler = async () => {
     if (
       window.confirm(
@@ -111,7 +101,7 @@ function EditNDelete() {
       navigate("/");
       dispatch(selectClick(myMember.id));
       await serverDeleteHandler();
-      await fetchLetter();
+      dispatch(__getLetters());
       dispatch(clickChangeFalse());
     }
   };
