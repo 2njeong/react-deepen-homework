@@ -8,11 +8,11 @@ function MyProfile() {
   return (
     <>
       <MyProfileImgDiv>
-        <MyImg src={profile.avartar} alt="회원이미지" />
+        <MyImg src={profile.avatar} alt="회원이미지" />
       </MyProfileImgDiv>
       <MyPDiv>
         <MyNickname>{profile.nickname}</MyNickname>
-        <MyId>{profile.id}</MyId>
+        <MyId>id - {profile.id}</MyId>
       </MyPDiv>
       <IntroDiv>
         <IntroP>{profile.intro}</IntroP>
@@ -40,7 +40,7 @@ const MyPDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 `;
 
 const MyNickname = styled.p`

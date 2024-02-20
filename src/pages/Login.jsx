@@ -21,6 +21,13 @@ function Login() {
   const [id, idHandler] = useInput();
   const [password, pwHandler] = useInput();
 
+  const loginProfile = (id, password) => {
+    return {
+      id,
+      password,
+    };
+  };
+
   // 로그인
   const tryLogin = async () => {
     try {
@@ -38,13 +45,6 @@ function Login() {
       console.error("error", error);
       alert("로그인 중 오류가 발생했습니다.");
     }
-  };
-
-  const loginProfile = (id, password) => {
-    return {
-      id,
-      password,
-    };
   };
 
   // 유저정보 가져오기

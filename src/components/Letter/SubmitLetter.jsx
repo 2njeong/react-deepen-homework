@@ -2,7 +2,7 @@ import React from "react";
 import { SubmitBtnSt } from "../../style/LetterStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { renewContent } from "../../redux/modules/letterSlice";
-import { addLetterList } from "../../redux/modules/letterListSlice";
+import { __addLetterList } from "../../redux/modules/letterListSlice";
 import axios from "axios";
 
 function SubmitLetter() {
@@ -40,7 +40,7 @@ function SubmitLetter() {
         `${process.env.REACT_APP_BASE_URL}/letters?_sort=-createdAt`
       );
       console.log(data);
-      dispatch(addLetterList(data));
+      dispatch(__addLetterList(data));
     } catch (error) {
       console.error("서버에 letterList 불러오기 실패", error);
       alert("서버에서 팬레터를 불러오지 못했습니다.");

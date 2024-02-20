@@ -3,29 +3,32 @@ import Fan from "./Fan";
 import HerLetterList from "./HerLetterList";
 import OurLetterList from "./OurLetterList";
 import { useDispatch, useSelector } from "react-redux";
-import { addLetterList } from "../../redux/modules/letterListSlice";
+import {
+  __getLetters,
+  addLetterList,
+} from "../../redux/modules/letterListSlice";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useRef, useState } from "react";
 import { FanLetterDivSt } from "../../style/LetterListStyle";
 
 function LetterList() {
+  const dispatch = useDispatch();
   useEffect(() => {
-    fetchLetter();
+    dispatch(__getLetters());
   }, []);
 
-  const dispatch = useDispatch();
-  const fetchLetter = async () => {
-    try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/letters?_sort=-createdAt`
-      );
-      console.log(data);
-      dispatch(addLetterList(data));
-    } catch (error) {
-      console.error("서버에 letterList 불러오기 실패", error);
-      alert("서버에서 팬레터를 불러오지 못했습니다.");
-    }
-  };
+  // const fetchLetter = async () => {
+  //   try {
+  //     const { data } = await axios.get(
+  //       `${process.env.REACT_APP_BASE_URL}/letters?_sort=-createdAt`
+  //     );
+  //     console.log(data);
+  //     dispatch(addLetterList(data));
+  //   } catch (error) {
+  //     console.error("서버에 letterList 불러오기 실패", error);
+  //     alert("서버에서 팬레터를 불러오지 못했습니다.");
+  //   }
+  // };
 
   const letterList = useSelector((state) => state.letterListSlice.letterList);
   const selectedBtn = useSelector(

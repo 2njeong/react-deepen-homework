@@ -1,32 +1,179 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import axios from "axios";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfile, editProfile } from "../../redux/modules/profileSlice";
 import styled from "styled-components";
+import { useInput } from "util/hooks/useInput";
 
 function EditProfile() {
   const profile = useSelector((state) => state.profileSlice.profile);
+  const [editClick, setEditClick] = useState(false);
+  const [editedNickname, editedNicknameHandler] = useInput();
+  const [avatar, setAvatar] = useState(null);
+  const [url, setUrl] = useState(null);
+  const inputRef = useRef(null);
+  const imgRef = useRef(null);
+
+  const dispatch = useDispatch();
+
+  const getData = async () => {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const response = await axios.get(
+        "https://moneyfulpublicpolicy.co.kr/user",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      dispatch(getProfile(response.data));
+    } catch (error) {
+      console.error("error", error);
+      alert("유저정보를 불러오는 데에 오류가 발생했습니다.");
+    }
+  };
+
+  const editClickHandler = () => {
+    setEditClick(true);
+  };
+
+  const editHandler = async () => {
+    await sendEditedProfileToServer();
+    await getData();
+    console.log(profile);
+    setEditClick(false);
+  };
+
+  const formData = new FormData();
+  formData.append("avatar", avatar);
+  formData.append("nickname", editedNickname);
+
+  const sendEditedProfileToServer = async () => {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      await axios.patch(
+        `https://moneyfulpublicpolicy.co.kr/profile`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.log("프로필 편집 실패", error);
+      alert("프로필 편집에 오류가 발생하였습니다.");
+    }
+  };
+
+  const cancelEdit = () => {
+    setEditClick(false);
+  };
+
+  const selectFile = (e) => {
+    setAvatar(e.target.files[0]);
+
+    // if (e.target.files[0]) {
+    //   const reader = new FileReader();
+    //   reader.onloadend = () => {
+    //     setUrl(reader.result);
+    //   };
+    //   reader.readAsDataURL(e.target.files[0]);
+    // } else {
+    //   setUrl(null);
+    // }
+  };
+
+  const imgClick = () => {
+    if (inputRef) {
+      inputRef.current.click();
+    }
+  };
 
   return (
     <EditProfileDiv>
-      <BasicDataP>기본정보</BasicDataP>
-      <ImgNNicknameDiv>
-        <MiniImg src={profile.avartar} alt="회원 이미지" />
-        <NicknameP>{profile.nickname}</NicknameP>
-        <EditBtnDiv>
-          <EditBtn>수정</EditBtn>
-        </EditBtnDiv>
-      </ImgNNicknameDiv>
-      <PDiv>
-        <p>email ✉️</p>
-        <P>{profile.email}</P>
-      </PDiv>
-      <PDiv>
-        <p>HP 📱</p>
-        <P>{profile.Hp}</P>
-      </PDiv>
-      <PDiv $text="intro">
-        <p>intro</p>
-        <P $text="intro">{profile.intro}</P>
-      </PDiv>
+      <EditHeaderDiv>
+        {editClick ? (
+          <>
+            <BasicDataP>
+              이미지 수정을 원하시면 이미지를 클릭해주세요!
+            </BasicDataP>
+            <div>
+              <EditBtn $text="done" onClick={editHandler}>
+                수정완료
+              </EditBtn>
+              <EditBtn onClick={cancelEdit}>취소</EditBtn>
+            </div>
+          </>
+        ) : (
+          <>
+            <BasicDataP>기본정보</BasicDataP>
+            <EditBtn onClick={editClickHandler}>수정</EditBtn>
+          </>
+        )}
+      </EditHeaderDiv>
+      {editClick ? (
+        <>
+          <ImgNNicknameDiv>
+            <HiddenImgInput
+              type="file"
+              ref={inputRef}
+              accept=".jpg, .png"
+              onChange={selectFile}
+              style={{ display: "none" }}
+            ></HiddenImgInput>
+            <MiniImg
+              ref={imgRef}
+              src={profile.avatar}
+              onClick={imgClick}
+              alt="회원 이미지"
+              $text="edit"
+            />
+            <NicknameTextArea
+              defaultValue={profile.nickname}
+              onChange={editedNicknameHandler}
+            ></NicknameTextArea>
+          </ImgNNicknameDiv>
+          <PDiv>
+            <p>email✉️</p>
+            <textarea></textarea>
+          </PDiv>
+          <PDiv>
+            <p>HP📱</p>
+            <textarea></textarea>
+          </PDiv>
+          <PDiv $text="intro">
+            <p>intro</p>
+            <textarea></textarea>
+          </PDiv>
+        </>
+      ) : (
+        <>
+          <NickDiv>
+            <p>🖤nickname🖤</p>
+            <ImgNNicknameDiv>
+              <MiniImg src={profile.avatar} alt="회원 이미지" />
+              <NicknameP>{profile.nickname}</NicknameP>
+            </ImgNNicknameDiv>
+          </NickDiv>
+
+          <PDiv>
+            <p>email ✉️</p>
+            <P>{profile.email}</P>
+          </PDiv>
+          <PDiv>
+            <p>HP 📱</p>
+            <P>{profile.Hp}</P>
+          </PDiv>
+          <PDiv $text="intro">
+            <p>intro</p>
+            <P $text="intro">{profile.intro}</P>
+          </PDiv>
+        </>
+      )}
     </EditProfileDiv>
   );
 }
@@ -39,6 +186,14 @@ const EditProfileDiv = styled.div`
   border: 3px solid white;
   border-radius: 10px;
   padding: 20px 10px;
+`;
+
+const EditHeaderDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10px;
 `;
 
 const BasicDataP = styled.p`
@@ -58,6 +213,10 @@ const ImgNNicknameDiv = styled.div`
   padding-bottom: 10px;
 `;
 
+const HiddenImgInput = styled.input`
+  display: none;
+`;
+
 const MiniImg = styled.img`
   width: 80px;
   height: 80px;
@@ -65,6 +224,19 @@ const MiniImg = styled.img`
   overflow: hidden;
   object-fit: cover;
   border-radius: 70%;
+  cursor: ${({ $text }) => ($text === "edit" ? "pointer" : null)};
+`;
+
+const NicknameTextArea = styled.textarea`
+  display: flex;
+  height: 70px;
+  font-weight: 550;
+  font-size: 22px;
+  width: 450px;
+  padding: 20px;
+  border-radius: 8px;
+  resize: none;
+  margin: 0 0 10px 10px;
 `;
 
 const NicknameP = styled.p`
@@ -76,22 +248,25 @@ const NicknameP = styled.p`
   padding: 20px;
 `;
 
-const EditBtnDiv = styled.div`
-  display: flex;
-  height: 120px;
-  padding: 40px 10px 0 0;
-`;
-
 const EditBtn = styled.button`
-  width: 50px;
+  font-size: 15px;
+  color: #353e55;
+  width: ${({ $text }) => ($text === "done" ? "70px" : "60px")};
   height: 28px;
-  border: 1px solid #353e55;
+  border: 2px solid #353e55;
   border-radius: 3px;
+  margin-right: ${({ $text }) => ($text === "done" ? "3px" : 0)};
   &:hover {
     background-color: lightgray;
     color: #494d52;
     opacity: 1;
   }
+`;
+
+const NickDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 `;
 
 const PDiv = styled.div`

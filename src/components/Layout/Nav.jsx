@@ -1,9 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { authLoginChange } from "../../redux/modules/authSlice";
 import { NavDiv, NavBtn, MyNavBtnDiv } from "style/LayoutStyle";
 
 function Nav() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const goHome = () => {
     navigate("/");
@@ -11,6 +14,14 @@ function Nav() {
 
   const goMypage = () => {
     navigate("/mypage");
+  };
+
+  const logOut = () => {
+    if (window.confirm("로그아웃 하시겠습니까?")) {
+      localStorage.removeItem("accessToken");
+      dispatch(authLoginChange(false));
+      navigate("/");
+    }
   };
 
   return (
@@ -21,7 +32,7 @@ function Nav() {
 
       <MyNavBtnDiv>
         <NavBtn onClick={goMypage}>MyPage</NavBtn>
-        <NavBtn>LogOut</NavBtn>
+        <NavBtn onClick={logOut}>LogOut</NavBtn>
       </MyNavBtnDiv>
     </NavDiv>
   );

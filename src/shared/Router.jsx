@@ -23,7 +23,7 @@ const Router = () => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
       try {
-        const response = await axios.get(
+        const { data } = await axios.get(
           "https://moneyfulpublicpolicy.co.kr/user",
           {
             headers: {
@@ -32,14 +32,14 @@ const Router = () => {
             },
           }
         );
-        console.log(response.data);
+        console.log(data);
         dispatch(authLoginChange(true));
-        dispatch(getProfile(response.data));
+        dispatch(getProfile(data));
       } catch (error) {
         console.error("error", "로그인이 필요한 상태");
       }
     } else {
-      localStorage.removeItem("accessToken");
+      dispatch(authLoginChange(false));
       alert("로그인 시간이 만료되었습니다.");
     }
   };
