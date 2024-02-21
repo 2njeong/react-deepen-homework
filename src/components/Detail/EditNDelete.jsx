@@ -3,10 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { data } from "../../shared/data";
 import { selectClick } from "../../redux/modules/selectedBtnSlice";
-import {
-  __getLetters,
-  // addLetterList,
-} from "../../redux/modules/letterListSlice";
+import { __getLetters } from "../../redux/modules/letterListSlice";
 import {
   clickChangeTrue,
   clickChangeFalse,
@@ -29,6 +26,7 @@ import {
   DetailEditPArea,
 } from "../../style/DetailStyle";
 import axios from "axios";
+import { __getProfile } from "../../redux/modules/profileSlice";
 
 function EditNDelete() {
   const params = useParams();
@@ -38,13 +36,25 @@ function EditNDelete() {
   const writeEditContent = (e) => {
     setEditContent(e.target.value);
   };
-
   const click = useSelector((state) => state.clickSlice.click);
+  const profile = useSelector((state) => state.profileSlice.profile);
   const letterList = useSelector((state) => state.letterListSlice.letterList);
   const foundLetter = letterList.find((letter) => letter.id === params.id);
+  console.log(letterList);
+  console.log(foundLetter);
   const myMember = data.find((d) => d.name === foundLetter.writedTo);
-  const profile = useSelector((state) => state.profileSlice.profile);
+  console.log(data);
+  console.log(myMember);
   const accessToken = localStorage.getItem("accessToken");
+
+  // useEffect(() => {
+  //   if (accessToken) {
+  //     dispatch(__getLetters());
+  //     dispatch(__getProfile());
+  //   } else {
+  //     alert("펜레터 수정/등록하기는 로그인 후 이용하실 수 있습니다.");
+  //   }
+  // }, [accessToken, dispatch]);
 
   const askEdit = () => {
     alert("수정하시겠습니까?");
@@ -97,7 +107,7 @@ function EditNDelete() {
         `${foundLetter.writedTo}에게 쓰신 펜레터를 정말 삭제하시겠습니까?`
       )
     ) {
-      alert("삭제되었습니다.");
+      alert("삭제되었습니다. 최애에게 돌아갑니다.");
       navigate("/");
       dispatch(selectClick(myMember.id));
       await serverDeleteHandler();

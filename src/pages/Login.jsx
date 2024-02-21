@@ -14,7 +14,7 @@ import {
 } from "style/LoginStyle";
 import axios from "axios";
 import { loginApi } from "../axios/api";
-import { useInput } from "util/hooks/useInput";
+import { useInput } from "shared/useInput";
 import { useEffect, useRef, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -51,6 +51,19 @@ function Login() {
     };
   };
 
+  const login = async () => {
+    if (
+      id.length < 4 ||
+      id.length > 10 ||
+      password.length < 4 ||
+      password.length > 15
+    ) {
+      alert("아이디는 4 ~ 10 글자, 비밀번호는 4 ~ 15 글자여야 합니다.");
+    } else {
+      await tryLogin();
+    }
+  };
+
   // 로그인
   const tryLogin = async () => {
     try {
@@ -65,19 +78,6 @@ function Login() {
     } catch (error) {
       console.error("error", error);
       alert("로그인 중 오류가 발생했습니다.");
-    }
-  };
-
-  const login = () => {
-    if (
-      id.length < 4 ||
-      id.length > 10 ||
-      password.length < 4 ||
-      password.length > 15
-    ) {
-      alert("아이디는 4 ~ 10 글자, 비밀번호는 4 ~ 15 글자여야 합니다.");
-    } else {
-      tryLogin();
     }
   };
 

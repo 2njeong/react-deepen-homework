@@ -1,4 +1,4 @@
-import Nav from "components/Layout/Nav";
+import Layout from "components/Layout/Layout";
 import EditProfile from "components/Mypage/EditProfile";
 import MyProfile from "components/Mypage/MyProfile";
 import React, { useState } from "react";
@@ -13,7 +13,7 @@ function Mypage() {
 
   return (
     <>
-      <Nav />
+      <Layout />
       <header>
         <MyPageTitle>Mypage</MyPageTitle>
         <nav>

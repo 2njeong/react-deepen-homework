@@ -1,3 +1,4 @@
+import Title from "../Letter/Title";
 import Input from "./Input";
 import Select from "./Select";
 import React, { useRef } from "react";
@@ -18,17 +19,22 @@ function Letter() {
   const selectRef = useRef(null);
 
   return (
-    <LetterWholeDiv $backImg={backImgMaker(selectedBtn)}>
-      <NewFanLetterFormSt>
-        <Input />
-        {/* --------------------------------------------------------- */}
-        <Select selectRef={selectRef} />
-        {/* --------------------------------------------------------- */}
-        <SubmitLetter />
-      </NewFanLetterFormSt>
-      {/* ----------------------------------------------------------- */}
-      <LetterList />
-    </LetterWholeDiv>
+    <>
+      <header>
+        <Title />
+      </header>
+      <LetterWholeDiv $backImg={backImgMaker(selectedBtn)}>
+        <NewFanLetterFormSt>
+          <Input />
+          {/* --------------------------------------------------------- */}
+          <Select selectRef={selectRef} />
+          {/* --------------------------------------------------------- */}
+          <SubmitLetter />
+        </NewFanLetterFormSt>
+        {/* ----------------------------------------------------------- */}
+        <LetterList />
+      </LetterWholeDiv>
+    </>
   );
 }
 export default Letter;

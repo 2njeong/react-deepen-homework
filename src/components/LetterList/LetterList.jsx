@@ -9,26 +9,25 @@ import { FanLetterDivSt } from "../../style/LetterListStyle";
 
 function LetterList() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(__getLetters());
-  }, [dispatch]);
-
+  const navigate = useNavigate();
   const letterList = useSelector((state) => state.letterListSlice.letterList);
   const selectedBtn = useSelector(
     (state) => state.selectedBtnSlice.selectedBtn
   );
+  const [clickedFanId, setClickedFanId] = useState(null);
+  const [fanClick, setFanClick] = useState(true);
+  const imgRef = useRef(null);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    dispatch(__getLetters());
+  }, [dispatch]);
 
   const goToDetailPage = (id) => {
     navigate(`/letterList/${id}`);
   };
 
-  const [clickedFanId, setClickedFanId] = useState(null);
-  const [fanClick, setFanClick] = useState(true);
-  const imgRef = useRef(null);
-
   const theVeryFan = letterList.find((letter) => letter.id === clickedFanId);
+  console.log(theVeryFan);
 
   const seeFanData = () => {
     if (theVeryFan) {
@@ -43,7 +42,6 @@ function LetterList() {
           // 위에 블핑멤버 버튼 클릭 + 특정맴버에 대한 letter가 있는 경우
           <HerLetterList
             setClickedFanId={setClickedFanId}
-            imgRef={imgRef}
             seeFanData={seeFanData}
             goToDetailPage={goToDetailPage}
           />
@@ -51,7 +49,6 @@ function LetterList() {
           // 맴버버튼이 클릭되지 않은 경우
           <OurLetterList
             setClickedFanId={setClickedFanId}
-            imgRef={imgRef}
             seeFanData={seeFanData}
             goToDetailPage={goToDetailPage}
           />

@@ -7,52 +7,34 @@ import Mypage from "pages/Mypage.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { authLoginChange } from "../redux/modules/authSlice.js";
-import { getProfile } from "../redux/modules/profileSlice.js";
-import axios from "axios";
+import { __getProfile } from "../redux/modules/profileSlice.js";
+import { __getLetters } from "../redux/modules/letterListSlice.js";
 
 const Router = () => {
   const isLogin = useSelector((state) => state.authSlice.isLogin);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getData();
-  }, []);
-
-  //새로고침 시에도 로그인 상태라면 유저정보를 가져와서 store에 넣기
-  const getData = async () => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
-      try {
-        const { data } = await axios.get(
-          "https://moneyfulpublicpolicy.co.kr/user",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
-        console.log(data);
-        dispatch(authLoginChange(true));
-        dispatch(getProfile(data));
-      } catch (error) {
-        console.error("error", "로그인이 필요한 상태");
-      }
+      dispatch(authLoginChange(true));
+      dispatch(__getProfile());
+      dispatch(__getLetters());
     } else {
       dispatch(authLoginChange(false));
       alert("로그인 시간이 만료되었습니다.");
     }
-  };
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
       <Routes>
         {isLogin ? (
           <>
-            <Route path="/" element={<Home />}>
-              <Route path="/letterList/:id" element={<Detail />} />
-            </Route>
+            <Route path="/" element={<Home />} />
             <Route path="/mypage" element={<Mypage />} />
+            <Route path="/letterList/:id" element={<Detail />} />
+            <Route path="*" element={<Navigate replace to="/" />} />
           </>
         ) : (
           <>

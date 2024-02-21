@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import { data } from "../../shared/data";
-import { getformattedDate } from "../../util/date";
+import { getformattedDate } from "../../shared/data";
 import {
   FanLetterStBox,
   AvatarStImg,
@@ -12,12 +12,8 @@ import {
   NoLetterDiv,
 } from "../../style/LetterListStyle";
 
-function HerLetterList({
-  setClickedFanId,
-  imgRef,
-  seeFanData,
-  goToDetailPage,
-}) {
+function HerLetterList({ setClickedFanId, seeFanData, goToDetailPage }) {
+  const imgRef = useRef(null);
   const selectedBtn = useSelector(
     (state) => state.selectedBtnSlice.selectedBtn
   );
@@ -37,11 +33,11 @@ function HerLetterList({
           <AvatarStImg
             src={letter.avatar}
             alt="avatar"
+            ref={imgRef}
             onClick={() => {
               setClickedFanId(letter.id);
               seeFanData();
             }}
-            ref={imgRef}
           ></AvatarStImg>
           <LetterContentSt>
             <LetterLiBtnContainerDiv>

@@ -8,12 +8,12 @@ const seletedBtnSlice = createSlice({
   name: "selectedBtnSlice",
   initialState,
   reducers: {
-    selectClick: (state = initialState, action) => {
+    selectClick: (state, action) => {
       return {
         selectedBtn: action.payload,
       };
     },
-    goHomeClick: (state = initialState, action) => {
+    goHomeClick: (state, action) => {
       return {
         selectedBtn: null,
       };
@@ -23,34 +23,3 @@ const seletedBtnSlice = createSlice({
 
 export const { goHomeClick, selectClick } = seletedBtnSlice.actions;
 export default seletedBtnSlice.reducer;
-
-// export const SELECT_MEMBER = "selecedBtn/selectMember";
-// export const GO_HOME = "selectedBtn/goHome";
-
-// export const selectClick = (id) => {
-//   return {
-//     type: SELECT_MEMBER,
-//     id,
-//   };
-// };
-
-// export const goHomeClick = () => {
-//   return {
-//     type: GO_HOME,
-//   };
-// };
-
-// export const selectedBtnReducer = (state = initialSate, action) => {
-//   switch (action.type) {
-//     case SELECT_MEMBER:
-//       return {
-//         selectedBtn: action.id,
-//       };
-//     case GO_HOME:
-//       return {
-//         selectedBtn: null,
-//       };
-//     default:
-//       return state;
-//   }
-// };

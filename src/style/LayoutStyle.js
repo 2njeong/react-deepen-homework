@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { data } from "../shared/data";
 
 export const NavDiv = styled.div`
-  height: 30px;
+  height: 40px;
   display: flex;
   justify-content: space-between;
   padding: 5px 10px 0px 5px;

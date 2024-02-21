@@ -19,7 +19,7 @@ export const __addLetterList = createAsyncThunk(
 
 export const __getLetters = createAsyncThunk("GET_LETTERLIST", async () => {
   try {
-    const { data } = await lettersApi.get(`letters?_sort=-createdAt`);
+    const { data } = await lettersApi.get(`/letters?_sort=-createdAt`);
     return data;
   } catch (error) {
     console.error("서버에서 letterList 불러오기 실패", error);
@@ -38,7 +38,6 @@ const letterListSlice = createSlice({
       state.letterList = action.payload;
     },
   },
-
   extraReducers: (builder) => {
     builder.addCase(__getLetters.pending, (state, action) => {
       state.isLoading = true;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const WholeDetailbackground = styled.div`
-  background-color: #eaeaea;
+  background-color: #eeeeee;
 `;
 export const DetailImgStBox = styled.div`
   height: 700px;

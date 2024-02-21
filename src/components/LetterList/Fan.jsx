@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { getformattedDate } from "util/date";
+import { getformattedDate } from "../../shared/data";
 import { useNavigate } from "react-router-dom";
 import {
   FanDivSt,
@@ -18,6 +18,7 @@ function Fan({ fanClick, setFanClick, theVeryFan, imgRef }) {
 
   const goBack = (e) => {
     return fanArea.current &&
+      imgRef.current &&
       !fanArea.current.contains(e.target) &&
       !imgRef.current.contains(e.target)
       ? setFanClick(false)

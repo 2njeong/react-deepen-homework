@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getformattedDate } from "util/date";
+import { useRef } from "react";
+import { getformattedDate } from "../../shared/data";
 import {
   FanLetterStBox,
   AvatarStImg,
@@ -12,12 +13,13 @@ import {
 
 function OurLetterList({
   setClickedFanId,
-  imgRef,
+  // imgRef,
   seeFanData,
   goToDetailPage,
 }) {
   const profile = useSelector((state) => state.profileSlice.profile);
   const letterList = useSelector((state) => state.letterListSlice.letterList);
+  const imgRef = useRef(null);
 
   return letterList.map((letter) => {
     return (
@@ -25,11 +27,11 @@ function OurLetterList({
         <AvatarStImg
           src={letter.avatar}
           alt="avatar"
-          ref={imgRef}
           onClick={() => {
             setClickedFanId(letter.id);
             seeFanData();
           }}
+          ref={imgRef}
         ></AvatarStImg>
         <LetterContentSt>
           <LetterLiBtnContainerDiv>

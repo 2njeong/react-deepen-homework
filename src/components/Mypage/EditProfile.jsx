@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../redux/modules/profileSlice";
 import styled from "styled-components";
-import { useInput } from "util/hooks/useInput";
+import { useInput } from "shared/useInput";
 
 function EditProfile() {
   const profile = useSelector((state) => state.profileSlice.profile);
