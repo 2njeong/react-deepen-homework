@@ -26,7 +26,7 @@ import {
   DetailEditPArea,
 } from "../../style/DetailStyle";
 import axios from "axios";
-import { __getProfile } from "../../redux/modules/profileSlice";
+// import { __getProfile } from "../../redux/modules/profileSlice";
 
 function EditNDelete() {
   const params = useParams();

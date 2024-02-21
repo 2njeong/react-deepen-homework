@@ -1,7 +1,6 @@
 import Title from "../Letter/Title";
 import Input from "./Input";
 import Select from "./Select";
-import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import SubmitLetter from "./SubmitLetter";
 import LetterList from "../LetterList/LetterList";
@@ -16,8 +15,6 @@ function Letter() {
     (state) => state.selectedBtnSlice.selectedBtn
   );
 
-  const selectRef = useRef(null);
-
   return (
     <>
       <header>
@@ -27,7 +24,7 @@ function Letter() {
         <NewFanLetterFormSt>
           <Input />
           {/* --------------------------------------------------------- */}
-          <Select selectRef={selectRef} />
+          <Select />
           {/* --------------------------------------------------------- */}
           <SubmitLetter />
         </NewFanLetterFormSt>

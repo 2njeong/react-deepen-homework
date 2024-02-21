@@ -67,7 +67,7 @@ function Login() {
   const tryLogin = async () => {
     try {
       await loginApi.post(
-        "https://moneyfulpublicpolicy.co.kr/login?expiresIn=3h",
+        "https://moneyfulpublicpolicy.co.kr/login?expiresIn=10s",
         loginProfile(id, password)
       );
       dispatch(authLoginChange(true));

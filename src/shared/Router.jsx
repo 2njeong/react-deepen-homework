@@ -14,17 +14,25 @@ const Router = () => {
   const isLogin = useSelector((state) => state.authSlice.isLogin);
   const dispatch = useDispatch();
 
+  const accessToken = localStorage.getItem("accessToken");
+  const expirationTime = parseInt(localStorage.getItem("expirationTime"));
+  const currentTime = new Date().getTime();
+
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
+    if (accessToken && currentTime < expirationTime) {
       dispatch(authLoginChange(true));
       dispatch(__getProfile());
       dispatch(__getLetters());
-    } else {
-      dispatch(authLoginChange(false));
-      alert("로그인 시간이 만료되었습니다.");
     }
   }, [dispatch]);
+
+  if (currentTime > expirationTime) {
+    dispatch(authLoginChange(false));
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("expirationTime");
+    alert("로그인 시간이 만료되었습니다.");
+    window.location.href = "/";
+  }
 
   return (
     <BrowserRouter>

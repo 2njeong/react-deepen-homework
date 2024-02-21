@@ -10,7 +10,7 @@ function Layout() {
   const dispatch = useDispatch();
 
   const goHome = () => {
-    goHomeClick();
+    dispatch(goHomeClick());
     navigate("/");
   };
 

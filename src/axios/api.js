@@ -9,6 +9,10 @@ loginApi.interceptors.response.use(
   (response) => {
     const { accessToken } = response.data;
     localStorage.setItem("accessToken", accessToken);
+    const loginTime = new Date().getTime();
+    console.log(loginTime);
+    const expirationTime = loginTime + 10 * 1000;
+    localStorage.setItem("expirationTime", expirationTime.toString());
   },
   (error) => {
     console.error("서버로부터 accessToken 받는 과정 중 오류 발생");

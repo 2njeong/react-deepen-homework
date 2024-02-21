@@ -27,7 +27,6 @@ function LetterList() {
   };
 
   const theVeryFan = letterList.find((letter) => letter.id === clickedFanId);
-  console.log(theVeryFan);
 
   const seeFanData = () => {
     if (theVeryFan) {
