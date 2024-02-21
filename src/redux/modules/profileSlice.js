@@ -13,6 +13,7 @@ const initialState = {
   error: null,
 };
 
+// 새로고침 시 사용
 export const __getProfile = createAsyncThunk(
   "GET_PROFILE_FROM_SERVER",
   async () => {
@@ -37,31 +38,33 @@ export const __getProfile = createAsyncThunk(
 const profileSlice = createSlice({
   name: "profileSlice",
   initialState,
-  reducers: {
-    getProfile: (state, action) => {
-      const { id, nickname, avatar } = action.payload;
-      state.profile = {
-        ...state.profile,
-        id: id,
-        nickname: nickname,
-        avatar: !avatar ? "/img/pngwing.com.png" : avatar,
-      };
-    },
-  },
+  // reducers: {
+  //   // 로그인 & 수정 시 사용
+  //   getProfile: (state, action) => {
+  //     const { id, nickname, avatar } = action.payload;
+  //     state.profile = {
+  //       ...state.profile,
+  //       id: id,
+  //       nickname: nickname,
+  //       avatar: !avatar ? "/img/pngwing.com.png" : avatar,
+  //     };
+  //   },
+  // },
   extraReducers: (builder) => {
     builder.addCase(__getProfile.pending, (state, action) => {
       state.isLoading = true;
       state.isError = false;
     });
     builder.addCase(__getProfile.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.isError = false;
+      const { id, nickname, avatar } = action.payload;
       state.profile = {
         ...action.payload,
-        avatar: !action.payload.avatar
-          ? "/img/pngwing.com.png"
-          : action.payload.avatar,
+        id: id,
+        nickname: nickname,
+        avatar: !avatar ? "/img/pngwing.com.png" : avatar,
       };
+      state.isLoading = false;
+      state.isError = false;
     });
     builder.addCase(__getProfile.rejected, (state, action) => {
       state.isLoading = false;

@@ -11,12 +11,7 @@ import {
   LiStyle,
 } from "../../style/LetterListStyle";
 
-function OurLetterList({
-  setClickedFanId,
-  // imgRef,
-  seeFanData,
-  goToDetailPage,
-}) {
+function OurLetterList({ setClickedFanId, seeFanData, goToDetailPage }) {
   const profile = useSelector((state) => state.profileSlice.profile);
   const letterList = useSelector((state) => state.letterListSlice.letterList);
   const imgRef = useRef(null);

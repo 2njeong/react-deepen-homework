@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfile } from "../../redux/modules/profileSlice";
+import { __getProfile } from "../../redux/modules/profileSlice";
 import styled from "styled-components";
 import { useInput } from "shared/useInput";
 
@@ -42,28 +42,28 @@ function EditProfile() {
     }
   };
 
-  const getData = async () => {
-    try {
-      const accessToken = localStorage.getItem("accessToken");
-      const response = await axios.get(
-        "https://moneyfulpublicpolicy.co.kr/user",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      dispatch(getProfile(response.data));
-    } catch (error) {
-      console.error("error", error);
-      alert("유저정보를 불러오는 데에 오류가 발생했습니다.");
-    }
-  };
+  // const getData = async () => {
+  //   try {
+  //     const accessToken = localStorage.getItem("accessToken");
+  //     const response = await axios.get(
+  //       "https://moneyfulpublicpolicy.co.kr/user",
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${accessToken}`,
+  //         },
+  //       }
+  //     );
+  //     dispatch(getProfile(response.data));
+  //   } catch (error) {
+  //     console.error("error", error);
+  //     alert("유저정보를 불러오는 데에 오류가 발생했습니다.");
+  //   }
+  // };
 
   const editHandler = async () => {
     await sendEditedProfileToServer();
-    await getData();
+    dispatch(__getProfile());
     console.log(profile);
     setEditClick(false);
   };
