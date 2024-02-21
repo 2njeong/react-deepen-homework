@@ -35,6 +35,7 @@ function Login() {
         "https://moneyfulpublicpolicy.co.kr/login?expiresIn=3h",
         loginProfile(id, password)
       );
+      console.log(response);
       const { accessToken } = response.data;
       localStorage.setItem("accessToken", accessToken);
       dispatch(authLoginChange(true));
@@ -44,6 +45,19 @@ function Login() {
     } catch (error) {
       console.error("error", error);
       alert("로그인 중 오류가 발생했습니다.");
+    }
+  };
+
+  const login = () => {
+    if (
+      id.length < 4 ||
+      id.length > 10 ||
+      password.length < 4 ||
+      password.length > 15
+    ) {
+      alert("아이디는 4 ~ 10 글자, 비밀번호는 4 ~ 15 글자여야 합니다.");
+    } else {
+      tryLogin();
     }
   };
 
@@ -90,7 +104,7 @@ function Login() {
           ></LoginInput>
         </LoginInputDiv>
         <LoginBtnBox>
-          <LoginBtn $text="로그인" onClick={tryLogin}>
+          <LoginBtn $text="로그인" onClick={login}>
             로그인
           </LoginBtn>
           <RegisterBtn $text="로그인" onClick={() => navigate("/register")}>
