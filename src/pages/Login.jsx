@@ -14,12 +14,31 @@ import {
 } from "style/LoginStyle";
 import axios from "axios";
 import { useInput } from "util/hooks/useInput";
+import { useEffect, useRef } from "react";
 
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [id, idHandler] = useInput();
   const [password, pwHandler] = useInput();
+  const idRef = useRef(null);
+  const pwRef = useRef(null);
+  const loginBtnRef = useRef(null);
+
+  useEffect(() => {
+    ableBtn();
+  }, [id, password]);
+
+  const ableBtn = () => {
+    if (
+      idRef.current.value.trim() !== "" &&
+      pwRef.current.value.trim() !== ""
+    ) {
+      loginBtnRef.current.disabled = false;
+    } else {
+      loginBtnRef.current.disabled = true;
+    }
+  };
 
   const loginProfile = (id, password) => {
     return {
@@ -96,15 +115,24 @@ function Login() {
             type="text"
             placeholder="아이디 (4 ~ 10 글자)"
             onChange={idHandler}
+            ref={idRef}
           ></LoginInput>
           <LoginInput
             type="password"
             placeholder="비밀번호 (4 ~ 15 글자)"
             onChange={pwHandler}
+            ref={pwRef}
           ></LoginInput>
         </LoginInputDiv>
         <LoginBtnBox>
-          <LoginBtn $text="로그인" onClick={login}>
+          <LoginBtn
+            disabled
+            ref={loginBtnRef}
+            $text="로그인"
+            onClick={() => {
+              login();
+            }}
+          >
             로그인
           </LoginBtn>
           <RegisterBtn $text="로그인" onClick={() => navigate("/register")}>

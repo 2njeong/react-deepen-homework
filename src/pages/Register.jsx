@@ -12,12 +12,33 @@ import {
   RegisterBtn,
 } from "style/LoginStyle";
 import { useInput } from "util/hooks/useInput";
+import { useEffect, useRef } from "react";
 
 function Register() {
   const navigate = useNavigate();
   const [id, idHandler] = useInput();
   const [password, pwHandler] = useInput();
   const [nickname, nicknameHandler] = useInput();
+  const idRef = useRef(null);
+  const pwRef = useRef(null);
+  const nicknameRef = useRef(null);
+  const registerBtnRef = useRef(null);
+
+  useEffect(() => {
+    ableBtn();
+  }, [id, password, nickname]);
+
+  const ableBtn = () => {
+    if (
+      idRef.current.value.trim() !== "" &&
+      pwRef.current.value.trim() !== "" &&
+      nicknameRef.current.value.trim() !== ""
+    ) {
+      registerBtnRef.current.disabled = false;
+    } else {
+      registerBtnRef.current.disabled = true;
+    }
+  };
 
   const registerProfile = (id, password, nickname) => {
     return {
@@ -74,21 +95,29 @@ function Register() {
             value={id}
             placeholder="아이디 (4 ~ 10 글자)"
             onChange={idHandler}
+            ref={idRef}
           ></LoginInput>
           <LoginInput
             type="password"
             value={password}
             placeholder="비밀번호 (4 ~ 15 글자)"
             onChange={pwHandler}
+            ref={pwRef}
           ></LoginInput>
           <LoginInput
             value={nickname}
             placeholder="닉네임 (1 ~ 10 글자)"
             onChange={nicknameHandler}
+            ref={nicknameRef}
           ></LoginInput>
         </LoginInputDiv>
         <LoginBtnBox>
-          <RegisterBtn $text="회원가입" onClick={submitRegisteredProfile}>
+          <RegisterBtn
+            ref={registerBtnRef}
+            disabled
+            $text="회원가입"
+            onClick={submitRegisteredProfile}
+          >
             회원가입
           </RegisterBtn>
           <LoginBtn $text="회원가입" onClick={() => navigate("/")}>
