@@ -49,10 +49,10 @@ const Router = () => {
       <Routes>
         {isLogin ? (
           <>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home />}>
+              <Route path="/letterList/:id" element={<Detail />} />
+            </Route>
             <Route path="/mypage" element={<Mypage />} />
-            <Route path="/letterList/:id" element={<Detail />} />
-            <Route path="*" element={<Navigate replace to="/" />} />
           </>
         ) : (
           <>

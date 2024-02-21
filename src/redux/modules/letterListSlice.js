@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import axios from "axios";
 import { lettersApi } from "../../axios/api";
 
 export const initialState = {
@@ -18,7 +17,7 @@ export const __addLetterList = createAsyncThunk(
   }
 );
 
-export const __getLetters = createAsyncThunk("GET_LETTERlIST", async () => {
+export const __getLetters = createAsyncThunk("GET_LETTERLIST", async () => {
   try {
     const { data } = await lettersApi.get(`letters?_sort=-createdAt`);
     return data;

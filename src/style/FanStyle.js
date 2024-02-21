@@ -27,7 +27,7 @@ export const BtnBox = styled.div`
 export const FanBtnSt = styled.button`
   height: 25px;
   border-radius: 4px;
-  border: 2px solid #b2b7bc;
+  border: 2.5px solid #b2b7bc;
   width: ${({ $text }) => ($text === "x" ? "25px" : "65px")};
   margin-left: ${({ $text }) => ($text === "x" ? "10px" : 0)};
   &:hover {

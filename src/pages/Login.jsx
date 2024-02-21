@@ -16,6 +16,8 @@ import axios from "axios";
 import { loginApi } from "../axios/api";
 import { useInput } from "util/hooks/useInput";
 import { useEffect, useRef, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -25,6 +27,7 @@ function Login() {
   const [isBtnAbled, setIsBtnAbled] = useState(false);
   const idRef = useRef(null);
   const pwRef = useRef(null);
+  const notify = () => toast("최애에게 한 걸음!");
 
   useEffect(() => {
     ableBtn();
@@ -58,7 +61,7 @@ function Login() {
       dispatch(authLoginChange(true));
       getData();
       renewInput();
-      alert("최애에게 한 걸음!");
+      notify();
     } catch (error) {
       console.error("error", error);
       alert("로그인 중 오류가 발생했습니다.");
@@ -91,7 +94,6 @@ function Login() {
           },
         }
       );
-      console.log(response.data);
       dispatch(getProfile(response.data));
     } catch (error) {
       console.error("error", error);
@@ -126,6 +128,7 @@ function Login() {
           <LoginBtn disabled={isBtnAbled} $text="로그인" onClick={login}>
             로그인
           </LoginBtn>
+          <ToastContainer />
           <RegisterBtn $text="로그인" onClick={() => navigate("/register")}>
             회원가입
           </RegisterBtn>

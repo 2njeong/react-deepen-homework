@@ -2,6 +2,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useInput } from "util/hooks/useInput";
 import { useEffect, useRef, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   LoginBackDiv,
   LoginForm,
@@ -22,6 +24,7 @@ function Register() {
   const idRef = useRef(null);
   const pwRef = useRef(null);
   const nicknameRef = useRef(null);
+  const notify = () => toast("회원가입이 완료되었습니다.");
 
   useEffect(() => {
     ableBtn();
@@ -54,7 +57,7 @@ function Register() {
         registerProfile(id, password, nickname)
       );
       if (response.data.success) {
-        alert("회원가입이 완료되었습니다.");
+        notify();
         navigate("/");
       } else {
         alert("회원가입에 실패했습니다.");
@@ -118,6 +121,7 @@ function Register() {
           >
             회원가입
           </RegisterBtn>
+          <ToastContainer />
           <LoginBtn $text="회원가입" onClick={() => navigate("/")}>
             로그인
           </LoginBtn>
