@@ -13,17 +13,18 @@ import {
   RegisterBtn,
 } from "style/LoginStyle";
 import axios from "axios";
+import { loginApi } from "../axios/api";
 import { useInput } from "util/hooks/useInput";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [id, idHandler] = useInput();
   const [password, pwHandler] = useInput();
+  const [isBtnAbled, setIsBtnAbled] = useState(false);
   const idRef = useRef(null);
   const pwRef = useRef(null);
-  const loginBtnRef = useRef(null);
 
   useEffect(() => {
     ableBtn();
@@ -34,9 +35,9 @@ function Login() {
       idRef.current.value.trim() !== "" &&
       pwRef.current.value.trim() !== ""
     ) {
-      loginBtnRef.current.disabled = false;
+      setIsBtnAbled(false);
     } else {
-      loginBtnRef.current.disabled = true;
+      setIsBtnAbled(true);
     }
   };
 
@@ -50,17 +51,14 @@ function Login() {
   // 로그인
   const tryLogin = async () => {
     try {
-      const response = await axios.post(
+      await loginApi.post(
         "https://moneyfulpublicpolicy.co.kr/login?expiresIn=3h",
         loginProfile(id, password)
       );
-      console.log(response);
-      const { accessToken } = response.data;
-      localStorage.setItem("accessToken", accessToken);
       dispatch(authLoginChange(true));
       getData();
       renewInput();
-      alert("로그인 완료! 나중에 지우기!");
+      alert("최애에게 한 걸음!");
     } catch (error) {
       console.error("error", error);
       alert("로그인 중 오류가 발생했습니다.");
@@ -125,14 +123,7 @@ function Login() {
           ></LoginInput>
         </LoginInputDiv>
         <LoginBtnBox>
-          <LoginBtn
-            disabled
-            ref={loginBtnRef}
-            $text="로그인"
-            onClick={() => {
-              login();
-            }}
-          >
+          <LoginBtn disabled={isBtnAbled} $text="로그인" onClick={login}>
             로그인
           </LoginBtn>
           <RegisterBtn $text="로그인" onClick={() => navigate("/register")}>

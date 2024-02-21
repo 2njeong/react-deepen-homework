@@ -3,7 +3,8 @@ import { SubmitBtnSt } from "../../style/LetterStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { renewContent } from "../../redux/modules/letterSlice";
 import { __getLetters } from "../../redux/modules/letterListSlice";
-import axios from "axios";
+// import axios from "axios";
+import { postlettersApi } from "../../axios/api";
 
 function SubmitLetter() {
   const dispatch = useDispatch();
@@ -24,10 +25,7 @@ function SubmitLetter() {
 
   const submitLetterToServer = async () => {
     try {
-      await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/letters`,
-        resultLetter
-      );
+      await postlettersApi.post(`/letters`, resultLetter);
     } catch (error) {
       console.error("서버에 newLetter 저장 실패", error);
       alert("서버와의 통신에 오류가 있습니다.");

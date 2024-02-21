@@ -40,6 +40,7 @@ const letterListSlice = createSlice({
       state.letterList = action.payload;
     },
   },
+
   extraReducers: (builder) => {
     builder.addCase(__getLetters.pending, (state, action) => {
       state.isLoading = true;

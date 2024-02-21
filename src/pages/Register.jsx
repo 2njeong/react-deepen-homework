@@ -1,6 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
+import { useInput } from "util/hooks/useInput";
+import { useEffect, useRef, useState } from "react";
 import {
   LoginBackDiv,
   LoginForm,
@@ -11,18 +12,16 @@ import {
   LoginBtn,
   RegisterBtn,
 } from "style/LoginStyle";
-import { useInput } from "util/hooks/useInput";
-import { useEffect, useRef } from "react";
 
 function Register() {
   const navigate = useNavigate();
   const [id, idHandler] = useInput();
   const [password, pwHandler] = useInput();
   const [nickname, nicknameHandler] = useInput();
+  const [isRegisterBtnAbled, setIsRegisterBtnAbled] = useState(false);
   const idRef = useRef(null);
   const pwRef = useRef(null);
   const nicknameRef = useRef(null);
-  const registerBtnRef = useRef(null);
 
   useEffect(() => {
     ableBtn();
@@ -34,9 +33,9 @@ function Register() {
       pwRef.current.value.trim() !== "" &&
       nicknameRef.current.value.trim() !== ""
     ) {
-      registerBtnRef.current.disabled = false;
+      setIsRegisterBtnAbled(false);
     } else {
-      registerBtnRef.current.disabled = true;
+      setIsRegisterBtnAbled(true);
     }
   };
 
@@ -113,8 +112,7 @@ function Register() {
         </LoginInputDiv>
         <LoginBtnBox>
           <RegisterBtn
-            ref={registerBtnRef}
-            disabled
+            disabled={isRegisterBtnAbled}
             $text="회원가입"
             onClick={submitRegisteredProfile}
           >

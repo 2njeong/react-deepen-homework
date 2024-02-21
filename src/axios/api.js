@@ -1,23 +1,36 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { authLoginChange } from "../redux/modules/authSlice";
 
-const instance = axios.create({
+export const loginApi = axios.create({
   baseURL: "https://moneyfulpublicpolicy.co.kr",
   timeout: 2000,
 });
 
-instance.interceptors.response.use(
+loginApi.interceptors.response.use(
+  // 응답에 대한..
   (response) => {
     const { accessToken } = response.data;
     localStorage.setItem("accessToken", accessToken);
-    const dispatch = useDispatch();
-    dispatch(authLoginChange(true));
   },
   (error) => {
-    console.error("서버로부터 응답을 받는 과정 중 오류 발생");
+    console.error("서버로부터 accessToken 받는 과정 중 오류 발생");
     return Promise.reject(error);
   }
 );
 
-export default instance;
+export const postlettersApi = axios.create({
+  baseURL: process.env.REACT_APP_BASE_URL,
+  timeout: 2000,
+});
+
+postlettersApi.interceptors.request.use(
+  (config) => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      return config;
+    }
+  },
+  (error) => {
+    console.error("인터셉터 요청 실패", error);
+    return Promise.reject(error);
+  }
+);

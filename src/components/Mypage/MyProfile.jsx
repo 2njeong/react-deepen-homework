@@ -12,7 +12,7 @@ function MyProfile() {
       </MyProfileImgDiv>
       <MyPDiv>
         <MyNickname>{profile.nickname}</MyNickname>
-        <MyId>id - {profile.id}</MyId>
+        <MyId>{profile.id}</MyId>
       </MyPDiv>
       <IntroDiv>
         <IntroP>{profile.intro}</IntroP>

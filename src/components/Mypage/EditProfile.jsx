@@ -1,7 +1,7 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfile, editProfile } from "../../redux/modules/profileSlice";
+import { getProfile } from "../../redux/modules/profileSlice";
 import styled from "styled-components";
 import { useInput } from "util/hooks/useInput";
 
@@ -9,12 +9,38 @@ function EditProfile() {
   const profile = useSelector((state) => state.profileSlice.profile);
   const [editClick, setEditClick] = useState(false);
   const [editedNickname, editedNicknameHandler] = useInput();
-  const [avatar, setAvatar] = useState(null);
-  const [url, setUrl] = useState(null);
+  const [avatar, setAvatar] = useState(profile.avatar);
+  const [url, setUrl] = useState(profile.avatar);
   const inputRef = useRef(null);
   const imgRef = useRef(null);
 
   const dispatch = useDispatch();
+
+  const editClickHandler = () => {
+    setEditClick(true);
+  };
+
+  const sendEditedProfileToServer = async () => {
+    const formData = new FormData();
+    formData.append("avatar", avatar);
+    formData.append("nickname", editedNickname);
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      await axios.patch(
+        `https://moneyfulpublicpolicy.co.kr/profile`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.log("프로필 편집 실패", error);
+      alert("프로필 편집에 오류가 발생하였습니다.");
+    }
+  };
 
   const getData = async () => {
     try {
@@ -35,10 +61,6 @@ function EditProfile() {
     }
   };
 
-  const editClickHandler = () => {
-    setEditClick(true);
-  };
-
   const editHandler = async () => {
     await sendEditedProfileToServer();
     await getData();
@@ -46,51 +68,23 @@ function EditProfile() {
     setEditClick(false);
   };
 
-  const formData = new FormData();
-  formData.append("avatar", avatar);
-  formData.append("nickname", editedNickname);
+  const imgClick = () => {
+    if (inputRef) {
+      inputRef.current.click();
+    }
+  };
 
-  const sendEditedProfileToServer = async () => {
-    try {
-      const accessToken = localStorage.getItem("accessToken");
-      await axios.patch(
-        `https://moneyfulpublicpolicy.co.kr/profile`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-    } catch (error) {
-      console.log("프로필 편집 실패", error);
-      alert("프로필 편집에 오류가 발생하였습니다.");
+  const selectFile = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setUrl(url);
+      setAvatar(file);
     }
   };
 
   const cancelEdit = () => {
     setEditClick(false);
-  };
-
-  const selectFile = (e) => {
-    setAvatar(e.target.files[0]);
-
-    // if (e.target.files[0]) {
-    //   const reader = new FileReader();
-    //   reader.onloadend = () => {
-    //     setUrl(reader.result);
-    //   };
-    //   reader.readAsDataURL(e.target.files[0]);
-    // } else {
-    //   setUrl(null);
-    // }
-  };
-
-  const imgClick = () => {
-    if (inputRef) {
-      inputRef.current.click();
-    }
   };
 
   return (
@@ -127,7 +121,7 @@ function EditProfile() {
             ></HiddenImgInput>
             <MiniImg
               ref={imgRef}
-              src={profile.avatar}
+              src={url}
               onClick={imgClick}
               alt="회원 이미지"
               $text="edit"
