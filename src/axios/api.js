@@ -17,16 +17,18 @@ loginApi.interceptors.response.use(
   }
 );
 
-export const postlettersApi = axios.create({
+export const lettersApi = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   timeout: 2000,
 });
 
-postlettersApi.interceptors.request.use(
+lettersApi.interceptors.request.use(
   (config) => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
       return config;
+    } else {
+      alert("로그인 후 이용해주세요");
     }
   },
   (error) => {

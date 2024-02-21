@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+// import axios from "axios";
+import { lettersApi } from "../../axios/api";
 
 export const initialState = {
   letterList: [],
@@ -19,12 +20,10 @@ export const __addLetterList = createAsyncThunk(
 
 export const __getLetters = createAsyncThunk("GET_LETTERlIST", async () => {
   try {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/letters?_sort=-createdAt`
-    );
+    const { data } = await lettersApi.get(`letters?_sort=-createdAt`);
     return data;
   } catch (error) {
-    console.error("서버에 letterList 불러오기 실패", error);
+    console.error("서버에서 letterList 불러오기 실패", error);
     alert("서버에서 팬레터를 불러오지 못했습니다.");
   }
 });

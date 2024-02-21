@@ -7,7 +7,7 @@ import Mypage from "pages/Mypage.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { authLoginChange } from "../redux/modules/authSlice.js";
-import { getProfile } from "../redux/modules/profileSlice.js";
+import __getProfile from "../redux/modules/profileSlice.js";
 import axios from "axios";
 
 const Router = () => {
@@ -34,7 +34,7 @@ const Router = () => {
         );
         console.log(data);
         dispatch(authLoginChange(true));
-        dispatch(getProfile(data));
+        dispatch(__getProfile());
       } catch (error) {
         console.error("error", "로그인이 필요한 상태");
       }

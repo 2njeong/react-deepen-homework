@@ -1,12 +1,8 @@
-import axios from "axios";
 import Fan from "./Fan";
 import HerLetterList from "./HerLetterList";
 import OurLetterList from "./OurLetterList";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  __getLetters,
-  addLetterList,
-} from "../../redux/modules/letterListSlice";
+import { __getLetters } from "../../redux/modules/letterListSlice";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useRef, useState } from "react";
 import { FanLetterDivSt } from "../../style/LetterListStyle";

@@ -3,8 +3,7 @@ import { SubmitBtnSt } from "../../style/LetterStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { renewContent } from "../../redux/modules/letterSlice";
 import { __getLetters } from "../../redux/modules/letterListSlice";
-// import axios from "axios";
-import { postlettersApi } from "../../axios/api";
+import { lettersApi } from "../../axios/api";
 
 function SubmitLetter() {
   const dispatch = useDispatch();
@@ -25,7 +24,7 @@ function SubmitLetter() {
 
   const submitLetterToServer = async () => {
     try {
-      await postlettersApi.post(`/letters`, resultLetter);
+      await lettersApi.post(`/letters`, resultLetter);
     } catch (error) {
       console.error("서버에 newLetter 저장 실패", error);
       alert("서버와의 통신에 오류가 있습니다.");
@@ -45,7 +44,6 @@ function SubmitLetter() {
       dispatch(__getLetters());
       alert("최애에게 전달 중...><");
       dispatch(renewContent());
-      // 얘는 한번의 렌더링으로 다 업데이트 되는데 왜 LetterList는...?
     }
   };
 
