@@ -24,14 +24,14 @@ function HerLetterList({
   const profile = useSelector((state) => state.profileSlice.profile);
   const letterList = useSelector((state) => state.letterListSlice.letterList);
 
-  const herLetter = selectedBtn
+  const herLetters = selectedBtn
     ? letterList.filter(
         (letter) => letter.writedTo === data[selectedBtn - 1].name
       )
     : null;
 
-  return herLetter.length > 0 ? (
-    herLetter.map((letter) => {
+  return herLetters.length > 0 ? (
+    herLetters.map((letter) => {
       return (
         <FanLetterStBox key={letter.id}>
           <AvatarStImg
@@ -58,7 +58,6 @@ function HerLetterList({
                 <></>
               )}
             </LetterLiBtnContainerDiv>
-
             <LiStyle>{letter.content}</LiStyle>
           </LetterContentSt>
         </FanLetterStBox>

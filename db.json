@@ -1,47 +1,11 @@
 {
   "letters": [
     {
-      "id": "0527",
-      "createdAt": "Tue Feb 20 2024 19:04:33 GMT+0900 (한국 표준시)",
-      "nickname": "6666",
-      "avatar": "/img/pngwing.com.png",
-      "content": "11111111",
-      "writedTo": "지수 - Jisoo",
-      "userId": "6666"
-    },
-    {
-      "id": "474a",
-      "createdAt": "Tue Feb 20 2024 19:04:40 GMT+0900 (한국 표준시)",
-      "nickname": "6666",
-      "avatar": "/img/pngwing.com.png",
-      "content": "22222",
-      "writedTo": "지수 - Jisoo",
-      "userId": "6666"
-    },
-    {
-      "id": "07dc",
-      "createdAt": "Wed Feb 21 2024 03:02:49 GMT+0900 (한국 표준시)",
-      "nickname": "나는 한식파",
-      "avatar": "/img/pngwing.com.png",
-      "content": "ㅇㅇㅇㅇㅇ",
-      "writedTo": "지수 - Jisoo",
-      "userId": "5555"
-    },
-    {
-      "id": "a57a",
-      "createdAt": "Wed Feb 21 2024 03:03:11 GMT+0900 (한국 표준시)",
-      "nickname": "나는 한식파",
-      "avatar": "/img/pngwing.com.png",
-      "content": "ㅇㅇㅇㅇㅇ",
-      "writedTo": "로제 - ROSÉ",
-      "userId": "5555"
-    },
-    {
-      "id": "46fb",
-      "createdAt": "Wed Feb 21 2024 16:25:07 GMT+0900 (한국 표준시)",
+      "id": "7f1f",
+      "createdAt": "Wed Feb 21 2024 20:12:10 GMT+0900 (한국 표준시)",
       "nickname": "2거 사죠요",
-      "avatar": "/img/pngwing.com.png",
-      "content": "222222222222",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-21/92dca4bc-5459-4864-a766-fd769c99d0f9.jpg",
+      "content": "111111111",
       "writedTo": "지수 - Jisoo",
       "userId": "5555"
     }

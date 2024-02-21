@@ -6,7 +6,6 @@ export const loginApi = axios.create({
 });
 
 loginApi.interceptors.response.use(
-  // 응답에 대한..
   (response) => {
     const { accessToken } = response.data;
     localStorage.setItem("accessToken", accessToken);

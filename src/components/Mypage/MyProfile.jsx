@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 function MyProfile() {
   const profile = useSelector((state) => state.profileSlice.profile);
-  console.log(profile);
+
   return (
     <>
       <MyProfileImgDiv>

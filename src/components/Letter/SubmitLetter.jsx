@@ -7,14 +7,16 @@ import { lettersApi } from "../../axios/api";
 
 function SubmitLetter() {
   const dispatch = useDispatch();
-  const { nickname, id } = useSelector((state) => state.profileSlice.profile);
+  const { nickname, id, avatar } = useSelector(
+    (state) => state.profileSlice.profile
+  );
   const { content, option } = useSelector((state) => state.letterSlice);
 
   const makeLetterHandeler = () => {
     return {
       createdAt: String(new Date()),
       nickname: nickname,
-      avatar: "/img/pngwing.com.png",
+      avatar: avatar,
       content: content,
       writedTo: option,
       userId: id,

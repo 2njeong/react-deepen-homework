@@ -14,13 +14,25 @@ export const FanDivSt = styled.div`
   justify-content: space-around;
   border-radius: 15px;
   border: 4px solid lightgray;
-  padding: 10px 15px 20px 15px;
+  padding: 8px 15px 20px 15px;
+`;
+
+export const BtnBox = styled.div`
+  display: flex;
+  width: 340px;
+  padding-bottom: 10px;
+  justify-content: space-between;
 `;
 
 export const FanBtnSt = styled.button`
-  width: 20px;
-  height: 20px;
-  margin: 0 5px 0 auto;
+  height: 25px;
+  border-radius: 4px;
+  border: 2px solid #b2b7bc;
+  width: ${({ $text }) => ($text === "x" ? "25px" : "65px")};
+  margin-left: ${({ $text }) => ($text === "x" ? "10px" : 0)};
+  &:hover {
+    background-color: gray;
+  }
 `;
 
 export const FanImgSt = styled.img`

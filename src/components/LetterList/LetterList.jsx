@@ -11,7 +11,7 @@ function LetterList() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(__getLetters());
-  }, []);
+  }, [dispatch]);
 
   const letterList = useSelector((state) => state.letterListSlice.letterList);
   const selectedBtn = useSelector(
@@ -31,7 +31,9 @@ function LetterList() {
   const theVeryFan = letterList.find((letter) => letter.id === clickedFanId);
 
   const seeFanData = () => {
-    theVeryFan && setFanClick(true);
+    if (theVeryFan) {
+      setFanClick(true);
+    }
   };
 
   return (

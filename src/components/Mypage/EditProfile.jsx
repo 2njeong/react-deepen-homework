@@ -247,7 +247,7 @@ const EditBtn = styled.button`
   color: #353e55;
   width: ${({ $text }) => ($text === "done" ? "70px" : "60px")};
   height: 28px;
-  border: 2px solid #353e55;
+  border: 2.5px solid gray;
   border-radius: 3px;
   margin-right: ${({ $text }) => ($text === "done" ? "3px" : 0)};
   &:hover {
