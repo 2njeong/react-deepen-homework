@@ -24,7 +24,7 @@ const Router = () => {
       dispatch(__getProfile());
       dispatch(__getLetters());
     }
-  }, [dispatch]);
+  }, [accessToken, currentTime, expirationTime, dispatch]);
 
   if (currentTime > expirationTime) {
     dispatch(authLoginChange(false));

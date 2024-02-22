@@ -1,24 +1,38 @@
 import axios from "axios";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __getProfile } from "../../redux/modules/profileSlice";
 import styled from "styled-components";
-import { useInput } from "shared/useInput";
 
 function EditProfile() {
   const profile = useSelector((state) => state.profileSlice.profile);
+  console.log(profile);
   const [editClick, setEditClick] = useState(false);
-  const [editedNickname, editedNicknameHandler] = useInput();
+  const [editedNickname, setEditedNickname] = useState(profile.nickname);
   const [avatar, setAvatar] = useState(profile.avatar);
   const [url, setUrl] = useState(profile.avatar);
+  // const [isEditAble, setIsEditAble] = useState(false);
   const inputRef = useRef(null);
   const imgRef = useRef(null);
-
   const dispatch = useDispatch();
 
+  // useEffect(() => { 왜 안되는지 튜터님께 물어보기..
+  //   const changeEditAble = () => {
+  //     if (editedNickname === profile.nickname && url === profile.avatar) {
+  //       setIsEditAble(true);
+  //     } else {
+  //       setIsEditAble(false);
+  //     }
+  //   };
+  //   changeEditAble();
+  // }, [editedNickname, avatar]);
+
   const editClickHandler = () => {
+    alert("프로필을 수정하시겠습니까?");
     setEditClick(true);
   };
+
+  const editNickname = (e) => setEditedNickname(e.target.value);
 
   const sendEditedProfileToServer = async () => {
     const formData = new FormData();
@@ -42,30 +56,16 @@ function EditProfile() {
     }
   };
 
-  // const getData = async () => {
-  //   try {
-  //     const accessToken = localStorage.getItem("accessToken");
-  //     const response = await axios.get(
-  //       "https://moneyfulpublicpolicy.co.kr/user",
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${accessToken}`,
-  //         },
-  //       }
-  //     );
-  //     dispatch(getProfile(response.data));
-  //   } catch (error) {
-  //     console.error("error", error);
-  //     alert("유저정보를 불러오는 데에 오류가 발생했습니다.");
-  //   }
-  // };
-
   const editHandler = async () => {
-    await sendEditedProfileToServer();
-    dispatch(__getProfile());
-    console.log(profile);
-    setEditClick(false);
+    if (editedNickname === profile.nickname && url === profile.avatar) {
+      alert("수정된 사항이 없습니다.");
+      setEditClick(true);
+    } else {
+      await sendEditedProfileToServer();
+      dispatch(__getProfile());
+      setEditClick(false);
+      alert("프로필이 수정되었습니다.");
+    }
   };
 
   const imgClick = () => {
@@ -76,6 +76,7 @@ function EditProfile() {
 
   const selectFile = (e) => {
     const file = e.target.files[0];
+    console.log(file);
     if (file) {
       const url = URL.createObjectURL(file);
       setUrl(url);
@@ -96,7 +97,13 @@ function EditProfile() {
               이미지 수정을 원하시면 이미지를 클릭해주세요!
             </BasicDataP>
             <div>
-              <EditBtn $text="done" onClick={editHandler}>
+              <EditBtn
+                $text="done"
+                // disabled={isEditAble}
+                onClick={() => {
+                  editHandler();
+                }}
+              >
                 수정완료
               </EditBtn>
               <EditBtn onClick={cancelEdit}>취소</EditBtn>
@@ -127,8 +134,8 @@ function EditProfile() {
               $text="edit"
             />
             <NicknameTextArea
-              defaultValue={profile.nickname}
-              onChange={editedNicknameHandler}
+              value={editedNickname}
+              onChange={editNickname}
             ></NicknameTextArea>
           </ImgNNicknameDiv>
           <PDiv>

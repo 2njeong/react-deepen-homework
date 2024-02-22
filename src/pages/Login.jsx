@@ -23,7 +23,7 @@ function Login() {
   const dispatch = useDispatch();
   const [id, idHandler] = useInput();
   const [password, pwHandler] = useInput();
-  const [isBtnAbled, setIsBtnAbled] = useState(false);
+  const [isBtnAbled, setIsBtnAbled] = useState(true);
   const idRef = useRef(null);
   const pwRef = useRef(null);
   const notify = () => toast("최애에게 한 걸음!");
@@ -67,7 +67,7 @@ function Login() {
   const tryLogin = async () => {
     try {
       await loginApi.post(
-        "https://moneyfulpublicpolicy.co.kr/login?expiresIn=10s",
+        "https://moneyfulpublicpolicy.co.kr/login?expiresIn=3h",
         loginProfile(id, password)
       );
       dispatch(authLoginChange(true));

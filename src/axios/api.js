@@ -10,8 +10,7 @@ loginApi.interceptors.response.use(
     const { accessToken } = response.data;
     localStorage.setItem("accessToken", accessToken);
     const loginTime = new Date().getTime();
-    console.log(loginTime);
-    const expirationTime = loginTime + 10 * 1000;
+    const expirationTime = loginTime + 3 * 60 * 60 * 1000;
     localStorage.setItem("expirationTime", expirationTime.toString());
   },
   (error) => {
