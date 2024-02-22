@@ -2,7 +2,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useInput } from "shared/useInput";
 import { useEffect, useRef, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   LoginBackDiv,
@@ -14,6 +13,7 @@ import {
   LoginBtn,
   RegisterBtn,
 } from "style/LoginStyle";
+import { toast } from "react-toastify";
 
 function Register() {
   const navigate = useNavigate();
@@ -24,7 +24,6 @@ function Register() {
   const idRef = useRef(null);
   const pwRef = useRef(null);
   const nicknameRef = useRef(null);
-  const notify = () => toast("회원가입이 완료되었습니다.");
 
   useEffect(() => {
     ableBtn();
@@ -57,10 +56,10 @@ function Register() {
         registerProfile(id, password, nickname)
       );
       if (response.data.success) {
-        notify();
+        toast.success("회원가입 완료!");
         navigate("/");
       } else {
-        alert("회원가입에 실패했습니다.");
+        toast.error("회원가입에 실패했습니다.");
       }
     } catch (error) {
       console.error("error", error);
@@ -76,10 +75,11 @@ function Register() {
       alert("비밀번호는 4 ~ 15 글자여야 합니다.");
     }
     if (nickname.length < 4 || nickname.length > 10) {
-      alert("닉네임은 1 ~ 10 글자여야 합니다.");
+      alert("닉네임은 4 ~ 10 글자여야 합니다.");
+    } else {
+      registerToServer(id, password, nickname);
+      renewInput();
     }
-    registerToServer(id, password, nickname);
-    renewInput();
   };
 
   const renewInput = () => {
@@ -121,7 +121,6 @@ function Register() {
           >
             회원가입
           </RegisterBtn>
-          <ToastContainer />
           <LoginBtn $text="회원가입" onClick={() => navigate("/")}>
             로그인
           </LoginBtn>

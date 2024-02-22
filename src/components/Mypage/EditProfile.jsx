@@ -5,20 +5,27 @@ import { __getProfile } from "../../redux/modules/profileSlice";
 import styled, { css } from "styled-components";
 
 function EditProfile() {
-  const profile = useSelector((state) => state.profileSlice.profile);
-  console.log(profile);
+  const {
+    profileNickname,
+    profileAvatar,
+    profileEmail,
+    profileHp,
+    profileIntro,
+  } = useSelector((state) => state.profileSlice.profile);
   const [editClick, setEditClick] = useState(false);
-  const [editedNickname, setEditedNickname] = useState(profile.nickname);
-  const [avatar, setAvatar] = useState(profile.avatar);
-  const [url, setUrl] = useState(profile.avatar);
   const [isEditAble, setIsEditAble] = useState(true);
+  const [editedNickname, setEditedNickname] = useState(profileNickname);
+  const [avatar, setAvatar] = useState(profileAvatar);
+  const [url, setUrl] = useState(profileAvatar);
+  const editNickname = (e) => setEditedNickname(e.target.value);
+
   const inputRef = useRef(null);
   const imgRef = useRef(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const changeEditAble = () => {
-      if (editedNickname === profile.nickname && url === profile.avatar) {
+      if (editedNickname === profileNickname && url === profileAvatar) {
         setIsEditAble(true);
       } else {
         setIsEditAble(false);
@@ -31,8 +38,6 @@ function EditProfile() {
     alert("프로필을 수정하시겠습니까?");
     setEditClick(true);
   };
-
-  const editNickname = (e) => setEditedNickname(e.target.value);
 
   const sendEditedProfileToServer = async () => {
     const formData = new FormData();
@@ -57,7 +62,7 @@ function EditProfile() {
   };
 
   const editHandler = async () => {
-    if (editedNickname === profile.nickname && url === profile.avatar) {
+    if (editedNickname === profileNickname && url === profileAvatar) {
       alert("수정된 사항이 없습니다.");
       setEditClick(true);
     } else {
@@ -156,22 +161,22 @@ function EditProfile() {
           <NickDiv>
             <p>🖤nickname🖤</p>
             <ImgNNicknameDiv>
-              <MiniImg src={profile.avatar} alt="회원 이미지" />
-              <NicknameP>{profile.nickname}</NicknameP>
+              <MiniImg src={profileAvatar} alt="회원 이미지" />
+              <NicknameP>{profileNickname}</NicknameP>
             </ImgNNicknameDiv>
           </NickDiv>
 
           <PDiv>
             <p>email ✉️</p>
-            <P>{profile.email}</P>
+            <P>{profileEmail}</P>
           </PDiv>
           <PDiv>
             <p>HP 📱</p>
-            <P>{profile.Hp}</P>
+            <P>{profileHp}</P>
           </PDiv>
           <PDiv $text="intro">
             <p>intro</p>
-            <P $text="intro">{profile.intro}</P>
+            <P $text="intro">{profileIntro}</P>
           </PDiv>
         </>
       )}
