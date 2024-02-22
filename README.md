@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# 사이트명
+Black Pink 펜레터 CRUD 사이트 입니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 👩‍💻 프로젝트 소개
+기존 개인프로젝트에 redux-thunk, 인증서버로 회원프로필 관리, json-server로 펜레터 목록 및 CRUD 관리, 그 외 axios-interceptor를 사용한 프로젝트입니다.
 
-## Available Scripts
+## ⏲️ 개발 기간
+- 2024.02.16(금) ~ 2024.02.21(수)
 
-In the project directory, you can run:
+## 💻 개발환경
+- Version : Javascript
+- <img alt="JavaScript" src ="https://img.shields.io/badge/JavaScriipt-F7DF1E.svg?&style=for-the-badge&logo=JavaScript&logoColor=black"/> <img alt="Html" src ="https://img.shields.io/badge/HTML-E34F26.svg?&style=for-the-badge&logo=HTML5&logoColor=white"/> <img alt="Css" src ="https://img.shields.io/badge/CSS-1572B6.svg?&style=for-the-badge&logo=CSS3&logoColor=white"/>
+- Github
+- VScode
 
-### `npm start`
+## 📌 주요 기능
+- 회원가입/ 로그인(유효성검사 포함)
+- 마이페이지에서 회원프로필 수정기능
+- 내가 원하는 멤버에게 펜레터 CRUD 기능
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📌 세부기능
+- 모달창 구현(메인 페이지의 펜레터 사진 누르면 회원정보 조회가능)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## ✒️ API
+- API 링크
+    - 영화 정보 : https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1 ~ https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=12
+    - 영화 장르 : https://api.themoviedb.org/3/genre/movie/list?language=ko-KR
+    - 영화 배우 정보 : https://api.themoviedb.org/3/movie/${movie.id}/credits?language=ko-KR
+    - 상영 시간 정보 : https://api.themoviedb.org/3/movie/${movie.id}?language=ko-KR
