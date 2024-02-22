@@ -251,17 +251,30 @@ const NicknameP = styled.p`
 
 const EditBtn = styled.button`
   font-size: 15px;
-  color: #353e55;
+  color: ${({ disabled }) => (disabled ? "lightgray" : "#353e55")};
   width: ${({ $text }) => ($text === "done" ? "70px" : "60px")};
   height: 28px;
   margin-right: ${({ $text }) => ($text === "done" ? "3px" : 0)};
-  border: 2.5px solid gray;
+  border: 2.5px solid ${({ disabled }) => (disabled ? "transparent" : "gray")};
   border-radius: 3px;
-  &:hover {
-    background-color: lightgray;
-    color: #494d52;
-    opacity: 1;
-  }
+  ${({ disabled }) => {
+    if (disabled) {
+      return css`
+        &:hover {
+          background-color: transparent;
+          opacity: 1;
+        }
+      `;
+    } else {
+      return css`
+        &:hover {
+          background-color: lightgray;
+          color: #494d52;
+          opacity: 1;
+        }
+      `;
+    }
+  }}
 `;
 
 const NickDiv = styled.div`
