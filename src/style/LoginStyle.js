@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const LoginBackDiv = styled.div`
   background-color: lightgray;
@@ -53,12 +53,20 @@ export const LoginBtn = styled.button`
   border: none;
   border-radius: 5px;
   font-size: 15px;
-  cursor: pointer;
-  transition: all 0.2s;
-  &:hover {
-    transform: scale(1.02);
-    background-color: gray;
-  }
+  user-select: none;
+
+  ${({ disabled }) => {
+    if (!disabled) {
+      return css`
+        cursor: pointer;
+        transition: all 0.2s;
+        &:hover {
+          transform: scale(1.02);
+          background-color: gray;
+        }
+      `;
+    }
+  }}
 `;
 
 export const RegisterBtn = styled.button`
@@ -69,6 +77,7 @@ export const RegisterBtn = styled.button`
   font-size: 15px;
   cursor: pointer;
   transition: all 0.2s;
+  user-select: none;
   &:hover {
     transform: scale(1.02);
     background-color: gray;

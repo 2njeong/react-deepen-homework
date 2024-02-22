@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __getProfile } from "../../redux/modules/profileSlice";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 function EditProfile() {
   const profile = useSelector((state) => state.profileSlice.profile);
@@ -11,21 +11,21 @@ function EditProfile() {
   const [editedNickname, setEditedNickname] = useState(profile.nickname);
   const [avatar, setAvatar] = useState(profile.avatar);
   const [url, setUrl] = useState(profile.avatar);
-  // const [isEditAble, setIsEditAble] = useState(false);
+  const [isEditAble, setIsEditAble] = useState(true);
   const inputRef = useRef(null);
   const imgRef = useRef(null);
   const dispatch = useDispatch();
 
-  // useEffect(() => { 왜 안되는지 튜터님께 물어보기..
-  //   const changeEditAble = () => {
-  //     if (editedNickname === profile.nickname && url === profile.avatar) {
-  //       setIsEditAble(true);
-  //     } else {
-  //       setIsEditAble(false);
-  //     }
-  //   };
-  //   changeEditAble();
-  // }, [editedNickname, avatar]);
+  useEffect(() => {
+    const changeEditAble = () => {
+      if (editedNickname === profile.nickname && url === profile.avatar) {
+        setIsEditAble(true);
+      } else {
+        setIsEditAble(false);
+      }
+    };
+    changeEditAble();
+  }, [editedNickname, avatar]);
 
   const editClickHandler = () => {
     alert("프로필을 수정하시겠습니까?");
@@ -99,7 +99,7 @@ function EditProfile() {
             <div>
               <EditBtn
                 $text="done"
-                // disabled={isEditAble}
+                disabled={isEditAble}
                 onClick={() => {
                   editHandler();
                 }}
@@ -254,9 +254,9 @@ const EditBtn = styled.button`
   color: #353e55;
   width: ${({ $text }) => ($text === "done" ? "70px" : "60px")};
   height: 28px;
+  margin-right: ${({ $text }) => ($text === "done" ? "3px" : 0)};
   border: 2.5px solid gray;
   border-radius: 3px;
-  margin-right: ${({ $text }) => ($text === "done" ? "3px" : 0)};
   &:hover {
     background-color: lightgray;
     color: #494d52;

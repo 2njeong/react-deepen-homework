@@ -46,8 +46,9 @@ const Router = () => {
           </>
         ) : (
           <>
-            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="*" element={<Navigate replace to="/login" />} />
           </>
         )}
       </Routes>
