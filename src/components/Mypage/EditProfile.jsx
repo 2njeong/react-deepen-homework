@@ -3,20 +3,16 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __getProfile } from "../../redux/modules/profileSlice";
 import styled, { css } from "styled-components";
+import { toast } from "react-toastify";
+import { lettersApi } from "../../axios/api";
 
 function EditProfile() {
-  const {
-    profileNickname,
-    profileAvatar,
-    profileEmail,
-    profileHp,
-    profileIntro,
-  } = useSelector((state) => state.profileSlice.profile);
+  const profile = useSelector((state) => state.profileSlice.profile);
   const [editClick, setEditClick] = useState(false);
   const [isEditAble, setIsEditAble] = useState(true);
-  const [editedNickname, setEditedNickname] = useState(profileNickname);
-  const [avatar, setAvatar] = useState(profileAvatar);
-  const [url, setUrl] = useState(profileAvatar);
+  const [editedNickname, setEditedNickname] = useState(profile.nickname);
+  const [avatar, setAvatar] = useState(profile.avatar);
+  const [url, setUrl] = useState(profile.avatar);
   const editNickname = (e) => setEditedNickname(e.target.value);
 
   const inputRef = useRef(null);
@@ -25,7 +21,7 @@ function EditProfile() {
 
   useEffect(() => {
     const changeEditAble = () => {
-      if (editedNickname === profileNickname && url === profileAvatar) {
+      if (editedNickname === profile.nickname && url === profile.avatar) {
         setIsEditAble(true);
       } else {
         setIsEditAble(false);
@@ -45,7 +41,7 @@ function EditProfile() {
     formData.append("nickname", editedNickname);
     try {
       const accessToken = localStorage.getItem("accessToken");
-      await axios.patch(
+      const { data } = await axios.patch(
         `https://moneyfulpublicpolicy.co.kr/profile`,
         formData,
         {
@@ -55,6 +51,16 @@ function EditProfile() {
           },
         }
       );
+      const { avatar, nickname } = data;
+      const editedObj = {};
+      if (nickname) editedObj.nickname = nickname;
+      if (avatar) editedObj.avatar = avatar;
+      const { data: myletters } = await lettersApi.get(
+        `/letters?userId=${profile.id}`
+      );
+      for (const myletter of myletters) {
+        await lettersApi.patch(`/letters/${myletter.id}`, editedObj);
+      }
     } catch (error) {
       console.log("프로필 편집 실패", error);
       alert("프로필 편집에 오류가 발생하였습니다.");
@@ -62,7 +68,7 @@ function EditProfile() {
   };
 
   const editHandler = async () => {
-    if (editedNickname === profileNickname && url === profileAvatar) {
+    if (editedNickname === profile.nickname && url === profile.avatar) {
       alert("수정된 사항이 없습니다.");
       setEditClick(true);
     } else {
@@ -81,11 +87,14 @@ function EditProfile() {
 
   const selectFile = (e) => {
     const file = e.target.files[0];
-    console.log(file);
     if (file) {
       const url = URL.createObjectURL(file);
       setUrl(url);
-      setAvatar(file);
+      if (file.size > 1024 * 1024) {
+        toast.warn("최대 1MB까지 업로드 가능합니다.");
+      } else {
+        setAvatar(file);
+      }
     }
   };
 
@@ -161,22 +170,22 @@ function EditProfile() {
           <NickDiv>
             <p>🖤nickname🖤</p>
             <ImgNNicknameDiv>
-              <MiniImg src={profileAvatar} alt="회원 이미지" />
-              <NicknameP>{profileNickname}</NicknameP>
+              <MiniImg src={profile.avatar} alt="회원 이미지" />
+              <NicknameP>{profile.nickname}</NicknameP>
             </ImgNNicknameDiv>
           </NickDiv>
 
           <PDiv>
             <p>email ✉️</p>
-            <P>{profileEmail}</P>
+            <P>{profile.email}</P>
           </PDiv>
           <PDiv>
             <p>HP 📱</p>
-            <P>{profileHp}</P>
+            <P>{profile.Hp}</P>
           </PDiv>
           <PDiv $text="intro">
             <p>intro</p>
-            <P $text="intro">{profileIntro}</P>
+            <P $text="intro">{profile.intro}</P>
           </PDiv>
         </>
       )}

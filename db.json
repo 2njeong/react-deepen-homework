@@ -1,31 +1,31 @@
 {
   "letters": [
     {
-      "id": "a081",
-      "createdAt": "Thu Feb 22 2024 01:38:36 GMT+0900 (한국 표준시)",
+      "id": "89f6",
+      "createdAt": "Fri Feb 23 2024 18:50:44 GMT+0900 (한국 표준시)",
       "nickname": "몇 대 맞을래",
       "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-21/7b9b6cb5-dd30-4c38-ba29-8d146ae72707.jpg",
-      "content": "22222",
-      "writedTo": "지수 - Jisoo",
+      "content": "흥흥흥흥 ",
+      "writedTo": "제니 - Jennie",
       "userId": "7777"
     },
     {
-      "id": "87ae",
-      "createdAt": "Thu Feb 22 2024 01:40:38 GMT+0900 (한국 표준시)",
-      "nickname": "나는야 수박",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-21/21b7c837-b9aa-4fd6-9382-04b21b9e780c.jpg",
-      "content": "33333333333",
+      "id": "1b7a",
+      "createdAt": "Fri Feb 23 2024 18:51:06 GMT+0900 (한국 표준시)",
+      "nickname": "나는야 치킨ㅇㅇㅇ",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-23/a57a668e-7f6f-4af6-adfb-d9ae79e48468.jpg",
+      "content": "난 치킨 좋아해",
       "writedTo": "로제 - ROSÉ",
-      "userId": "uuuu"
+      "userId": "5555"
     },
     {
-      "id": "1a92",
-      "createdAt": "Thu Feb 22 2024 13:47:48 GMT+0900 (한국 표준시)",
-      "nickname": "2거 사죠",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/24-02-22/3772c1aa-addc-4e3e-a851-020072150772.jpg",
-      "content": "리사야 나 2거 사죠",
-      "writedTo": "리사 - Lisa",
-      "userId": "2222"
+      "id": "4d76",
+      "createdAt": "Fri Feb 23 2024 19:23:12 GMT+0900 (한국 표준시)",
+      "nickname": "rrrr",
+      "avatar": "/img/pngwing.com.png",
+      "content": "카카",
+      "writedTo": "제니 - Jennie",
+      "userId": "ㄱㄱㄱㄱ"
     }
   ]
 }

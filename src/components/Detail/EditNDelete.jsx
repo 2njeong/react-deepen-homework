@@ -3,7 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { data } from "../../shared/data";
 import { selectClick } from "../../redux/modules/selectedBtnSlice";
-import { __getLetters } from "../../redux/modules/letterListSlice";
+import {
+  __editLetters,
+  __getLetters,
+} from "../../redux/modules/letterListSlice";
 import {
   clickChangeTrue,
   clickChangeFalse,
@@ -40,11 +43,7 @@ function EditNDelete() {
   const profile = useSelector((state) => state.profileSlice.profile);
   const letterList = useSelector((state) => state.letterListSlice.letterList);
   const foundLetter = letterList.find((letter) => letter.id === params.id);
-  console.log(letterList);
-  console.log(foundLetter);
   const myMember = data.find((d) => d.name === foundLetter.writedTo);
-  console.log(data);
-  console.log(myMember);
   const accessToken = localStorage.getItem("accessToken");
 
   // useEffect(() => {
@@ -69,24 +68,7 @@ function EditNDelete() {
       } else {
         alert("수정이 완료되었습니다.");
         await serverEditHandler();
-        dispatch(__getLetters());
         dispatch(clickChangeFalse());
-      }
-    } else {
-      alert("로그인 후 이용해주세요");
-    }
-  };
-
-  const serverEditHandler = async () => {
-    if (accessToken) {
-      try {
-        await axios.patch(
-          `${process.env.REACT_APP_BASE_URL}/letters/${foundLetter.id}`,
-          editLetter()
-        );
-      } catch (error) {
-        console.log("서버로 팬레터 수정 실패", error);
-        alert("팬레터 수정에 오류가 발생하였습니다.");
       }
     } else {
       alert("로그인 후 이용해주세요");
@@ -99,6 +81,16 @@ function EditNDelete() {
       content: editContent,
       createdAt: String(new Date()),
     };
+  };
+
+  const serverEditHandler = async () => {
+    if (accessToken) {
+      dispatch(
+        __editLetters({ id: foundLetter.id, editContent: editLetter() })
+      );
+    } else {
+      alert("로그인 후 이용해주세요");
+    }
   };
 
   const deleteHandeler = async () => {

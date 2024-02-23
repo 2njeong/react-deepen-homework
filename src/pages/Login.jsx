@@ -2,6 +2,12 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { authLoginChange } from "../redux/modules/authSlice";
 import { __getProfile } from "../redux/modules/profileSlice";
+import { loginApi } from "../axios/api";
+import { useInput } from "shared/useInput";
+import { useEffect, useRef, useState } from "react";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+
 import {
   LoginBackDiv,
   LoginForm,
@@ -12,11 +18,6 @@ import {
   LoginBtn,
   RegisterBtn,
 } from "style/LoginStyle";
-import { loginApi } from "../axios/api";
-import { useInput } from "shared/useInput";
-import { useEffect, useRef, useState } from "react";
-import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
 
 function Login() {
   const navigate = useNavigate();
@@ -78,26 +79,6 @@ function Login() {
       alert("로그인 중 오류가 발생했습니다.");
     }
   };
-
-  // 유저정보 가져오기
-  // const getData = async () => {
-  //   try {
-  //     const accessToken = localStorage.getItem("accessToken");
-  //     const response = await axios.get(
-  //       "https://moneyfulpublicpolicy.co.kr/user",
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${accessToken}`,
-  //         },
-  //       }
-  //     );
-  //     dispatch(getProfile(response.data));
-  //   } catch (error) {
-  //     console.error("error", error);
-  //     alert("유저정보를 불러오는 데에 오류가 발생했습니다.");
-  //   }
-  // };
 
   const renewInput = () => {
     idHandler();
